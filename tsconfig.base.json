@@ -15,7 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@powe-plant-angular-nest/api-interfaces": [
+      "@power-plant-angular-nest/api-interfaces": [
         "libs/api-interfaces/src/index.ts"
       ]
     }

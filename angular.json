@@ -70,7 +70,7 @@
       "projectType": "application",
       "root": "apps/power-plant",
       "sourceRoot": "apps/power-plant/src",
-      "prefix": "powe-plant-angular-nest",
+      "prefix": "power-plant-angular-nest",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
