@@ -1,7 +1,7 @@
 import { Directive, OnDestroy } from "@angular/core";
 import { SubscriptionLike } from "rxjs";
 import { ParamsHandler } from "../core/params-handler";
-import { Assistant } from "../shared/Pipe/Assistant";
+// import { Assistant } from "../shared/Pipe/Assistant";
 
 
 @Directive() 
@@ -39,7 +39,7 @@ export class Page implements OnDestroy, IPage {
             if (response.Data && response.Data.apiStatus == 2) {
                 style = 'red-snackbar';
             }
-            if (Assistant.isJSON(response.Message)) {
+            if (this.isJSON(response.Message)) {
                 this.messageOnNotify(JSON.parse(response.Message), 'close', style);
             } else {
                 this.messageOnNotify(response.Message, 'close', style);
@@ -105,6 +105,15 @@ export class Page implements OnDestroy, IPage {
         this.deleteSubscription(methodName);
         this.subscriptionList[methodName] = subscription;
     }
+
+    private  isJSON(str) {
+        try {
+          JSON.parse(str);
+        } catch (e) {
+          return false;
+        }
+        return true;
+      }
 }
 
 export interface IPage {
