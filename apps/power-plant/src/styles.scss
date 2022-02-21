@@ -1,4 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+@import "./assets/styles/colors.scss";
+@import "./assets/styles/main-classes.scss";
+@import "./assets/styles/formly.scss";
+@import "~animate.css/animate.min";
 
 html,
 body {
