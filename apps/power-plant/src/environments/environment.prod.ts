@@ -1,3 +1,8 @@
 export const environment = {
-  production: true,
+  production: false,
+  baseUrl: '',
+  serviceBaseUrl: 'http://localhost:3000/',
+  imageBaseUrl: '',
+  pdfBaseUrl: '',
+  APP_NAME: '',
 };
