@@ -4,9 +4,9 @@ import { GlobalService } from './global.service';
 import { Observable, of, throwError } from 'rxjs';
 import { ParamsHandler } from '../params-handler';
 import { map, catchError, tap } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
 import { CachMode, HttpVerb, Response, SchemaName } from '../type/new.type';
-import { RequestController, RequestAction } from 'src/app/shared/Request.enum';
+import { environment } from 'apps/power-plant/src/environments/environment';
+import { RequestAction, RequestController } from '../enums/Request.enum';
 
 export function ApiRequest(
   verb: HttpVerb = 'GET',

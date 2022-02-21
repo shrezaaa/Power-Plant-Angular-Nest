@@ -70,7 +70,7 @@
       "projectType": "application",
       "root": "apps/power-plant",
       "sourceRoot": "apps/power-plant/src",
-      "prefix": "powe-plant-angular-nest",
+      "prefix": "power-plant-angular-nest",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -86,7 +86,11 @@
               "apps/power-plant/src/favicon.ico",
               "apps/power-plant/src/assets"
             ],
-            "styles": ["apps/power-plant/src/styles.scss"],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.css",
+              "apps/power-plant/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {

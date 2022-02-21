@@ -1,5 +1,5 @@
 {
-  "npmScope": "powe-plant-angular-nest",
+  "npmScope": "power-plant-angular-nest",
   "affected": {
     "defaultBase": "master"
   },
