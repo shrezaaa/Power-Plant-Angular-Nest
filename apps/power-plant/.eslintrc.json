@@ -21,7 +21,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "powe-plant-angular-nest",
+            "prefix": "power-plant-angular-nest",
             "style": "kebab-case"
           }
         ]

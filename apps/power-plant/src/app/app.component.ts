@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Message } from '@powe-plant-angular-nest/api-interfaces';
+import { Message } from '@power-plant-angular-nest/api-interfaces';
 
 @Component({
-  selector: 'powe-plant-angular-nest-root',
+  selector: 'power-plant-angular-nest-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
