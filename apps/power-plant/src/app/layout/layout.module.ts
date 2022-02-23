@@ -10,6 +10,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { LoadingBarComponent } from './components/loading-bar/loading-bar.component';
 import { TopNavbarComponent } from './components/top-navbar/top-navbar.component';
+import { MatDividerModule } from '@angular/material/divider';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
 
 const matModules = [
   MatSidenavModule,
@@ -18,10 +20,16 @@ const matModules = [
   MatTooltipModule,
   MatToolbarModule,
   MatListModule,
+  MatDividerModule,
 ];
 
 @NgModule({
-  declarations: [LayoutComponent, LoadingBarComponent, TopNavbarComponent],
+  declarations: [
+    LayoutComponent,
+    SidenavComponent,
+    LoadingBarComponent,
+    TopNavbarComponent,
+  ],
   imports: [CommonModule, LayoutRoutingModule, matModules],
 })
 export class LayoutModule {}
