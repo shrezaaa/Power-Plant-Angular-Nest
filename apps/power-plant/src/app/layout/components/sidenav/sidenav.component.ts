@@ -17,7 +17,8 @@ export class SidenavComponent implements OnInit {
   @Input() isExpanded: boolean = false;
   @Output() isExpandedChange = new EventEmitter<boolean>();
 
-  constructor() { // private tokenDecoder: TokenDecoderPipe
+  constructor() {
+    // private tokenDecoder: TokenDecoderPipe
     this.doNavigateOnStorageChange();
     // window.addEventListener(
     //   'storage',
@@ -33,8 +34,8 @@ export class SidenavComponent implements OnInit {
     //   ) {
     //     access_type =
     //       <ACCESS_TYPE>this.tokenDecoder.transform('S', 'role') || 'S';
+    //       this.data = SIDENAV_CONFIG.filter((nav) => nav.ACCESS == 'admin');
     //   }
-    this.data = SIDENAV_CONFIG.filter((nav) => nav.ACCESS == 'S');
-    // this.data = SIDENAV_CONFIG;
+    this.data = SIDENAV_CONFIG;
   }
 }
