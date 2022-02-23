@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
+import { LoadingBarComponent } from './components/loading-bar/loading-bar.component';
 
 const matModules = [
   MatSidenavModule,
@@ -19,7 +20,7 @@ const matModules = [
 ];
 
 @NgModule({
-  declarations: [LayoutComponent],
+  declarations: [LayoutComponent, LoadingBarComponent],
   imports: [CommonModule, LayoutRoutingModule, matModules],
 })
 export class LayoutModule {}
