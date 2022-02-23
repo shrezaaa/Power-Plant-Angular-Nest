@@ -5,7 +5,7 @@ import {
 } from '../../../core/navigation/sidenav.config';
 
 @Component({
-  selector: 'p-plan-sidenav',
+  selector: 'p-plant-sidenav',
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.scss'],
 })
