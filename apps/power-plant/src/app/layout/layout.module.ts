@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { LoadingBarComponent } from './components/loading-bar/loading-bar.component';
+import { TopNavbarComponent } from './components/top-navbar/top-navbar.component';
 
 const matModules = [
   MatSidenavModule,
@@ -20,7 +21,7 @@ const matModules = [
 ];
 
 @NgModule({
-  declarations: [LayoutComponent, LoadingBarComponent],
+  declarations: [LayoutComponent, LoadingBarComponent, TopNavbarComponent],
   imports: [CommonModule, LayoutRoutingModule, matModules],
 })
 export class LayoutModule {}
