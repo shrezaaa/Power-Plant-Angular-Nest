@@ -12,7 +12,7 @@ import { LoadingBarComponent } from './components/loading-bar/loading-bar.compon
 import { TopNavbarComponent } from './components/top-navbar/top-navbar.component';
 import { MatDividerModule } from '@angular/material/divider';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
-
+import { MatMenuModule } from '@angular/material/menu';
 const matModules = [
   MatSidenavModule,
   MatIconModule,
@@ -21,6 +21,7 @@ const matModules = [
   MatToolbarModule,
   MatListModule,
   MatDividerModule,
+  MatMenuModule
 ];
 
 @NgModule({
