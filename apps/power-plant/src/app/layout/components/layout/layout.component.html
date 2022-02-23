@@ -1,0 +1,22 @@
+<!-- <EAP-loading-bar></EAP-loading-bar> -->
+<mat-drawer-container class="w-screen h-screen m-0 p-0">
+  <mat-drawer
+    mode="side"
+    [opened]="true"
+    [ngClass]="{ 'w-[90px]': !isExpanded, 'w-[250px]': isExpanded }"
+    class="w-[250px] bg-gray-100 hi"
+    style="border: none"
+  >
+    <p-plan-sidenav
+      [(isExpanded)]="isExpanded"
+      (isExpandedChange)="logger()"
+    ></p-plan-sidenav>
+  </mat-drawer>
+  <mat-drawer-content [style.margin-left.px]="isExpanded ? 250 : 90">
+    <!-- <EAP-topnav
+      [(isExpanded)]="isExpanded"
+      (isExpandedChange)="logger()"
+    ></EAP-topnav> -->
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
