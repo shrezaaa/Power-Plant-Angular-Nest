@@ -138,7 +138,8 @@
           },
           "defaultConfiguration": "development",
           "options": {
-            "proxyConfig": "apps/power-plant/proxy.conf.json"
+            "proxyConfig": "apps/power-plant/proxy.conf.json",
+            "port": 4500
           }
         },
         "extract-i18n": {
