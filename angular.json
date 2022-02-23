@@ -70,7 +70,7 @@
       "projectType": "application",
       "root": "apps/power-plant",
       "sourceRoot": "apps/power-plant/src",
-      "prefix": "power-plant-angular-nest",
+      "prefix": "p-plan",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -138,7 +138,8 @@
           },
           "defaultConfiguration": "development",
           "options": {
-            "proxyConfig": "apps/power-plant/proxy.conf.json"
+            "proxyConfig": "apps/power-plant/proxy.conf.json",
+            "port": 4500
           }
         },
         "extract-i18n": {

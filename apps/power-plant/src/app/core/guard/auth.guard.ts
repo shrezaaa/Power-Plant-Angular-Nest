@@ -15,7 +15,6 @@ import {
 } from "@angular/common/http";
 import { tap } from "rxjs/operators";
 import { Observable } from "rxjs";
-import { GlobalService } from "./services/global.service";
 
 @Injectable({
   providedIn: "root",
