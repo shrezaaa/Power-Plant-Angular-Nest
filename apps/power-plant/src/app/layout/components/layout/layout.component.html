@@ -1,58 +1,22 @@
-<mat-sidenav-container class="example-container" autosize>
-  <mat-sidenav
-    #sidenav
-    class="example-sidenav"
+<!-- <EAP-loading-bar></EAP-loading-bar> -->
+<mat-drawer-container class="w-screen h-screen m-0 p-0">
+  <mat-drawer
     mode="side"
-    opened="true"
-    (mouseenter)="mouseenter()"
-    (mouseleave)="mouseleave()"
+    [opened]="true"
+    [ngClass]="{ 'w-[90px]': !isExpanded, 'w-[250px]': isExpanded }"
+    class="w-[250px] bg-gray-100 hi"
+    style="border: none"
   >
-    <mat-nav-list>
-      <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent">
-        <span class="full-width" *ngIf="isExpanded || isShowing"
-          >Parent Menu</span
-        >
-        <mat-icon mat-list-icon>home</mat-icon>
-        <mat-icon
-          class="menu-button"
-          [ngClass]="{ rotated: showSubmenu }"
-          *ngIf="isExpanded || isShowing"
-          >expand_more</mat-icon
-        >
-      </mat-list-item>
-      <div
-        class="submenu"
-        [ngClass]="{ expanded: showSubmenu }"
-        *ngIf="isShowing || isExpanded"
-      >
-        <a mat-list-item href="...">Submenu Item 1</a>
-        <a mat-list-item href="...">Submenu Item 2</a>
-        <mat-list-item
-          (click)="showSubSubMenu = !showSubSubMenu"
-          class="parent"
-        >
-          <span class="full-width" *ngIf="isExpanded || isShowing"
-            >Nested Menu</span
-          >
-          <mat-icon
-            class="menu-button"
-            [ngClass]="{ rotated: showSubSubMenu }"
-            *ngIf="isExpanded || isShowing"
-            >expand_more</mat-icon
-          >
-        </mat-list-item>
-        <div
-          class="submenu"
-          [ngClass]="{ expanded: showSubSubMenu }"
-          *ngIf="isShowing || isExpanded"
-        >
-          <mat-list-item>SubSubmenu Item 1</mat-list-item>
-          <mat-list-item>SubSubmenu Item 2</mat-list-item>
-        </div>
-      </div>
-    </mat-nav-list>
-    <mat-nav-list> </mat-nav-list>
-  </mat-sidenav>
-
-  <div class="example-sidenav-content">Main content that resizes properly</div>
-</mat-sidenav-container>
+    <p-plan-sidenav
+      [(isExpanded)]="isExpanded"
+      (isExpandedChange)="logger()"
+    ></p-plan-sidenav>
+  </mat-drawer>
+  <mat-drawer-content [style.margin-left.px]="isExpanded ? 250 : 90">
+    <!-- <EAP-topnav
+      [(isExpanded)]="isExpanded"
+      (isExpandedChange)="logger()"
+    ></EAP-topnav> -->
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>
