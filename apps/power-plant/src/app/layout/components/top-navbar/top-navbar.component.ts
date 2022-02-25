@@ -12,7 +12,7 @@ export class TopNavbarComponent implements OnInit {
   @Output() isExpandedChange = new EventEmitter<boolean>();
   pendding: boolean = false;
   breadcrump: { url: string; value: string; name: string }[] = [];
-  hasProfileImg: boolean = true;
+  hasProfileImg: boolean = false;
   constructor(private router: Router) // private dialog: MatDialog,
   // private userSrv: UserService,
   // private userPipe: UserInfoPipe,
