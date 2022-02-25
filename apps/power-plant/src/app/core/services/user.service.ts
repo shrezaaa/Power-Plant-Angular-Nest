@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from 'apps/power-plant/src/environments/environment';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
 import { User } from '../models/user-login.model';
 import { Toaster } from '../toast-notification';
 import { GlobalService } from './global.service';
@@ -70,12 +70,12 @@ export class UserService {
   }
 
   initUserData(data?, success?) {
-      let currentUser = data.User;
-      localStorage.setItem('Token', currentUser.GUID);
-      localStorage.setItem('User', JSON.stringify(currentUser));
-      this.loggedIn = true;
-      console.log(currentUser);
-      this._currentUser$.next(currentUser);
-      this.router.navigate(['/']);
+    let currentUser = data.User;
+    localStorage.setItem('Token', currentUser.GUID);
+    localStorage.setItem('User', JSON.stringify(currentUser));
+    this.loggedIn = true;
+    console.log(currentUser);
+    this._currentUser$.next(currentUser);
+    this.router.navigate(['/']);
   }
 }
