@@ -4,9 +4,15 @@ import { DashboardRoutingComponent } from './components/dashboard-routing/dashbo
 import { MainDashboardComponent } from './components/main-dashboard/main-dashboard.component';
 import { SharedModule } from '../shared/shared.module';
 import { DashboardRoutingModule } from './dashboard.routing';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 @NgModule({
   declarations: [DashboardRoutingComponent, MainDashboardComponent],
-  imports: [CommonModule, SharedModule, DashboardRoutingModule],
+  imports: [
+    CommonModule,
+    SharedModule,
+    DashboardRoutingModule,
+    NgApexchartsModule,
+  ],
 })
 export class DashboardModule {}
