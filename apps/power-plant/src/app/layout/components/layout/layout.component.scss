@@ -5,3 +5,7 @@
 :host::ng-deep.mat-drawer-inner-container {
   overflow: hidden;
 }
+
+.router-outlet {
+  height: calc(100% - 56px);
+}
