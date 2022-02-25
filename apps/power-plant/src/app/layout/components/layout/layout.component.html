@@ -7,16 +7,16 @@
     class="w-[250px] bg-gray-100 hi"
     style="border: none"
   >
-    <p-plan-sidenav
+    <p-plant-sidenav
       [(isExpanded)]="isExpanded"
       (isExpandedChange)="logger()"
-    ></p-plan-sidenav>
+    ></p-plant-sidenav>
   </mat-drawer>
   <mat-drawer-content [style.margin-left.px]="isExpanded ? 250 : 90">
-    <!-- <EAP-topnav
+    <p-plant-top-navbar
       [(isExpanded)]="isExpanded"
       (isExpandedChange)="logger()"
-    ></EAP-topnav> -->
+    ></p-plant-top-navbar>
     <router-outlet></router-outlet>
   </mat-drawer-content>
 </mat-drawer-container>
