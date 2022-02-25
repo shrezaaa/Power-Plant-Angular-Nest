@@ -17,6 +17,8 @@
       [(isExpanded)]="isExpanded"
       (isExpandedChange)="logger()"
     ></p-plant-top-navbar>
-    <router-outlet></router-outlet>
+    <div class="w-[calc(100%-56px)]">
+      <router-outlet></router-outlet>
+    </div>
   </mat-drawer-content>
 </mat-drawer-container>
