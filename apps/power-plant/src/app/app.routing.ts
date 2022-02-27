@@ -9,6 +9,11 @@ const routes: Routes = [
       import('./layout/layout.module').then((m) => m.LayoutModule),
     // canActivate: [AuthGuard],
   },
+  {
+    path: 'auth',
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
+    // canActivate: [AuthGuard],
+  },
 ];
 
 @NgModule({
