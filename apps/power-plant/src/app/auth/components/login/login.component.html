@@ -1,0 +1,180 @@
+<div
+  class="
+    main
+    h-screen
+    flex
+    items-center
+    justify-center
+    bg-contain bg-primary-100
+    py-12
+  "
+>
+  <div class="h-screen lg:w-1/2 md:w-1/2"></div>
+  <div
+    class="
+      h-screen
+      bg-transparent
+      lg:w-1/2
+      md:w-1/2
+      sm:w-full
+      flex
+      justify-center
+      items-center
+    "
+  >
+    <div
+      class="max-w-md w-full px-8 space-y-8 bg-white rounded-md p-6 shadow-lg"
+    >
+      <div class="text-center">
+        <img
+          class="mx-auto"
+          src="../../../../assets/icons/cloudy-day-2.svg"
+          width="70"
+          height="70"
+          alt=""
+        />
+        <h3 class="text-center font-extrabold text-gray-600">Sign in to</h3>
+        <h2 class="text-bold brand-font">Power Plant</h2>
+      </div>
+      <form [formGroup]="forms" (ngSubmit)="onLogin()" class="mt-8 space-y-6">
+        <div class="rounded-md shadow-sm -space-y-px">
+          <div class="w-full">
+            <mat-form-field class="w-full" appearance="outline">
+              <mat-label>Username</mat-label>
+              <input
+                matInput
+                placeholder="john.doe"
+                formControlName="username"
+                required
+              />
+              <mat-error
+                *ngIf="
+                  forms.get('username')?.errors &&
+                  forms.get('username')?.hasError('required')
+                "
+                >username is required</mat-error
+              >
+            </mat-form-field>
+          </div>
+          <div class="w-full">
+            <mat-form-field class="w-full" appearance="outline">
+              <mat-label>Password</mat-label>
+              <input
+                matInput
+                formControlName="password"
+                [type]="hide ? 'password' : 'text'"
+                required
+              />
+              <button
+                mat-icon-button
+                matSuffix
+                (click)="hide = !hide"
+                [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide"
+              >
+                <mat-icon>{{
+                  hide ? "visibility_off" : "visibility"
+                }}</mat-icon>
+              </button>
+              <mat-error
+                *ngIf="
+                  forms.get('password')?.errors &&
+                  forms.get('password')?.hasError('required')
+                "
+                >password is required</mat-error
+              >
+              <mat-error
+                *ngIf="
+                  forms.get('password')?.errors &&
+                  forms.get('password')?.hasError('minlength')
+                "
+                >password must be more than 6 character</mat-error
+              >
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="flex items-center justify-between">
+          <div class="flex items-center">
+            <input
+              id="remember-me"
+              name="remember-me"
+              formControlName="remember_me"
+              type="checkbox"
+              class="
+                h-4
+                w-4
+                text-indigo-600
+                focus:ring-indigo-500
+                border-gray-300
+                rounded
+              "
+            />
+            <label for="remember-me" class="ml-2 block text-sm text-gray-900">
+              Remember me
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <button
+            type="submit"
+            [disabled]="forms.invalid || pendding"
+            class="
+              group
+              relative
+              w-full
+              flex
+              justify-center
+              py-2
+              px-4
+              border border-transparent
+              text-sm
+              font-medium
+              rounded-md
+              text-white
+              bg-primary-800
+              disabled:opacity-50
+              hover:bg-primary-900
+              focus:outline-none
+              focus:ring-2
+              focus:ring-offset-2
+              focus:ring-indigo-500
+              text-center
+            "
+          >
+            <svg
+              *ngIf="pendding"
+              class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                class="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                stroke-width="4"
+              ></circle>
+              <path
+                class="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              ></path>
+            </svg>
+            <span (click)="onCancelRequest()" class="px-2"> Sign In </span>
+          </button>
+          <div class="text-sm text-start pt-2">
+            <a
+              [routerLink]="['/auth/register']"
+              class="font-medium text-primary-700 hover:text-primary-800"
+            >
+              dont have an Account?
+            </a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

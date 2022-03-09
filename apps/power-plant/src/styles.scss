@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('tailwindcss/base');
-@import url('tailwindcss/components');
-@import url('tailwindcss/utilities');
+@import url("tailwindcss/base");
+@import url("tailwindcss/components");
+@import url("tailwindcss/utilities");
 // @import url('./assets/style/alert.scss');
 
 @import './assets/styles/colors.scss';
@@ -53,4 +53,8 @@ dynamic-mat-table {
 
 .mat-tab-body-wrapper {
   flex-grow: 1;
+}
+
+.brand-font{
+  font-family: cursive, 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
