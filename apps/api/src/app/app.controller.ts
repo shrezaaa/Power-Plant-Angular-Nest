@@ -1,17 +1,16 @@
 import { Controller, Get } from '@nestjs/common';
-
-import { Message } from '@power-plant-angular-nest/api-interfaces';
-
 import { AppService } from './app.service';
-import { MssqlService } from './mssql/mssql.service';
+import { DatabaseService } from './database/database.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService,private mssqlService:MssqlService) {}
+  constructor(
+    private readonly appService: AppService,
+    private databaseService: DatabaseService
+  ) {}
 
   @Get('hello')
   getData(): any {
-    return this.mssqlService.executeQuery("select * from SolarData.dbo.alarms")
-    // return this.appService.getData();
+    return this.appService.getData();
   }
 }
