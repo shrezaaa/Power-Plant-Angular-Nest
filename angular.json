@@ -223,7 +223,11 @@
       "unitTestRunner": "jest"
     },
     "@nrwl/angular:component": {
-      "style": "scss"
+      "style": "scss",
+      "skipTests": true
+    },
+    "@nrwl/angular:service": {
+      "skipTests": true
     }
   },
   "defaultProject": "power-plant"

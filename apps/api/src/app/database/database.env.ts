@@ -1,6 +1,7 @@
-import { ConnectionOptions } from 'typeorm';
+import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { User } from './entities/user.entity';
 
-export const ormConnectionConfig: ConnectionOptions = {
+export const typeOrmConfig: TypeOrmModuleOptions = {
   type: 'mssql',
   host: '172.18.16.93',
   port: 1433,
@@ -9,6 +10,6 @@ export const ormConnectionConfig: ConnectionOptions = {
   extra: { trustServerCertificate: true },
   password: 'solar',
   database: 'SolarData',
-  entities: [__dirname + '/../**/*.entity{.ts,.js}'],
+  entities: [User],
   synchronize: true,
 };
