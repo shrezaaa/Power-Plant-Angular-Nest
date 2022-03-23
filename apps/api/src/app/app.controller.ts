@@ -1,15 +1,16 @@
 import { Controller, Get } from '@nestjs/common';
-
-import { Message } from '@power-plant-angular-nest/api-interfaces';
-
 import { AppService } from './app.service';
+import { DatabaseService } from './database/database.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(
+    private readonly appService: AppService,
+    private databaseService: DatabaseService
+  ) {}
 
   @Get('hello')
-  getData(): Message {
+  getData(): any {
     return this.appService.getData();
   }
 }
