@@ -1,5 +1,5 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { User } from '../auth/user.entity';
+import { User } from './entities/user.entity';
 
 export const typeOrmConfig: TypeOrmModuleOptions = {
   type: 'mssql',
@@ -10,6 +10,6 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
   extra: { trustServerCertificate: true },
   password: 'solar',
   database: 'SolarData',
-  entities: [__dirname + '/../**/*.entity{.ts,.js}',User],
+  entities: [User],
   synchronize: true,
 };
