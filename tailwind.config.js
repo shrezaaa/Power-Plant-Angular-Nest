@@ -1,6 +1,11 @@
 module.exports = {
   mode: 'jit',
-  purge: ['./apps/power-plant/src/**/*.html', './apps/power-plant/src/**/*.js'],
+  // TA ILWIND_MODE=watch,
+  content: [
+    // Example content paths...
+    './apps/power-plant/src/**/*.html',
+    './apps/power-plant/src/**/*.js',
+  ],
   darkMode: 'media', // or 'media' or 'class'
   important: true,
   theme: {
@@ -51,5 +56,5 @@ module.exports = {
     extend: {},
     opacity: ({ after }) => after(['disabled']),
   },
-  plugins: [ require('daisyui')],
+  // plugins: [ require('daisyui')],
 };
