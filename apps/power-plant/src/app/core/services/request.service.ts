@@ -274,14 +274,23 @@ export class RequestBuilder {
       globalService.finishLoading();
     }
     if (parent.messageShow) {
-      // resp.messages.forEach((data) => {
-      //   globalService.toaster.open({
-      //     type: resp.success ? 'success' : 'danger',
-      //     duration: 3000,
-      //     caption: '',
-      //     text: data.trim(),
-      //   });
-      // });
+      if (typeof resp.message =='object') {
+        globalService.toaster.open({
+          type: resp.success ? 'success' : 'danger',
+          duration: 3000,
+          caption: '',
+          text: resp.message,
+        });
+      } else  {
+        resp.messages.forEach((data) => {
+          globalService.toaster.open({
+            type: resp.success ? 'success' : 'danger',
+            duration: 3000,
+            caption: '',
+            text: data.trim(),
+          });
+        });
+      }
     }
   }
 

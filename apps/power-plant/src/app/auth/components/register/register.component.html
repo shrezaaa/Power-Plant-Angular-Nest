@@ -28,13 +28,13 @@
             <input
               matInput
               placeholder="john"
-              formControlName="first_name"
+              formControlName="firstName"
               required
             />
             <mat-error
               *ngIf="
-                forms.get('first_name')?.errors &&
-                forms.get('first_name')?.hasError('required')
+                forms.get('firstName')?.errors &&
+                forms.get('firstName')?.hasError('required')
               "
               >First name is required</mat-error
             >
@@ -44,13 +44,13 @@
             <input
               matInput
               placeholder="doe"
-              formControlName="last_name"
+              formControlName="lastName"
               required
             />
             <mat-error
               *ngIf="
-                forms.get('last_name')?.errors &&
-                forms.get('last_name')?.hasError('required')
+                forms.get('lastName')?.errors &&
+                forms.get('lastName')?.hasError('required')
               "
               >Last name is required</mat-error
             >
