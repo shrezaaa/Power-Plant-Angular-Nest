@@ -1,4 +1,10 @@
-import { IsString, MinLength, MaxLength, Matches, ValidateIf } from 'class-validator';
+import {
+  IsString,
+  MinLength,
+  MaxLength,
+  Matches,
+  ValidateIf,
+} from 'class-validator';
 
 export class AuthCredentialsDto {
   @IsString()
@@ -14,15 +20,15 @@ export class AuthCredentialsDto {
   // })
   password: string;
 
-  @IsString()
   @ValidateIf((object, value) => value !== null)
-  firstName!:string|null;
+  // @IsString()
+  firstName!: string | null;
 
-  @IsString()
+  // @IsString()
   @ValidateIf((object, value) => value !== null)
-  lastName!:string|null;
+  lastName!: string | null;
 
-  @IsString()
+  // @IsString()
   @ValidateIf((object, value) => value !== null)
-  email!:string|null;
+  email!: string | null;
 }
