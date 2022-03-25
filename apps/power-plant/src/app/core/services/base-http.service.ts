@@ -1,15 +1,20 @@
-import { HttpClient } from '@angular/common/http';
-import { Injector } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Injectable, Injector } from '@angular/core';
 import { environment } from 'apps/power-plant/src/environments/environment';
-import { Observable } from 'rxjs';
+import { catchError, EMPTY, Observable, retry, tap } from 'rxjs';
+import { AlertService } from '../alert/alert.service';
 import { HttpVerb, ParamDto } from '../type/base-http.type';
+import { LoadingService } from './loading.service';
 
-export function ApiRequest(
-  verb: HttpVerb = 'GET',
-  requestUrl: string,
-  injector: Injector
-): RequestBuilder {
-  return new RequestBuilder(verb, requestUrl, injector);
+@Injectable({
+  providedIn: 'root',
+})
+export class BaseHttp {
+  constructor(private injector: Injector) {}
+
+  request(verb: HttpVerb = 'GET', requestUrl: string): RequestBuilder {
+    return new RequestBuilder(verb, requestUrl, this.injector);
+  }
 }
 
 export class RequestBuilder {
@@ -20,15 +25,28 @@ export class RequestBuilder {
   bodyParams: Array<ParamDto>;
   //other services
   http: HttpClient;
+  alertSrvc: AlertService;
+  loadingService:LoadingService
 
   constructor(verb: HttpVerb, requestUrl: string, injector: Injector) {
     this.httpVerb = verb;
     this.requestUrl = requestUrl;
     this.http = injector.get(HttpClient);
+    this.alertSrvc = injector.get(AlertService);
+    this.loadingService = injector.get(LoadingService);
   }
 
   call(): Observable<any> {
     let request$: Observable<any>;
+
+    if (!window.navigator.onLine) {
+      this.alertSrvc.showToaster(
+        'you are not connected to Internet ,Please check your connection!',
+        'DANGER'
+      );
+      return EMPTY;
+    }
+
     let url =
       this.baseUrl +
       this.requestUrl +
@@ -42,10 +60,18 @@ export class RequestBuilder {
         request$ = this.http.get(url);
         break;
       case 'POST':
-        request$ = this.http.post(url, this.bodyParams);
+        request$ = this.http.post(url, this.bodyParams ,{headers:{'Content-Type': 'application/json'}});
     }
-
-    return request$;
+    this.loadingService.show()
+    return request$.pipe(
+      retry(0),
+      tap((i) => {
+        // if (i.type != 0) this.loadingSrv.hide();
+      }),
+      // catchError((error: HttpErrorResponse) =>
+      //   this.errorHandler(error, tokenizedRequest)
+      // )
+    );;
   }
 
   setBaseUrl(url): RequestBuilder {
@@ -69,8 +95,9 @@ export class RequestBuilder {
   }
 
   public createParamList(model: any): ParamDto[] {
-    return Object.entries(model).map((i) => {
-      return { key: i[0], value: String(i[1]) };
-    });
+    return model;
+    // return Object.entries(model).map((i) => {
+    //   return { key: i[0], value: String(i[1]) };
+    // });
   }
 }
