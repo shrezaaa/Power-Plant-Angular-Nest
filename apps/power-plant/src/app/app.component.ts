@@ -9,5 +9,5 @@ import { Message } from '@power-plant-angular-nest/api-interfaces';
 })
 export class AppComponent {
   // hello$ = this.http.get<Message>('/api/hello');
-  constructor(private http: HttpClient) {}
+  constructor() {}
 }
