@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   baseUrl: '',
-  serviceBaseUrl: 'http://localhost:4200/api/',
+  serviceBaseUrl: 'http://localhost:3333/api/',
   imageBaseUrl: '',
   pdfBaseUrl: '',
   APP_NAME: '',

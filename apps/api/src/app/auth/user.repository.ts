@@ -10,12 +10,16 @@ import { User } from '../database/entities/user.entity';
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
   async signUp(authCredentialsDto: AuthCredentialsDto): Promise<void> {
-    const { username, password } = authCredentialsDto;
+    const { firstName, lastName, email, username, password } =
+      authCredentialsDto;
 
     const user = new User();
     user.username = username;
     user.salt = await bcrypt.genSalt();
     user.password = await this.hashPassword(password, user.salt);
+    user.firstName = firstName;
+    user.lastName = lastName;
+    user.email = email;
 
     try {
       await user.save();
