@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
   selector: 'p-plant-login',
@@ -23,6 +24,7 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private authService:AuthService,
     // private userSrv: UserService,
     // private alertSrv: AlertService
   ) {}
@@ -34,7 +36,23 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin() {
-  
+    if (this.forms.valid) {
+      // this.pendding = true;
+      // this.forms.disable();
+      this.loginRef$ = this.authService.login(this.forms.value).subscribe(
+        (response) => {
+            console.log(response);
+            
+          
+        
+        },
+        (error) => {
+          this.pendding = false;
+          this.forms.enable();
+        },
+        () => {}
+      );
+    }
   }
 
   onRedirectToRegister() {
