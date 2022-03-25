@@ -1,1 +1,204 @@
-<p>register works!</p>
+<div
+  class="main h-screen flex items-center justify-center py-12 bg-sky-900"
+>
+  <div
+    class="h-screen bg-transparent lg:w-1/2 md:w-1/2 sm:w-full flex justify-center items-center"
+  >
+    <div class="max-w-md w-full space-y-8 bg-white rounded-md p-6 shadow-lg">
+      <div class="text-center">
+        <img
+          class="mx-auto"
+          src="../../../../assets/icons/cloudy-day-2.svg"
+          width="70"
+          height="70"
+          alt=""
+        />
+        <h3 class="text-center font-extrabold text-gray-600">Sign up in</h3>
+        <h2 class="text-bold brand-font">Power Plant</h2>
+      </div>
+      <form
+        [formGroup]="forms"
+        (ngSubmit)="onRegister()"
+        class="mt-8 space-y-6"
+      >
+        <input type="hidden" name="remember" value="true" />
+        <div class="w-full">
+          <mat-form-field class="w-1/2 pr-1" appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input
+              matInput
+              placeholder="john"
+              formControlName="firstName"
+              required
+            />
+            <mat-error
+              *ngIf="
+                forms.get('firstName')?.errors &&
+                forms.get('firstName')?.hasError('required')
+              "
+              >First name is required</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field class="w-1/2 pl-1" appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input
+              matInput
+              placeholder="doe"
+              formControlName="lastName"
+              required
+            />
+            <mat-error
+              *ngIf="
+                forms.get('lastName')?.errors &&
+                forms.get('lastName')?.hasError('required')
+              "
+              >Last name is required</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field class="w-full" appearance="outline">
+            <mat-label>Username</mat-label>
+            <input
+              matInput
+              placeholder="doe"
+              formControlName="username"
+              required
+            />
+            <mat-error
+              *ngIf="
+                forms.get('username')?.errors &&
+                forms.get('username')?.hasError('required')
+              "
+              >Username is required</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field class="w-full" appearance="outline">
+            <mat-label>Email</mat-label>
+            <input
+              matInput
+              placeholder="doe"
+              type="email"
+              formControlName="email"
+              required
+            />
+            <mat-error
+              *ngIf="
+                forms.get('email')?.errors &&
+                forms.get('email')?.hasError('required')
+              "
+              >email is required</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field class="w-1/2 pl-1" appearance="outline">
+            <mat-label>Password</mat-label>
+            <input
+              matInput
+              placeholder="doe"
+              formControlName="password"
+              [type]="hidePass1 ? 'password' : 'text'"
+              required
+            />
+            <button
+              mat-icon-button
+              matSuffix
+              (click)="hidePass1 = !hidePass1"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hidePass1"
+            >
+              <mat-icon>{{
+                hidePass1 ? 'visibility_off' : 'visibility'
+              }}</mat-icon>
+            </button>
+            <mat-error
+              *ngIf="
+                forms.get('password')?.errors &&
+                forms.get('password')?.hasError('required')
+              "
+              >password is required</mat-error
+            >
+          </mat-form-field>
+          <mat-form-field class="w-1/2 pl-1" appearance="outline">
+            <mat-label>Enter password again</mat-label>
+            <input
+              matInput
+              placeholder="doe"
+              formControlName="password2"
+              [type]="hidePass2 ? 'password' : 'text'"
+              required
+            />
+            <button
+              mat-icon-button
+              matSuffix
+              (click)="hidePass2 = !hidePass2"
+              [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hidePass2"
+            >
+              <mat-icon>{{
+                hidePass2 ? 'visibility_off' : 'visibility'
+              }}</mat-icon>
+            </button>
+            <mat-error
+              *ngIf="
+                forms.get('password2')?.errors &&
+                forms.get('password2')?.hasError('required')
+              "
+              >enter password again here</mat-error
+            >
+            <mat-error
+              *ngIf="
+                forms.get('password2')?.value &&
+                forms.get('password2')?.value != forms.get('password')?.value
+              "
+              >password is not the same
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <!-- <div class="text-center" style="margin-top: 0">
+          <mat-radio-group formControlName="role" class="flex justify-around">
+            <mat-radio-button value="S">Student</mat-radio-button>
+            <mat-radio-button value="T">Teacher</mat-radio-button>
+            <mat-radio-button value="M">Manager</mat-radio-button>
+          </mat-radio-group>
+        </div> -->
+        <div>
+          <button
+            type="submit"
+            [disabled]="forms.invalid || pendding"
+            class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-primary-800 disabled:opacity-50 hover:bg-primary-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 text-center"
+          >
+            <svg
+              *ngIf="pendding"
+              class="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                class="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                stroke-width="4"
+              ></circle>
+              <path
+                class="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              ></path>
+            </svg>
+            <span (click)="onCancelRequest()" class="px-2"> Sign Up </span>
+          </button>
+          <div class="text-sm text-start pt-2">
+            <a
+              [routerLink]="['/auth/login']"
+              class="font-medium text-primary-700 hover:text-primary-800"
+            >
+              Already have an Account?
+            </a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="h-screen lg:w-1/2 md:w-1/2"></div>
+</div>
