@@ -15,4 +15,12 @@ export class AuthService {
       .addBodies(model)
       .call(this.gs);
   }
+
+  login(model){
+    return ApiRequest('POST', true)
+      .controller('auth')
+      .action('signin')
+      .addBodies(model)
+      .call(this.gs);
+  }
 }
