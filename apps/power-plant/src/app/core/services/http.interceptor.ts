@@ -10,14 +10,15 @@ import { EMPTY, Observable, throwError } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { catchError, retry, tap } from 'rxjs/operators';
 import { LoadingService } from './loading.service';
+import { AlertService } from '../alert/alert.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HttpsInterceptor implements HttpInterceptor {
-  FREE_OF_TOKEN = [environment.apiBaseUrl + 'auth/'];
+  FREE_OF_TOKEN = ['hi' + 'auth/'];
   constructor(
-    private alertSrvc: Toaster,
+    private alertSrvc: AlertService,
     private router: Router,
     private loadingSrv: LoadingService
   ) {}
@@ -26,6 +27,8 @@ export class HttpsInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
+    console.log(request);
+    
     if (!window.navigator.onLine) {
       this.alertSrvc.showToaster(
         'you are not connected to Internet ,Please check your connection!',
