@@ -31,8 +31,6 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { HttpsInterceptor } from '../core/services/http.interceptor';
 
 const matModules = [
   MatFormFieldModule,
