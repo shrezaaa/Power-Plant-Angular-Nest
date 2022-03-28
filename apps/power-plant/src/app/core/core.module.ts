@@ -1,13 +1,14 @@
 import { CommonModule } from '@angular/common';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { AuthGuard } from './guard/auth.guard';
-import { GlobalService } from './services/global.service';
-import { ToastNotificationsModule } from './toast-notification';
+import { ToastrModule } from 'ngx-toastr';
+import { BaseHttp } from './services/base-http.service';
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, ToastNotificationsModule],
+  imports: [CommonModule, ToastrModule.forRoot()],
   exports: [],
-  providers: [AuthGuard, GlobalService],
+  providers: [AuthGuard, BaseHttp ],
 })
 export class CoreModule {}

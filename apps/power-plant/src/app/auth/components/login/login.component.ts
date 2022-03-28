@@ -13,8 +13,8 @@ export class LoginComponent implements OnInit {
   private loginRef$!: Subscription;
   hide = true;
   forms = new FormGroup({
-    username: new FormControl(null, [Validators.required]),
-    password: new FormControl(null, [
+    username: new FormControl('shrezaaa', [Validators.required]),
+    password: new FormControl('reza9210', [
       Validators.required,
       Validators.minLength(6),
     ]),
