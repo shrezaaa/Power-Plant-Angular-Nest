@@ -17,7 +17,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^12.2.0",
+    "@angular/animations": "^12.2.16",
     "@angular/cdk": "^12.2.13",
     "@angular/common": "^12.2.0",
     "@angular/compiler": "^12.2.0",
@@ -43,6 +43,7 @@
     "daisyui": "^2.2.0",
     "mssql": "^8.0.2",
     "ng-apexcharts": "^1.7.0",
+    "ngx-toastr": "^14.2.2",
     "passport": "^0.5.2",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",

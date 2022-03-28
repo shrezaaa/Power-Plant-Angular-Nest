@@ -41,6 +41,14 @@ const matModules = [
 
 @NgModule({
   declarations: [LoginComponent, RegisterComponent],
-  imports: [CommonModule, AuthRoutingModule, matModules, SharedModule,FormsModule,ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    AuthRoutingModule,
+    matModules,
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
+  providers: [],
 })
 export class AuthModule {}

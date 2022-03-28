@@ -4,10 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrl: '',
   serviceBaseUrl: 'http://localhost:3333/api/',
-  imageBaseUrl: '',
-  pdfBaseUrl: '',
+  baseUrl: '',
   APP_NAME: '',
 };
 

@@ -1,26 +1,23 @@
 import { Injectable } from '@angular/core';
-import { GlobalService } from '../../../core/services/global.service';
-import { ApiRequest } from '../../../core/services/request.service';
+import { BaseHttp } from '../../../core/services/base-http.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private gs: GlobalService) {}
+  constructor(private baseHttp: BaseHttp) {}
 
   signUp(model) {
-    return ApiRequest('POST', true)
-      .controller('auth')
-      .action('signup')
-      .addBodies(model)
-      .call(this.gs);
+    return this.baseHttp
+      .request('POST', 'auth/signup')
+      .setBodyParams(model)
+      .send();
   }
 
-  login(model){
-    return ApiRequest('POST', true)
-      .controller('auth')
-      .action('signin')
-      .addBodies(model)
-      .call(this.gs);
+  login(model) {
+    return this.baseHttp
+      .request('POST', 'auth/signin')
+      .setBodyParams(model)
+      .send();
   }
 }
