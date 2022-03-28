@@ -9,14 +9,8 @@ import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, ToastNotificationsModule,ToastrModule.forRoot(),
-  ],
+  imports: [CommonModule, ToastNotificationsModule, ToastrModule.forRoot()],
   exports: [],
-  providers: [
-    AuthGuard,
-    GlobalService,
-    // ToastrService
-    
-  ],
+  providers: [AuthGuard, GlobalService ],
 })
 export class CoreModule {}
