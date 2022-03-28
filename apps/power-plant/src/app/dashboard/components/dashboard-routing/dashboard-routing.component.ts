@@ -12,7 +12,7 @@ export class DashboardRoutingComponent implements OnInit {
   ngOnInit(): void {
     this.gsss
       .request('GET', 'hello')
-      .call()
+      .send()
       .subscribe((value) => {
         console.log(value);
       });

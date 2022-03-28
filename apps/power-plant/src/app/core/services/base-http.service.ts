@@ -1,4 +1,8 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 import { Injectable, Injector } from '@angular/core';
 import { environment } from 'apps/power-plant/src/environments/environment';
 import { catchError, EMPTY, Observable, retry, tap } from 'rxjs';
@@ -26,7 +30,7 @@ export class RequestBuilder {
   //other services
   http: HttpClient;
   alertSrvc: AlertService;
-  loadingService:LoadingService
+  loadingService: LoadingService;
 
   constructor(verb: HttpVerb, requestUrl: string, injector: Injector) {
     this.httpVerb = verb;
@@ -36,7 +40,7 @@ export class RequestBuilder {
     this.loadingService = injector.get(LoadingService);
   }
 
-  call(): Observable<any> {
+  send(): Observable<any> {
     let request$: Observable<any>;
 
     if (!window.navigator.onLine) {
@@ -52,6 +56,11 @@ export class RequestBuilder {
       this.requestUrl +
       this.getSerializedParams(this.queryParams);
 
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `${localStorage.getItem('Token')}`,
+    });
+
     //check hdr if needed
     //test token
     let token = localStorage.getItem('Token');
@@ -60,18 +69,20 @@ export class RequestBuilder {
         request$ = this.http.get(url);
         break;
       case 'POST':
-        request$ = this.http.post(url, this.bodyParams ,{headers:{'Content-Type': 'application/json'}});
+        request$ = this.http.post(url, this.bodyParams, {
+          headers: { 'Content-Type': 'application/json' },
+        });
     }
-    this.loadingService.show()
+    this.loadingService.show();
     return request$.pipe(
       retry(0),
       tap((i) => {
         // if (i.type != 0) this.loadingSrv.hide();
-      }),
+      })
       // catchError((error: HttpErrorResponse) =>
       //   this.errorHandler(error, tokenizedRequest)
       // )
-    );;
+    );
   }
 
   setBaseUrl(url): RequestBuilder {
