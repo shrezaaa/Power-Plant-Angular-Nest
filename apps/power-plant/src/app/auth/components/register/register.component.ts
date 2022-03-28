@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Toaster } from '../../../core/toast-notification';
+import { AlertService } from '../../../core/alert/alert.service';
 import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
@@ -18,7 +18,10 @@ export class RegisterComponent implements OnInit {
     username: new FormControl('shrezaei', [Validators.required]),
     firstName: new FormControl('fahpsi', [Validators.required]),
     lastName: new FormControl('doje,', [Validators.required]),
-    email: new FormControl('dfc@gvhjn.com', [Validators.required, Validators.email]),
+    email: new FormControl('dfc@gvhjn.com', [
+      Validators.required,
+      Validators.email,
+    ]),
     password: new FormControl('reza9210', [
       Validators.required,
       Validators.minLength(6),
@@ -33,7 +36,7 @@ export class RegisterComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService,
-    private toaster: Toaster // private userSrv: UserService, // private alertSrv: AlertService
+    private alertService: AlertService // private userSrv: UserService, // private alertSrv: AlertService
   ) {}
 
   ngOnInit(): void {}
@@ -45,10 +48,7 @@ export class RegisterComponent implements OnInit {
       this.loginRef$ = this.authService
         .signUp(this.forms.value)
         .subscribe((res: any) => {
-          this.toaster.open({
-            caption: 'Successful SignUp',
-            text: 'Please Login with Your Account',
-          });
+          this.alertService.showToaster('Successful SignUp', 'SUCCESS');
           this.onRedirectToLogin();
           this.pendding = false;
           this.forms.enable();
