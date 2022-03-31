@@ -36,7 +36,7 @@ export class RequestBuilder {
     this.loadingService = injector.get(LoadingService);
   }
 
-  call(): Observable<any> {
+  send(): Observable<any> {
     let request$: Observable<any>;
 
     if (!window.navigator.onLine) {
