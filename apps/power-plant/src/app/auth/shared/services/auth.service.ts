@@ -11,7 +11,7 @@ export class AuthService {
   constructor(
     private gs: GlobalService,
     private injector: Injector,
-    private api56: BaseHttp
+    private basehttp: BaseHttp
   ) {}
 
   signUp(model) {
@@ -29,9 +29,9 @@ export class AuthService {
     //   .addBodies(model)
     //   .call(this.gs);
 
-    return this.api56
+    return this.basehttp
       .request('POST', 'auth/signin')
       .setBodyParams(model)
-      .call();
+      .send();
   }
 }
