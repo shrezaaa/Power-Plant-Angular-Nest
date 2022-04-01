@@ -58,20 +58,17 @@ export class RequestBuilder {
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: `${localStorage.getItem('Token')}`,
+      Authorization: `Bearer ${localStorage.getItem('Token')}`,
     });
 
     //check hdr if needed
     //test token
-    let token = localStorage.getItem('Token');
     switch (this.httpVerb) {
       case 'GET':
-        request$ = this.http.get(url);
+        request$ = this.http.get(url, { headers: headers });
         break;
       case 'POST':
-        request$ = this.http.post(url, this.bodyParams, {
-          headers: { 'Content-Type': 'application/json' },
-        });
+        request$ = this.http.post(url, this.bodyParams, { headers: headers });
     }
     this.loadingService.show();
     return request$.pipe(
@@ -107,8 +104,5 @@ export class RequestBuilder {
 
   public createParamList(model: any): ParamDto[] {
     return model;
-    // return Object.entries(model).map((i) => {
-    //   return { key: i[0], value: String(i[1]) };
-    // });
   }
 }
