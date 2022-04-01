@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { UserService } from '../../../core/services/user.service';
 import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
   selector: 'p-plant-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
   private loginRef$!: Subscription;
@@ -24,16 +25,11 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private authService:AuthService,
-    // private userSrv: UserService,
-    // private alertSrv: AlertService
+    private authService: AuthService,
+    private userService: UserService // private userSrv: UserService, // private alertSrv: AlertService
   ) {}
 
-  ngOnInit(): void {
-    if (localStorage.getItem('Token')) {
-      this.router.navigate(['/']);
-    }
-  }
+  ngOnInit(): void {}
 
   onLogin() {
     if (this.forms.valid) {
@@ -41,16 +37,14 @@ export class LoginComponent implements OnInit {
       // this.forms.disable();
       this.loginRef$ = this.authService.login(this.forms.value).subscribe(
         (response) => {
-            console.log(response);
-            
-          
-        
-        },
-        (error) => {
-          this.pendding = false;
-          this.forms.enable();
-        },
-        () => {}
+          this.userService.setUserByToken(response.accessToken);
+          this.router.navigate(['/home']);
+        }
+        // (error) => {
+        //   this.pendding = false;
+        //   this.forms.enable();
+        // },
+        // () => {}
       );
     }
   }
