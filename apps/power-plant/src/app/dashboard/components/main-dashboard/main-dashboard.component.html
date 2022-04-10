@@ -1,16 +1,19 @@
-<div class="bg-gray-100 h-full">
-    <div class="p-4" style="text-align:center">
-        <apx-chart
-          [series]="chartOptions.series"
-          [chart]="chartOptions.chart"
-          [xaxis]="chartOptions.xaxis"
-          [title]="chartOptions.title"
-        ></apx-chart>
-      </div>
-  <!-- <div class="w-full flex flex-wrap items-center">
-    <div class="w-[calc(50%-16px)] m-2 h-48 p-2">
-      <div [ngClass]="itemClasses">
+<div class="flex flex-col h-full">
+  <div class="flex-1 grid grid-cols-3">
+    <div class="col-span-2 w-full h-full flex flex-wrap">
+      <div class="w-full h-64 p-2">
+        <div [ngClass]="itemsClasses">
+          <p-plant-main-chart></p-plant-main-chart>
+        </div>
       </div>
     </div>
-  </div> -->
+    <div class="col-span-1">
+      <div class="w-full h-full p-2">
+        <div [ngClass]="itemsClasses">
+          ml;m;
+          <!-- <p-plant-main-chart></p-plant-main-chart> -->
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
