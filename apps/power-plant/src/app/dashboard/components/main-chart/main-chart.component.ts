@@ -27,7 +27,7 @@ export class MainChartComponent implements OnInit {
     this.chartOptions = {
       chart: {
         height: 200,
-        width: 500,
+        // width: '100%',
         type: 'line',
         stacked: false,
       },
