@@ -25,6 +25,12 @@ export const SIDENAV_CONFIG: SidenavNode[] = [
     ACCESS: 'admin',
   },
   {
+    name: 'Map',
+    icon: 'map',
+    url: '/ss',
+    ACCESS: 'admin',
+  },
+  {
     name: 'Charts',
     icon: 'insights',
     url: '/manager/user-create',
