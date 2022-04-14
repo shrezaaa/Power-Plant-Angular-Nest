@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { PlantsRoutingComponent } from './plants-routing/plants-routing.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    PlantsRoutingComponent
+  ],
   imports: [
     CommonModule
   ]
