@@ -8,14 +8,20 @@ const routes: Routes = [
     path: '',
     component: LayoutComponent,
     children: [
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       {
-        path: 'home',
+        path: 'dashboard',
         loadChildren: () =>
           import('../dashboard/dashboard.module').then(
             (m) => m.DashboardModule
           ),
-          canActivate:[AuthGuard]
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'plants',
+        loadChildren: () =>
+          import('../plants/plants.module').then((m) => m.PlantsModule),
+        canActivate: [AuthGuard],
       },
     ],
   },
