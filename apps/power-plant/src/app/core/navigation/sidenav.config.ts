@@ -21,7 +21,7 @@ export const SIDENAV_CONFIG: SidenavNode[] = [
   {
     name: 'Plant List',
     icon: 'format_list_bulleted',
-    url: '/ss',
+    url: '/plants',
     ACCESS: 'admin',
   },
   {
