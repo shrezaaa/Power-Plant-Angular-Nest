@@ -17,10 +17,9 @@ export type ChartOptions = {
 @Component({
   selector: 'p-plant-produced-power-chart',
   templateUrl: './produced-power-chart.component.html',
-  styleUrls: ['./produced-power-chart.component.scss']
+  styleUrls: ['./produced-power-chart.component.scss'],
 })
 export class ProducedPowerChartComponent implements OnInit {
-
   @ViewChild('chart') chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
 
@@ -29,7 +28,7 @@ export class ProducedPowerChartComponent implements OnInit {
       chart: {
         height: 200,
         // width: '100%',
-        type: 'line',
+        type: 'bar',
         stacked: false,
       },
       series: [
