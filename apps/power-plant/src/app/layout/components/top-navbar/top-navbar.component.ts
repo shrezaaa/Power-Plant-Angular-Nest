@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { Router } from '@angular/router';
+import { UserService } from '../../../core/services/user.service';
 
 @Component({
   selector: 'p-plant-top-navbar',
@@ -13,7 +14,7 @@ export class TopNavbarComponent implements OnInit {
   pendding: boolean = false;
   breadcrump: { url: string; value: string; name: string }[] = [];
   hasProfileImg: boolean = false;
-  constructor(private router: Router) // private dialog: MatDialog,
+  constructor(private router: Router,private userService:UserService) // private dialog: MatDialog,
   // private userSrv: UserService,
   // private userPipe: UserInfoPipe,
   // private alertSrv: AlertService,
@@ -79,7 +80,8 @@ export class TopNavbarComponent implements OnInit {
   }
 
   onLogout() {
-    // localStorage.clear();
+    this.userService.onLogout();
+    this.router.navigate(['auth/login'])
     // this.alertSrv.showToaster('You loged out Successfully!', 'INFO');
     // this.router.navigate(['/auth/login']);
   }
