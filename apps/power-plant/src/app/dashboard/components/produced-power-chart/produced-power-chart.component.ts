@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { EChartsOption } from 'echarts';
 
 import {
   ChartComponent,
@@ -21,10 +22,25 @@ export type ChartOptions = {
 })
 export class ProducedPowerChartComponent implements OnInit {
   @ViewChild('chart') chart: ChartComponent;
-  public chartOptions: Partial<ChartOptions>;
+  public apexChartOptions: Partial<ChartOptions>;
 
+  chartOption: EChartsOption = {
+    xAxis: {
+      data:  [
+        2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019,
+        2020, 2021, 2022,
+      ],
+    },
+    yAxis: {},
+    series: [
+      {
+        type: 'bar',
+        data: [20, 29, 37, 36, 44, 45, 50, 58, 20, 50, 70, 60, 70, 150],
+      }
+    ]
+  };
   constructor() {
-    this.chartOptions = {
+    this.apexChartOptions = {
       chart: {
         height: 200,
         // width: '100%',

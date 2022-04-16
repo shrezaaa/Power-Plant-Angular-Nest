@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { EChartsOption } from 'echarts';
+
 import {
   ApexNonAxisChartSeries,
   ApexResponsive,
@@ -17,14 +19,60 @@ export type ChartOptions = {
 @Component({
   selector: 'p-plant-statistics-chart',
   templateUrl: './statistics-chart.component.html',
-  styleUrls: ['./statistics-chart.component.scss']
+  styleUrls: ['./statistics-chart.component.scss'],
 })
 export class StatisticsChartComponent implements OnInit {
   @ViewChild('chart') chart: ChartComponent;
-  public chartOptions: Partial<ChartOptions>;
+  public apexChartOptions: Partial<ChartOptions>;
+
+  chartOption: EChartsOption = {
+    title: {
+      left: 'center',
+      top: 'center',
+    },
+    legend: {
+      orient: 'vertical',
+      left:0,
+      data: ['Online', 'Offline']
+    },
+    series: [
+      {
+        type: 'pie',
+        avoidLabelOverlap: false,
+        label: {
+          show: false,
+          position: 'center',
+          // emphasis: {
+          //   show: true
+          // }
+        },
+        labelLine: {
+          show: false
+        },
+        emphasis: {
+          label: {
+            show: true,
+            fontSize: '15',
+            fontWeight: 'bold'
+          }
+        },
+        data: [
+          {
+            value: 2,
+            name: 'Offline',
+          },
+          {
+            value: 2,
+            name: 'Online',
+          },
+        ],
+        radius: ['70%', '90%'],
+      },
+    ],
+  };
 
   constructor() {
-    this.chartOptions = {
+    this.apexChartOptions = {
       plotOptions: {
         pie: {
           customScale: 0.8,
@@ -51,8 +99,5 @@ export class StatisticsChartComponent implements OnInit {
     };
   }
 
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
