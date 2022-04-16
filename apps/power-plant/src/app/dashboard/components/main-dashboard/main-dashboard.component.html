@@ -1,34 +1,94 @@
 <div class="flex flex-col h-full">
-  <div class="flex-1 grid grid-cols-3">
-    <div class="col-span-2 w-full h-full flex flex-wrap">
+  <div class="flex-1 grid grid-cols-12">
+    <div class="col-span-10 w-full h-full flex flex-wrap">
       <div class="w-full h-[40%] p-1">
-        <div [ngClass]="itemsClasses">
-          <p-plant-main-chart></p-plant-main-chart>
+        <div
+          class="w-full h-full bg-white bg-gradient-to-r rounded-lg flex flex-col p-2 shadow-md"
+        >
+          <div class="flex">
+            <h5>Yield Trend</h5>
+            <div class="buttons ml-auto">
+              <button
+                *ngFor="let item of producePowerModes"
+                [ngClass]="{ active: item.id == activeProducePowerModeID }"
+                class="mx-1"
+                mat-stroked-button
+                color="primary"
+                (click)="changeProducePowerMode(item)"
+              >
+                {{ item.name }}
+              </button>
+            </div>
+          </div>
+          <p-plant-produced-power-chart></p-plant-produced-power-chart>
         </div>
       </div>
       <div class="w-full h-[20%] flex flex-wrap">
         <div class="w-[25%] h-full p-1">
-          <div [ngClass]="itemsClasses">hi col</div>
+          <div
+            class="w-full h-full bg-white bg-gradient-to-r rounded-lg flex flex-col relative p-2 shadow-md"
+          >
+            <p>Number of Online Plants</p>
+            <p>1 Piece</p>
+            <p class="mt-auto">Number of Online Plants</p>
+            <p>1 Piece</p>
+            <img class="absolute right-0" src="assets/icons/plant-online.png" />
+          </div>
         </div>
         <div class="w-[25%] h-full p-1">
-          <div [ngClass]="itemsClasses">hi col</div>
+          <div
+            class="w-full h-full bg-white bg-gradient-to-r rounded-lg flex flex-col relative p-2 shadow-md"
+          >
+            <p>Real-time Power</p>
+            <p>0 W</p>
+            <p class="mt-auto">Installer Power</p>
+            <p>200 W</p>
+            <img
+              class="absolute right-0"
+              src="../../../../assets/icons/real-time-power.png"
+            />
+          </div>
         </div>
         <div class="w-[25%] h-full p-1">
-          <div [ngClass]="itemsClasses">hi col</div>
+          <div
+            class="w-full h-full bg-white bg-gradient-to-r rounded-lg flex flex-col relative p-2 shadow-md"
+          >
+          <p>Avg Temperature</p>
+          <p>30 degree</p>
+          <p class="mt-auto">Max Temperature</p>
+          <p>50 degree</p>
+          <div class="absolute right-0 h-full flex flex-col justify-center">
+
+            <img
+              class=""
+              src="../../../../assets/icons/high-temp.png"
+            />
+          </div>
+          </div>
         </div>
         <div class="w-[25%] h-full p-1">
-          <div [ngClass]="itemsClasses">hi col</div>
+          <div
+            class="w-full h-full bg-white bg-gradient-to-r rounded-lg flex flex-col items-center justify-around p-2 shadow-md"
+          >
+            hi col
+          </div>
         </div>
       </div>
       <div class="w-full h-[40%] p-1">
-        <div [ngClass]="itemsClasses">hi col</div>
+        <div
+          class="w-full h-full bg-white bg-gradient-to-r rounded-lg flex flex-col items-center justify-around p-2 shadow-md"
+        >
+          hi col
+        </div>
       </div>
     </div>
-    <div class="col-span-1">
+    <div class="col-span-2">
       <div class="w-full h-full p-1">
-        <div [ngClass]="itemsClasses">
-          ml;m;
-          <!-- <p-plant-main-chart></p-plant-main-chart> -->
+        <div
+          class="w-full h-full bg-white bg-gradient-to-r rounded-lg flex flex-col p-2 shadow-md"
+        >
+          Device Statistics
+          <p-plant-statistics-chart></p-plant-statistics-chart>
         </div>
       </div>
     </div>
