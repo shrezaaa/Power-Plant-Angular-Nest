@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+
 import {
   ChartComponent,
   ApexAxisChartSeries,
@@ -14,11 +15,11 @@ export type ChartOptions = {
   title: ApexTitleSubtitle;
 };
 @Component({
-  selector: 'p-plant-main-chart',
-  templateUrl: './main-chart.component.html',
-  styleUrls: ['./main-chart.component.scss'],
+  selector: 'p-plant-produced-power-chart',
+  templateUrl: './produced-power-chart.component.html',
+  styleUrls: ['./produced-power-chart.component.scss']
 })
-export class MainChartComponent implements OnInit {
+export class ProducedPowerChartComponent implements OnInit {
 
   @ViewChild('chart') chart: ChartComponent;
   public chartOptions: Partial<ChartOptions>;
