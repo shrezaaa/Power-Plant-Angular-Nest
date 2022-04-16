@@ -1,8 +1,9 @@
 <div class="p-4 h-full w-full">
-  <apx-chart
+  <!-- <apx-chart
     [series]="chartOptions.series"
     [chart]="chartOptions.chart"
     [xaxis]="chartOptions.xaxis"
     [title]="chartOptions.title"
-  ></apx-chart>
+  ></apx-chart> -->
+  <div echarts [options]="chartOption" class="demo-chart"></div>
 </div>

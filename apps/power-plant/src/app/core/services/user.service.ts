@@ -29,4 +29,9 @@ export class UserService {
     this.setCurrentUser(user);
     return user;
   }
+
+  onLogout(){
+    localStorage.clear();
+    this.currentUser$.next({})
+  }
 }

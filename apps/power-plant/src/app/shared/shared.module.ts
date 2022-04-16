@@ -4,10 +4,17 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-const matModules = [];
+const MAT_MODULES = [MatIconModule, MatButtonModule];
 
+const COMPONENTS = [];
+
+const MODULES = [];
+
+const DIRECTIVES = [];
 @NgModule({
-  declarations: [],
-  imports: [CommonModule],
+  declarations: [...COMPONENTS, ...DIRECTIVES],
+  imports: [...MAT_MODULES, ...MODULES, CommonModule],
+  exports: [...MAT_MODULES, ...COMPONENTS, ...DIRECTIVES, ...MODULES],
+  providers: [],
 })
 export class SharedModule {}
