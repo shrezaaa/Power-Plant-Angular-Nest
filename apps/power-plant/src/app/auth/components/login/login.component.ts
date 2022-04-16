@@ -14,14 +14,11 @@ export class LoginComponent implements OnInit {
   private loginRef$!: Subscription;
   hide = true;
   forms = new FormGroup({
-    username: new FormControl('shrezaaa', [Validators.required]),
-    password: new FormControl('reza9210', [
-      Validators.required,
-      Validators.minLength(6),
-    ]),
+    username: new FormControl('',[Validators.required]),
+    password: new FormControl('',[Validators.required, Validators.minLength(6)]),
     remember_me: new FormControl(false),
   });
-  pendding = false;
+  pending = false;
 
   constructor(
     private router: Router,
@@ -33,15 +30,16 @@ export class LoginComponent implements OnInit {
 
   onLogin() {
     if (this.forms.valid) {
-      // this.pendding = true;
+      this.pending = true;
       // this.forms.disable();
       this.loginRef$ = this.authService.login(this.forms.value).subscribe(
         (response) => {
           this.userService.setUserByToken(response.accessToken);
-          this.router.navigate(['/home']);
+          this.pending=false
+          this.router.navigate(['/dashboard']);
         }
         // (error) => {
-        //   this.pendding = false;
+        //   this.pending = false;
         //   this.forms.enable();
         // },
         // () => {}
@@ -54,8 +52,8 @@ export class LoginComponent implements OnInit {
   }
 
   onCancelRequest() {
-    if (this.pendding) {
-      this.pendding = false;
+    if (this.pending) {
+      this.pending = false;
       this.forms.enable();
       this.loginRef$.unsubscribe();
     }
