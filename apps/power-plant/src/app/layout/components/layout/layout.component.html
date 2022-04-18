@@ -1,4 +1,3 @@
-<!-- <EAP-loading-bar></EAP-loading-bar> -->
 <mat-drawer-container class="w-screen h-screen m-0 p-0">
   <mat-drawer
     mode="side"
@@ -17,8 +16,11 @@
       [(isExpanded)]="isExpanded"
       (isExpandedChange)="logger()"
     ></p-plant-top-navbar>
-    <div class="router-outlet bg-gray-100">
-      <router-outlet></router-outlet>
+    <div class="router-outlet bg-gray-100 relative">
+      <p-plant-loading-bar></p-plant-loading-bar>
+      <div class="p-0 w-full h-full">
+        <router-outlet></router-outlet>
+      </div>
     </div>
   </mat-drawer-content>
 </mat-drawer-container>
