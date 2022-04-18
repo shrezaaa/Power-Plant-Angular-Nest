@@ -4,11 +4,9 @@ import { DashboardRoutingComponent } from './components/dashboard-routing/dashbo
 import { MainDashboardComponent } from './components/main-dashboard/main-dashboard.component';
 import { SharedModule } from '../shared/shared.module';
 import { DashboardRoutingModule } from './dashboard.routing';
-import { NgApexchartsModule } from 'ng-apexcharts';
 import { ProducedPowerChartComponent } from './components/produced-power-chart/produced-power-chart.component';
 import { StatisticsChartComponent } from './components/statistics-chart/statistics-chart.component';
 import { NgxEchartsModule } from 'ngx-echarts';
-
 
 @NgModule({
   declarations: [
@@ -21,7 +19,6 @@ import { NgxEchartsModule } from 'ngx-echarts';
     CommonModule,
     SharedModule,
     DashboardRoutingModule,
-    NgApexchartsModule,
     NgxEchartsModule.forRoot({
       /**
        * This will import all modules from echarts.
