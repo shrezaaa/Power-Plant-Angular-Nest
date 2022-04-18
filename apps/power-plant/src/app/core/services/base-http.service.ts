@@ -5,7 +5,15 @@ import {
 } from '@angular/common/http';
 import { Injectable, Injector } from '@angular/core';
 import { environment } from 'apps/power-plant/src/environments/environment';
-import { catchError, EMPTY, Observable, retry, tap } from 'rxjs';
+import {
+  catchError,
+  EMPTY,
+  Observable,
+  OperatorFunction,
+  retry,
+  tap,
+  throwError,
+} from 'rxjs';
 import { AlertService } from '../alert/alert.service';
 import { HttpVerb, ParamDto } from '../type/base-http.type';
 import { LoadingService } from './loading.service';
@@ -27,6 +35,7 @@ export class RequestBuilder {
   baseUrl = environment.serviceBaseUrl;
   queryParams: Array<ParamDto>;
   bodyParams: Array<ParamDto>;
+  loading: boolean = false;
   //other services
   http: HttpClient;
   alertSrvc: AlertService;
@@ -63,6 +72,9 @@ export class RequestBuilder {
 
     //check hdr if needed
     //test token
+    if (this.loading == true) {
+      this.loadingService.show();
+    }
     switch (this.httpVerb) {
       case 'GET':
         request$ = this.http.get(url, { headers: headers });
@@ -70,15 +82,17 @@ export class RequestBuilder {
       case 'POST':
         request$ = this.http.post(url, this.bodyParams, { headers: headers });
     }
-    this.loadingService.show();
     return request$.pipe(
       retry(0),
       tap((i) => {
         // if (i.type != 0) this.loadingSrv.hide();
+      }),
+      catchError((error: HttpErrorResponse) => {
+        if (this.loading === true) {
+          this.loadingService.hide();
+        }
+        return this.errorHandler(error);
       })
-      // catchError((error: HttpErrorResponse) =>
-      //   this.errorHandler(error, tokenizedRequest)
-      // )
     );
   }
 
@@ -97,6 +111,11 @@ export class RequestBuilder {
     return this;
   }
 
+  public setLoading(value: boolean): RequestBuilder {
+    this.loading = value;
+    return this;
+  }
+
   private getSerializedParams(params: ParamDto[]) {
     if (!params || params.length == 0) return '';
     return '?' + params.map((param) => param.key + '=' + param.value).join('&');
@@ -104,5 +123,13 @@ export class RequestBuilder {
 
   public createParamList(model: any): ParamDto[] {
     return model;
+  }
+
+  private errorHandler(error: HttpErrorResponse) {
+    const { status } = error;
+    if (error.error?.message) {
+      this.alertSrvc.showToaster(error.error.message, 'DANGER');
+    }
+    return throwError(() => error);
   }
 }
