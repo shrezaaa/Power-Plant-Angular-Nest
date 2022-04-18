@@ -7,7 +7,7 @@ import { DashboardRoutingModule } from './dashboard.routing';
 import { ProducedPowerChartComponent } from './components/produced-power-chart/produced-power-chart.component';
 import { StatisticsChartComponent } from './components/statistics-chart/statistics-chart.component';
 import { NgxEchartsModule } from 'ngx-echarts';
-import { TempreatureChartComponent } from './components/tempreature-chart/tempreature-chart.component';
+import { TemperatureChartComponent } from './components/temperature-chart/temperature-chart.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +15,7 @@ import { TempreatureChartComponent } from './components/tempreature-chart/tempre
     MainDashboardComponent,
     ProducedPowerChartComponent,
     StatisticsChartComponent,
-    TempreatureChartComponent,
+    TemperatureChartComponent,
   ],
   imports: [
     CommonModule,
