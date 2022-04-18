@@ -9,10 +9,5 @@ import { LoadingService } from '../../../core/services/loading.service';
 export class LoadingBarComponent implements OnInit {
   constructor(public loadingSrv: LoadingService) {}
 
-  ngOnInit(): void {
-    setInterval(()=>{
-      console.log(this.loadingSrv.isLoading);
-      
-    },1000)
-  }
+  ngOnInit(): void {}
 }
