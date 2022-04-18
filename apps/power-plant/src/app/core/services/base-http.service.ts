@@ -84,8 +84,10 @@ export class RequestBuilder {
     }
     return request$.pipe(
       retry(0),
-      tap((i) => {
-        // if (i.type != 0) this.loadingSrv.hide();
+      tap((res) => {
+        if (this.loading == true) {
+          this.loadingService.hide();
+        }
       }),
       catchError((error: HttpErrorResponse) => {
         if (this.loading === true) {
