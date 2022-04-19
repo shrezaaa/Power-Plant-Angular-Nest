@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BaseHttp } from '../../../core/services/base-http.service';
+import { BaseHttp } from '../../core/services/base-http.service';
 
 @Component({
   selector: 'p-plant-dashboard-routing',
@@ -7,10 +7,10 @@ import { BaseHttp } from '../../../core/services/base-http.service';
   styleUrls: ['./dashboard-routing.component.scss'],
 })
 export class DashboardRoutingComponent implements OnInit {
-  constructor(private gsss: BaseHttp) {}
+  constructor(private baseHttp: BaseHttp) {}
 
   ngOnInit(): void {
-    this.gsss
+    this.baseHttp
       .request('GET', 'hello')
       .setLoading(true)
       .send()
