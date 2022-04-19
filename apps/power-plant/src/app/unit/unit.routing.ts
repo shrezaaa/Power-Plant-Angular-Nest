@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DashboardRoutingComponent } from './dashboard-routing/dashboard-routing.component';
-import { MainDashboardComponent } from './components/main-dashboard/main-dashboard.component';
+import { InvertorUnitsComponent } from './components/invertor-units/invertor-units.component';
+import { UnitRoutingComponent } from './unit-routing/unit-routing.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: DashboardRoutingComponent,
+    component: UnitRoutingComponent,
     children: [
       // { path: '', redirectTo: '', pathMatch: 'full' },
       {
-        path: '',
-        component: MainDashboardComponent,
+        path: 'inv',
+        component: InvertorUnitsComponent,
       },
     ],
   },
@@ -21,4 +21,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class DashboardRoutingModule {}
+export class UnitRoutingModule {}

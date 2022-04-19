@@ -23,6 +23,12 @@ const routes: Routes = [
           import('../plants/plants.module').then((m) => m.PlantsModule),
         canActivate: [AuthGuard],
       },
+      {
+        path: 'unit',
+        loadChildren: () =>
+          import('../unit/unit.module').then((m) => m.UnitModule),
+        canActivate: [AuthGuard],
+      },
     ],
   },
 ];
