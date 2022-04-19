@@ -1,6 +1,6 @@
 module.exports = {
   mode: 'jit',
-  // TA ILWIND_MODE=watch,
+  // TAILWIND_MODE=watch,
   content: [
     // Example content paths...
     './apps/power-plant/src/**/*.html',
