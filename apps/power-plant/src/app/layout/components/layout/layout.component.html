@@ -2,7 +2,7 @@
   <mat-drawer
     mode="side"
     [opened]="true"
-    [ngClass]="{ 'w-[90px]': !isExpanded, 'w-[250px]': isExpanded }"
+    [ngClass]="{ 'w-[65px]': !isExpanded, 'w-[250px]': isExpanded }"
     class="w-[250px] bg-gray-100 hi"
     style="border: none"
   >
@@ -11,7 +11,7 @@
       (isExpandedChange)="logger()"
     ></p-plant-sidenav>
   </mat-drawer>
-  <mat-drawer-content [style.margin-left.px]="isExpanded ? 250 : 90">
+  <mat-drawer-content [style.margin-left.px]="isExpanded ? 250 : 65">
     <p-plant-top-navbar
       [(isExpanded)]="isExpanded"
       (isExpandedChange)="logger()"
