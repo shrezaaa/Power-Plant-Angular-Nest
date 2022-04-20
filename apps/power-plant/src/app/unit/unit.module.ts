@@ -8,8 +8,25 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import {
+  NgxMatDatetimePickerModule,
+  NgxMatNativeDateModule,
+  NgxMatTimepickerModule,
+  // NgxMatDatePicker
+} from '@angular-material-components/datetime-picker';
 
-const matModules = [MatFormFieldModule, MatInputModule, MatDatepickerModule];
+const matModules = [
+  MatFormFieldModule,
+  MatInputModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatCheckboxModule,
+  NgxMatDatetimePickerModule,
+  NgxMatNativeDateModule,
+  NgxMatTimepickerModule,
+];
 @NgModule({
   declarations: [UnitRoutingComponent, InverterUnitsComponent],
   imports: [
@@ -20,5 +37,6 @@ const matModules = [MatFormFieldModule, MatInputModule, MatDatepickerModule];
     UnitRoutingModule,
     SharedModule,
   ],
+  providers: [MatDatepickerModule],
 })
 export class UnitModule {}
