@@ -6,15 +6,27 @@ import { PlantsComponent } from './components/plants/plants.component';
 import { PlantsRoutingModule } from './plants.routing';
 import { PlantsFilterComponent } from './components/plants-filter/plants-filter.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { PlantsMapComponent } from './components/plants-map/plants-map.component';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
-const matModules =[
-  MatFormFieldModule,
-  MatInputModule
-]
+const matModules = [MatFormFieldModule, MatInputModule];
 @NgModule({
-  declarations: [PlantsRoutingComponent, PlantsListComponent, PlantsComponent, PlantsFilterComponent],
-  imports: [CommonModule,FormsModule,ReactiveFormsModule,matModules, PlantsRoutingModule],
+  declarations: [
+    PlantsRoutingComponent,
+    PlantsListComponent,
+    PlantsComponent,
+    PlantsFilterComponent,
+    PlantsMapComponent,
+  ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    matModules,
+    PlantsRoutingModule,
+    LeafletModule,
+  ],
 })
 export class PlantsModule {}
