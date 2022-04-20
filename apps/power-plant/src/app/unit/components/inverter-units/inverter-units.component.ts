@@ -3,11 +3,11 @@ import { FloatLabelType } from '@angular/material/form-field';
 import { SelectData } from '../../../shared/types/select-data';
 
 @Component({
-  selector: 'p-plant-invertor-units',
-  templateUrl: './invertor-units.component.html',
-  styleUrls: ['./invertor-units.component.scss'],
+  selector: 'p-plant-inverter-units',
+  templateUrl: './inverter-units.component.html',
+  styleUrls: ['./inverter-units.component.scss'],
 })
-export class InvertorUnitsComponent implements OnInit {
+export class InverterUnitsComponent implements OnInit {
   selectedUnit: SelectData;
   units: Array<SelectData> = [
     { name: 'a', value: 1 },
