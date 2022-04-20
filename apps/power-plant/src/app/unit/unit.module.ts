@@ -7,8 +7,9 @@ import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
-const matModules = [MatFormFieldModule, MatInputModule];
+const matModules = [MatFormFieldModule, MatInputModule,MatDatepickerModule];
 @NgModule({
   declarations: [UnitRoutingComponent, InvertorUnitsComponent],
   imports: [
