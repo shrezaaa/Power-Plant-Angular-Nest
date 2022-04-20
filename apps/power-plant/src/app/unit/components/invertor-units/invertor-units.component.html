@@ -49,13 +49,16 @@
       >
         <div class="sticky top-0 h-16 w-full p-1">
           <div class="flex">
-            <mat-form-field appearance='outline'>
-                <mat-label>sc</mat-label>
-                <input matInput>
+            <mat-form-field appearance="outline">
+              <mat-label>sc</mat-label>
+              <input matInput [matDatepicker]="picker" />
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
-
-
-
           </div>
         </div>
 
