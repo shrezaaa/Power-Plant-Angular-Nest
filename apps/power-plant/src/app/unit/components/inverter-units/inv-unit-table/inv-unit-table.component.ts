@@ -25,6 +25,7 @@ export class InvUnitTableComponent implements OnInit {
       sortable: true,
       filter: true,
     },
+    animateRows: true,
   };
   rowData = [
     { make: 'Toyota', model: 'Celica', price: 35000 },
