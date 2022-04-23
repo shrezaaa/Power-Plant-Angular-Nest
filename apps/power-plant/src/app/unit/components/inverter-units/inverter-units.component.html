@@ -47,29 +47,39 @@
       <div
         class="w-full h-full bg-white bg-gradient-to-r rounded-sm shadow-md flex flex-col p-2 pt-1"
       >
-        <div class="sticky top-0 h-16 w-full p-1">
-          <div class="flex items-center">
-            <mat-form-field
-              class="w-full sm:w-[205px] px-1"
-              appearance="outline"
-            >
-              <mat-label>Date</mat-label>
-              <input
-                matInput
-                [ngxMatDatetimePicker]="picker"
-                placeholder="Choose a date"
-              />
-              <mat-datepicker-toggle
-                matSuffix
-                [for]="$any(picker)"
-              ></mat-datepicker-toggle>
-              <ngx-mat-datetime-picker #picker> </ngx-mat-datetime-picker>
-            </mat-form-field>
-            <section class="px-1">
-              <mat-checkbox class="">Check me!</mat-checkbox>
-            </section>
+        <div class="sticky top-0 w-full p-1">
+          <div class="flex w-full justify-between">
+            <div class="flex items-center grow">
+              <mat-form-field
+                class="w-full sm:w-[205px] px-1"
+                appearance="outline"
+              >
+                <mat-label>Date</mat-label>
+                <input
+                  matInput
+                  [ngxMatDatetimePicker]="picker"
+                  placeholder="Choose a date"
+                />
+                <mat-datepicker-toggle
+                  matSuffix
+                  [for]="$any(picker)"
+                ></mat-datepicker-toggle>
+                <ngx-mat-datetime-picker #picker> </ngx-mat-datetime-picker>
+              </mat-form-field>
+              <section class="px-1">
+                <mat-checkbox class="">Display Normalized Data</mat-checkbox>
+              </section>
+            </div>
+
+            <div class="flex items-center grow justify-end">
+              <button mat-icon-button><mat-icon>fullscreen</mat-icon></button>
+            </div>
           </div>
           <hr />
+        </div>
+
+        <div class="w-full h-full">
+          
         </div>
       </div>
     </div>

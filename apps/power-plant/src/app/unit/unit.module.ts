@@ -16,6 +16,7 @@ import {
   NgxMatTimepickerModule,
   // NgxMatDatePicker
 } from '@angular-material-components/datetime-picker';
+import { InvUnitTableComponent } from './components/inverter-units/inv-unit-table/inv-unit-table.component';
 
 const matModules = [
   MatFormFieldModule,
@@ -28,7 +29,7 @@ const matModules = [
   NgxMatTimepickerModule,
 ];
 @NgModule({
-  declarations: [UnitRoutingComponent, InverterUnitsComponent],
+  declarations: [UnitRoutingComponent, InverterUnitsComponent, InvUnitTableComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
