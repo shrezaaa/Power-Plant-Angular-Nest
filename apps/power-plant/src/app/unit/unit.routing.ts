@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { InvertorUnitsComponent } from './components/invertor-units/invertor-units.component';
+import { InverterUnitsComponent } from './components/inverter-units/inverter-units.component';
 import { UnitRoutingComponent } from './unit-routing/unit-routing.component';
 
 const routes: Routes = [
@@ -11,7 +11,7 @@ const routes: Routes = [
       // { path: '', redirectTo: '', pathMatch: 'full' },
       {
         path: 'inv',
-        component: InvertorUnitsComponent,
+        component: InverterUnitsComponent,
       },
     ],
   },
