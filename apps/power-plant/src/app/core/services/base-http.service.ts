@@ -128,9 +128,13 @@ export class RequestBuilder {
   }
 
   private errorHandler(error: HttpErrorResponse) {
-    const { status } = error;
+    const { status, statusText } = error;
     if (error.error?.message) {
       this.alertSrvc.showToaster(error.error.message, 'DANGER');
+    }
+    switch (status) {
+      case 0:
+        this.alertSrvc.showToaster(statusText, 'WARNING');
     }
     return throwError(() => error);
   }
