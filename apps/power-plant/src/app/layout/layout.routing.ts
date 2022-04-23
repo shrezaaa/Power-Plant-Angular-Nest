@@ -20,13 +20,31 @@ const routes: Routes = [
       {
         path: 'plants',
         loadChildren: () =>
-          import('../plants/plants.module').then((m) => m.PlantsModule),
+          import('../app-modules/plants/plants.module').then(
+            (m) => m.PlantsModule
+          ),
         canActivate: [AuthGuard],
       },
       {
         path: 'unit',
         loadChildren: () =>
-          import('../unit/unit.module').then((m) => m.UnitModule),
+          import('../app-modules/unit/unit.module').then((m) => m.UnitModule),
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'report',
+        loadChildren: () =>
+          import('../app-modules/report/report.module').then(
+            (m) => m.ReportModule
+          ),
+        canActivate: [AuthGuard],
+      },
+      {
+        path: 'curve',
+        loadChildren: () =>
+          import('../app-modules/curve/curve.module').then(
+            (m) => m.CurveModule
+          ),
         canActivate: [AuthGuard],
       },
     ],

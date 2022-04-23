@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FloatLabelType } from '@angular/material/form-field';
-import { SelectData } from '../../../shared/types/select-data';
+import { SelectData } from 'apps/power-plant/src/app/shared/types/select-data';
 
 @Component({
   selector: 'p-plant-inverter-units',

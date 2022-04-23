@@ -39,13 +39,13 @@ export const SIDENAV_CONFIG: SidenavNode[] = [
   {
     name: 'Curve',
     icon: 'bar_chart',
-    url: '/manager/user-create',
+    url: '/curve',
     ACCESS: 'admin',
   },
   {
     name: 'Reports',
     icon: 'summarize',
-    url: '/manager/class-list',
+    url: '/report',
     ACCESS: 'admin',
   },
 ];

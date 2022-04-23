@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { SelectData } from '../../../shared/types/select-data';
+import { SelectData } from 'apps/power-plant/src/app/shared/types/select-data';
 
 @Component({
   selector: 'p-plant-plants-map-view',
   templateUrl: './plants-map-view.component.html',
-  styleUrls: ['./plants-map-view.component.scss']
+  styleUrls: ['./plants-map-view.component.scss'],
 })
 export class PlantsMapViewComponent implements OnInit {
   selectedPlant: SelectData;
@@ -13,9 +13,7 @@ export class PlantsMapViewComponent implements OnInit {
     { name: 'Plant ab', value: 1 },
     { name: 'Plant abc', value: 1 },
   ];
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
