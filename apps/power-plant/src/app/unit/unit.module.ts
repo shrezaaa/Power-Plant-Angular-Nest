@@ -23,8 +23,8 @@ import { UnitPowerChartComponent } from './components/inverter-units/unit-power-
 import { UnitYieldChartComponent } from './components/inverter-units/unit-yield-chart/unit-yield-chart.component';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { CustomCellComponent } from './components/test-grid/custom-cell/custom-cell.component';
-import 'ag-grid-enterprise';
 import { TestGridComponent } from './components/test-grid/test-grid.component';
+// import 'ag-grid-enterprise';
 
 const matModules = [
   MatFormFieldModule,
