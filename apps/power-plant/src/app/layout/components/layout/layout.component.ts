@@ -7,13 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit {
-  isExpanded = true;
+  isLeftExpanded = true;
+  isRightExpanded = false;
   constructor() {}
   ngOnInit(): void {
-    this.isExpanded = localStorage.getItem('FOLDED') == 'true' ? true : false;
+    this.isLeftExpanded =
+      localStorage.getItem('FOLDED') == 'true' ? true : false;
+    setInterval(() => {
+      console.log(this.isRightExpanded);
+    }, 4000);
   }
 
-  logger() {
-    localStorage.setItem('FOLDED', this.isExpanded.toString());
+  saveLeftState() {
+    localStorage.setItem('FOLDED', this.isLeftExpanded.toString());
   }
 }
