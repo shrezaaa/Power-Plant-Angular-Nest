@@ -18,9 +18,13 @@ import {
 } from '@angular-material-components/datetime-picker';
 import { InvUnitTableComponent } from './components/inverter-units/inv-unit-table/inv-unit-table.component';
 import { AgGridModule } from 'ag-grid-angular';
+// import { AgGridModule } from 'ag-grid-enterprise';
 import { UnitPowerChartComponent } from './components/inverter-units/unit-power-chart/unit-power-chart.component';
 import { UnitYieldChartComponent } from './components/inverter-units/unit-yield-chart/unit-yield-chart.component';
 import { NgxEchartsModule } from 'ngx-echarts';
+import { CustomCellComponent } from './components/test-grid/custom-cell/custom-cell.component';
+import { TestGridComponent } from './components/test-grid/test-grid.component';
+// import 'ag-grid-enterprise';
 
 const matModules = [
   MatFormFieldModule,
@@ -39,6 +43,8 @@ const matModules = [
     InvUnitTableComponent,
     UnitPowerChartComponent,
     UnitYieldChartComponent,
+    CustomCellComponent,
+    TestGridComponent,
   ],
   imports: [
     CommonModule,
