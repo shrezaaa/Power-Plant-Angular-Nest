@@ -26,7 +26,6 @@ export class InvUnitTableComponent implements OnInit {
     onFirstDataRendered: (params: FirstDataRenderedEvent) => {
       params.api.sizeColumnsToFit();
     },
-    onColumnResized: (event: ColumnResizedEvent) => {},
   };
   rowData = [
     { make: 'Toyota', model: 'Celica', price: 35000 },
