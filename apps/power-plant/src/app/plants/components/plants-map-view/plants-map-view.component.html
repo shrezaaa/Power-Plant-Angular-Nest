@@ -1,1 +1,56 @@
-<p>plants-map-view works!</p>
+<div class="flex flex-col h-full">
+  <div class="flex-1 grid grid-cols-12">
+    <div
+      class="col-span-5 md:col-span-3 lg:col-span-2 w-full h-full flex flex-wrap p-2 pr-1"
+    >
+      <div
+        class="w-full h-full bg-white bg-gradient-to-r rounded-sm shadow-md flex flex-col"
+      >
+        <div class="w-full h-16 p-2">
+          <mat-form-field
+            class="w-full"
+            appearance="outline"
+            floatLabel="never"
+          >
+            <mat-label> Search Invertor</mat-label>
+            <input matInput />
+            <button mat-icon-button matSuffix>
+              <mat-icon>search</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+
+        <hr class="mt-1" />
+
+        <p-plant-list-selection
+          [data]="plants"
+          [selected]="selectedPlant"
+        ></p-plant-list-selection>
+
+      </div>
+    </div>
+    <div
+      class="col-span-7 md:col-span-9 lg:col-span-10 w-full h-full flex flex-wrap p-2 pl-1"
+    >
+      <div
+        class="w-full h-full bg-white bg-gradient-to-r rounded-sm shadow-md flex flex-col p-2 pt-1"
+      >
+        <!--filters-->
+        <div class="sticky top-0 w-full p-1">
+          <div class="flex w-full justify-between">
+            <div class="flex items-center grow"></div>
+
+            <div class="flex items-center grow justify-end">
+              <button mat-icon-button><mat-icon>fullscreen</mat-icon></button>
+            </div>
+          </div>
+          <hr />
+        </div>
+
+        <div class="grow p-1">
+            <p-plant-plants-map></p-plant-plants-map>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
