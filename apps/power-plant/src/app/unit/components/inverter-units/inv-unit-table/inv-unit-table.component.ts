@@ -1,10 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { AgGridAngular } from 'ag-grid-angular';
 import {
-  ColDef,
-  ColumnResizedEvent,
   FirstDataRenderedEvent,
   GridOptions,
+  GridReadyEvent,
 } from 'ag-grid-community';
 
 @Component({
@@ -14,18 +13,19 @@ import {
 })
 export class InvUnitTableComponent implements OnInit {
   @ViewChild('grid') grid: AgGridAngular;
+  gridApi: GridReadyEvent;
   gridOptions: GridOptions = {
     columnDefs: [
-      { field: 'make', sortable: true, filter: true },
-      { field: 'model', sortable: true, filter: true },
-      { field: 'price', sortable: true, filter: true },
+      { field: 'make', flex: 1 },
+      { field: 'model', flex: 1 },
+      { field: 'price', flex: 1 },
     ],
     defaultColDef: {
       resizable: true,
+      sortable: true,
+      filter: true,
     },
-    onFirstDataRendered: (params: FirstDataRenderedEvent) => {
-      params.api.sizeColumnsToFit();
-    },
+    animateRows: true,
   };
   rowData = [
     { make: 'Toyota', model: 'Celica', price: 35000 },
@@ -35,4 +35,8 @@ export class InvUnitTableComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  onGridReady(params: GridReadyEvent) {
+    this.gridApi = params;
+  }
 }
