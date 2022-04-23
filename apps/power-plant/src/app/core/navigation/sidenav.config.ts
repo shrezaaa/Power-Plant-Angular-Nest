@@ -19,9 +19,15 @@ export const SIDENAV_CONFIG: SidenavNode[] = [
     hasDividerAfter: true,
   },
   {
-    name: 'Plant List',
+    name: 'Plants List',
     icon: 'format_list_bulleted',
-    url: '/plants',
+    url: '/plants/list',
+    ACCESS: 'admin',
+  },
+  {
+    name: 'Plants Map',
+    icon: 'map',
+    url: '/plants/map',
     ACCESS: 'admin',
   },
   {
@@ -31,14 +37,8 @@ export const SIDENAV_CONFIG: SidenavNode[] = [
     ACCESS: 'admin',
   },
   {
-    name: 'Map',
-    icon: 'map',
-    url: '/ss',
-    ACCESS: 'admin',
-  },
-  {
-    name: 'Charts',
-    icon: 'insights',
+    name: 'Curve',
+    icon: 'bar_chart',
     url: '/manager/user-create',
     ACCESS: 'admin',
   },
@@ -46,12 +46,6 @@ export const SIDENAV_CONFIG: SidenavNode[] = [
     name: 'Reports',
     icon: 'summarize',
     url: '/manager/class-list',
-    ACCESS: 'admin',
-  },
-  {
-    name: 'Announcements',
-    icon: 'campaign',
-    url: '/manager/announcement-list',
     ACCESS: 'admin',
   },
 ];
