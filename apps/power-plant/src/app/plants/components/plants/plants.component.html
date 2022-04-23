@@ -1,2 +1,31 @@
-<p-plant-plants-filter></p-plant-plants-filter>
-<p-plant-plants-map></p-plant-plants-map>
+<div class="flex flex-col h-full w-full">
+  <div class="w-full h-full flex flex-wrap p-2">
+    <div
+      class="w-full h-full bg-white bg-gradient-to-r rounded-sm shadow-md flex flex-col"
+    >
+      <!--Filters-->
+      <div class="sticky top-0 w-full p-1">
+        <div class="flex w-full justify-between">
+          <div class="flex items-center grow">
+            <mat-form-field
+              class="w-full sm:w-[205px] px-1"
+              appearance="outline"
+            >
+              <mat-label>Date</mat-label>
+              <input matInput placeholder="Choose a date" />
+            </mat-form-field>
+          </div>
+
+          <div class="flex items-center grow justify-end">
+            <button mat-icon-button><mat-icon>fullscreen</mat-icon></button>
+          </div>
+        </div>
+        <hr />
+      </div>
+
+      <div class="grow">
+        <p-plant-plants-map></p-plant-plants-map>
+      </div>
+    </div>
+  </div>
+</div>
