@@ -18,8 +18,9 @@ import {
 } from '@angular-material-components/datetime-picker';
 import { InvUnitTableComponent } from './components/inverter-units/inv-unit-table/inv-unit-table.component';
 import { AgGridModule } from 'ag-grid-angular';
-
-
+import { UnitPowerChartComponent } from './components/inverter-units/unit-power-chart/unit-power-chart.component';
+import { UnitYieldChartComponent } from './components/inverter-units/unit-yield-chart/unit-yield-chart.component';
+import { NgxEchartsModule } from 'ngx-echarts';
 
 const matModules = [
   MatFormFieldModule,
@@ -32,7 +33,13 @@ const matModules = [
   NgxMatTimepickerModule,
 ];
 @NgModule({
-  declarations: [UnitRoutingComponent, InverterUnitsComponent, InvUnitTableComponent],
+  declarations: [
+    UnitRoutingComponent,
+    InverterUnitsComponent,
+    InvUnitTableComponent,
+    UnitPowerChartComponent,
+    UnitYieldChartComponent,
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -40,7 +47,15 @@ const matModules = [
     matModules,
     UnitRoutingModule,
     SharedModule,
-    AgGridModule.withComponents([])
+    NgxEchartsModule.forRoot({
+      /**
+       * This will import all modules from echarts.
+       * If you only need custom modules,
+       * please refer to [Custom Build] section.
+       */
+      echarts: () => import('echarts'), // or import('./path-to-my-custom-echarts')
+    }),
+    AgGridModule.withComponents([]),
   ],
   providers: [MatDatepickerModule],
 })
