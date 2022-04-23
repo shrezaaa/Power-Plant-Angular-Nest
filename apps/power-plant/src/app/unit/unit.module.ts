@@ -17,6 +17,9 @@ import {
   // NgxMatDatePicker
 } from '@angular-material-components/datetime-picker';
 import { InvUnitTableComponent } from './components/inverter-units/inv-unit-table/inv-unit-table.component';
+import { AgGridModule } from 'ag-grid-angular';
+
+
 
 const matModules = [
   MatFormFieldModule,
@@ -37,6 +40,7 @@ const matModules = [
     matModules,
     UnitRoutingModule,
     SharedModule,
+    AgGridModule.withComponents([])
   ],
   providers: [MatDatepickerModule],
 })
