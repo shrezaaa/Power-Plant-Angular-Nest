@@ -22,8 +22,9 @@ import { AgGridModule } from 'ag-grid-angular';
 import { UnitPowerChartComponent } from './components/inverter-units/unit-power-chart/unit-power-chart.component';
 import { UnitYieldChartComponent } from './components/inverter-units/unit-yield-chart/unit-yield-chart.component';
 import { NgxEchartsModule } from 'ngx-echarts';
-import { CustomCellComponent } from './components/inverter-units/inv-unit-table/custom-cell/custom-cell.component';
+import { CustomCellComponent } from './components/test-grid/custom-cell/custom-cell.component';
 import 'ag-grid-enterprise';
+import { TestGridComponent } from './components/test-grid/test-grid.component';
 
 const matModules = [
   MatFormFieldModule,
@@ -43,6 +44,7 @@ const matModules = [
     UnitPowerChartComponent,
     UnitYieldChartComponent,
     CustomCellComponent,
+    TestGridComponent,
   ],
   imports: [
     CommonModule,
