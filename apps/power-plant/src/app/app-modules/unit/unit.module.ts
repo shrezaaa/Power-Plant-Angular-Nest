@@ -6,7 +6,7 @@ import { UnitRoutingModule } from './unit.routing';
 import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from '../shared/shared.module';
+
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -24,6 +24,7 @@ import { UnitYieldChartComponent } from './components/inverter-units/unit-yield-
 import { NgxEchartsModule } from 'ngx-echarts';
 import { CustomCellComponent } from './components/test-grid/custom-cell/custom-cell.component';
 import { TestGridComponent } from './components/test-grid/test-grid.component';
+import { SharedModule } from '../../shared/shared.module';
 // import 'ag-grid-enterprise';
 
 const matModules = [

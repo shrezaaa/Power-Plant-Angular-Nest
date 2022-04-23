@@ -15,23 +15,20 @@ export class RegisterComponent implements OnInit {
   hidePass1 = true;
   hidePass2 = true;
   forms = new FormGroup({
-    username: new FormControl('shrezaei', [Validators.required]),
-    firstName: new FormControl('fahpsi', [Validators.required]),
-    lastName: new FormControl('doje,', [Validators.required]),
-    email: new FormControl('dfc@gvhjn.com', [
-      Validators.required,
-      Validators.email,
-    ]),
-    password: new FormControl('reza9210', [
+    username: new FormControl('', [Validators.required]),
+    firstName: new FormControl('', [Validators.required]),
+    lastName: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [
       Validators.required,
       Validators.minLength(6),
     ]),
-    password2: new FormControl('reza9210', [
+    password2: new FormControl('', [
       Validators.required,
       Validators.minLength(6),
     ]),
   });
-  pendding = false;
+  pending = false;
 
   constructor(
     private router: Router,
@@ -43,14 +40,14 @@ export class RegisterComponent implements OnInit {
 
   onRegister() {
     if (this.forms.valid) {
-      // this.pendding = true;
+      // this.pending = true;
       // this.forms.disable();
       this.loginRef$ = this.authService
         .signUp(this.forms.value)
         .subscribe((res: any) => {
           this.alertService.showToaster('Successful SignUp', 'SUCCESS');
           this.onRedirectToLogin();
-          this.pendding = false;
+          this.pending = false;
           this.forms.enable();
         });
       // this.loginRef$ = this.userSrv
@@ -59,7 +56,7 @@ export class RegisterComponent implements OnInit {
       //     (response) => {
       //       this.alertSrv.showToaster('user created Successfully!', 'SUCCESS');
       //       this.router.navigate(['/auth/login']);
-      //       this.pendding = false;
+      //       this.pending = false;
       //       this.forms.enable();
       //     },
       //     (error) => {
@@ -67,7 +64,7 @@ export class RegisterComponent implements OnInit {
       //         'please enter valid information',
       //         'DANGER'
       //       );
-      //       this.pendding = false;
+      //       this.pending = false;
       //       this.forms.enable();
       //     }
       //   );
@@ -79,8 +76,8 @@ export class RegisterComponent implements OnInit {
   }
 
   onCancelRequest() {
-    if (this.pendding) {
-      this.pendding = false;
+    if (this.pending) {
+      this.pending = false;
       this.forms.enable();
       this.loginRef$.unsubscribe();
     }
