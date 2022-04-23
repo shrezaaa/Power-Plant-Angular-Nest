@@ -10,9 +10,9 @@ import { SelectData } from '../../../shared/types/select-data';
 export class InverterUnitsComponent implements OnInit {
   selectedUnit: SelectData;
   units: Array<SelectData> = [
-    { name: 'a', value: 1 },
-    { name: 'ab', value: 1 },
-    { name: 'abc', value: 1 },
+    { name: 'Inverter a', value: 1 },
+    { name: 'Inverter ab', value: 1 },
+    { name: 'Inverter abc', value: 1 },
   ];
   constructor() {}
 
