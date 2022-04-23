@@ -26,13 +26,13 @@ export const SIDENAV_CONFIG: SidenavNode[] = [
   },
   {
     name: 'Plants Map',
-    icon: 'map',
+    icon: 'pin_drop',
     url: '/plants/map',
     ACCESS: 'admin',
   },
   {
     name: 'Invertors Unit',
-    icon: 'ad_units',
+    icon: 'layers',
     url: '/unit/inv',
     ACCESS: 'admin',
   },
