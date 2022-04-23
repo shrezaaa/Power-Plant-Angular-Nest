@@ -22,23 +22,11 @@
 
         <hr class="mt-1" />
 
-        <div class="w-full text-sm font-medium text-gray-900 bg-white">
-          <ng-container *ngFor="let item of units">
-            <button
-              [ngClass]="
-                item.name == selectedUnit?.name
-                  ? ' bg-gray-200 rounded-sm'
-                  : 'hover:bg-gray-100 hover:text-blue-700'
-              "
-              type="button"
-              (click)="selectedUnit = item"
-              class="w-full px-4 py-2 font-medium text-left cursor-pointer focus:outline-none"
-            >
-              {{ item.name }}
-            </button>
-            <hr class="m-1" />
-          </ng-container>
-        </div>
+        <p-plant-list-selection
+          [data]="plants"
+          [selected]="selectedPlant"
+        ></p-plant-list-selection>
+
       </div>
     </div>
     <div
@@ -47,19 +35,21 @@
       <div
         class="w-full h-full bg-white bg-gradient-to-r rounded-sm shadow-md flex flex-col p-2 pt-1"
       >
-        <div class="sticky top-0 h-16 w-full p-1">
-          <div class="flex">
-            <mat-form-field appearance='outline'>
-                <mat-label>sc</mat-label>
-                <input matInput>
-            </mat-form-field>
+        <!--filters-->
+        <div class="sticky top-0 w-full p-1">
+          <div class="flex w-full justify-between">
+            <div class="flex items-center grow"></div>
 
-
-
+            <div class="flex items-center grow justify-end">
+              <button mat-icon-button><mat-icon>fullscreen</mat-icon></button>
+            </div>
           </div>
+          <hr />
         </div>
 
-        <hr />
+        <div class="grow p-1">
+            <p-plant-plants-map></p-plant-plants-map>
+        </div>
       </div>
     </div>
   </div>
