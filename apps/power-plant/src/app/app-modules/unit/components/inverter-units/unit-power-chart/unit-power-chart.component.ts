@@ -15,16 +15,17 @@ export class UnitPowerChartComponent implements OnInit {
   chartOption: EChartsOption = {
     // color: this.colors,
     title: {
-      text: 'Current Power',
+      text: 'Current Power (kW)',
     },
     tooltip: {
       trigger: 'axis',
+      valueFormatter: (value) => value + ' kW',
       axisPointer: {
         type: 'cross',
       },
     },
     legend: {
-      right:20,
+      right: 20,
       data: ['A', 'B', 'C'],
     },
     xAxis: {
@@ -109,7 +110,7 @@ export class UnitPowerChartComponent implements OnInit {
 
         // smooth: true,
         color: this.colors[1],
-        data: [4.2,4.5,4,4.7,5,4,5.2,5.7,5],
+        data: [4.2, 4.5, 4, 4.7, 5, 4, 5.2, 5.7, 5],
       },
       {
         name: 'B',
@@ -117,7 +118,7 @@ export class UnitPowerChartComponent implements OnInit {
         // step:'middle',
         color: this.colors[2],
         // smooth: true,
-        data: [3.2,3.5,3.6,3.8,0,0,3.8,3.4,3.2],
+        data: [3.2, 3.5, 3.6, 3.8, 0, 0, 3.8, 3.4, 3.2],
       },
       {
         name: 'C',
@@ -125,7 +126,7 @@ export class UnitPowerChartComponent implements OnInit {
         // step:'middle',
         color: this.colors[3],
         // smooth: true,
-        data: [2.1,2.2,2.5,2.9,2.7,2.6,2.4,2.5,2.32],
+        data: [2.1, 2.2, 2.5, 2.9, 2.7, 2.6, 2.4, 2.5, 2.32],
       },
     ],
   };
