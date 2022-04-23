@@ -10,6 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { PlantsMapComponent } from './components/plants-map/plants-map.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { SharedModule } from '../shared/shared.module';
 
 const matModules = [MatFormFieldModule, MatInputModule];
 @NgModule({
@@ -27,6 +28,7 @@ const matModules = [MatFormFieldModule, MatInputModule];
     matModules,
     PlantsRoutingModule,
     LeafletModule,
+    SharedModule
   ],
 })
 export class PlantsModule {}
