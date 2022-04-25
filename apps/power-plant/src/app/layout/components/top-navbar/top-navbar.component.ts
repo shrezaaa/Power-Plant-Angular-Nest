@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { Router } from '@angular/router';
+import { AlertService } from '../../../core/alert/alert.service';
 import { UserService } from '../../../core/services/user.service';
 
 @Component({
@@ -9,15 +10,20 @@ import { UserService } from '../../../core/services/user.service';
   styleUrls: ['./top-navbar.component.scss'],
 })
 export class TopNavbarComponent implements OnInit {
-  @Input() isExpanded: boolean = false;
-  @Output() isExpandedChange = new EventEmitter<boolean>();
-  pendding: boolean = false;
+  @Input() isLeftExpanded: boolean = false;
+  @Input() isRightExpanded: boolean = false;
+  @Output() isLeftExpandedChange = new EventEmitter<boolean>();
+  @Output() isRightExpandedChange = new EventEmitter<boolean>();
+  pending: boolean = false;
   breadcrump: { url: string; value: string; name: string }[] = [];
   hasProfileImg: boolean = false;
-  constructor(private router: Router,private userService:UserService) // private dialog: MatDialog,
-  // private userSrv: UserService,
+  constructor(
+    private router: Router,
+    private userService: UserService,
+    private alertSrv: AlertService // private dialog: MatDialog,
+  ) // private userSrv: UserService,
   // private userPipe: UserInfoPipe,
-  // private alertSrv: AlertService,
+  // private alertSrv: AlertService
   // private breadcrumbPipe: BreadcrumpPipe
   {}
 
@@ -68,21 +74,19 @@ export class TopNavbarComponent implements OnInit {
     // } catch {}
   }
 
+  openAlarams(){
+    this.isRightExpandedChange.emit(true)
+  }
+
   onEditProfile(menu: MatMenuTrigger) {
     // menu.closeMenu();
     // this.dialog.open(ProfileDialog);
   }
 
-  navigateToAnnouncements() {
-    // let access = this.router.url.split('/')[1];
-    // if (!['manager', 'student', 'teacher'].includes(access)) access = 'student';
-    // this.router.navigate(['', access, 'announcement-list']);
-  }
-
   onLogout() {
     this.userService.onLogout();
-    this.router.navigate(['auth/login'])
-    // this.alertSrv.showToaster('You loged out Successfully!', 'INFO');
+    this.router.navigate(['auth/login']);
+    this.alertSrv.showToaster('You logged out Successfully!', 'INFO');
     // this.router.navigate(['/auth/login']);
   }
 }
