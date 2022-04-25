@@ -13,9 +13,6 @@ export class LayoutComponent implements OnInit {
   ngOnInit(): void {
     this.isLeftExpanded =
       localStorage.getItem('FOLDED') == 'true' ? true : false;
-    setInterval(() => {
-      console.log(this.isRightExpanded);
-    }, 4000);
   }
 
   saveLeftState() {
