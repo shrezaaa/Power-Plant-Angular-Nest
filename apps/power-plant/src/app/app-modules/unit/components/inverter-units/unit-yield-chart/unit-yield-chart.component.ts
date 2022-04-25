@@ -14,10 +14,11 @@ export class UnitYieldChartComponent implements OnInit {
   chartOption: EChartsOption = {
     color: this.colors,
     title: {
-      text: 'Today Yield'
+      text: 'Today Yield (kWh)',
     },
     tooltip: {
       trigger: 'axis',
+      valueFormatter: (value) => value + ' kWh',
       axisPointer: {
         type: 'cross',
       },

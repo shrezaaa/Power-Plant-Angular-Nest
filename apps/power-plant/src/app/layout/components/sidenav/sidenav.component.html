@@ -1,4 +1,4 @@
-<ng-container *ngIf="isExpanded; else noExpand">
+<ng-container *ngIf="isLeftExpanded; else noExpand">
   <div class="w-full h-full bg-white flex flex-col">
     <div
       class="p-2 flex justify-start items-center mb-2 mx-2"
@@ -18,7 +18,7 @@
       <button
         style="margin-left: auto"
         mat-icon-button
-        (click)="isExpanded = !isExpanded; isExpandedChange.emit(isExpanded)"
+        (click)="isLeftExpanded = !isLeftExpanded; isLeftExpandedChange.emit(isLeftExpanded)"
       >
         <mat-icon> menu </mat-icon>
       </button>
@@ -56,7 +56,7 @@
       />
       <button
         mat-icon-button
-        (click)="isExpanded = !isExpanded; isExpandedChange.emit(isExpanded)"
+        (click)="isLeftExpanded = !isLeftExpanded; isLeftExpandedChange.emit(isLeftExpanded)"
       >
         <mat-icon> menu </mat-icon>
       </button>
