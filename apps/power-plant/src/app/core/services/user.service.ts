@@ -10,7 +10,10 @@ export class UserService {
   private currentUser$: BehaviorSubject<Partial<User>> = new BehaviorSubject<
     Partial<User>
   >({});
-  constructor() {}
+  constructor() {
+    let user = localStorage.getItem('User');
+    if (user) this.currentUser$.next(new User(JSON.parse(user)));
+  }
 
   public setCurrentUser(user: User) {
     console.log(user);
@@ -30,8 +33,8 @@ export class UserService {
     return user;
   }
 
-  onLogout(){
+  onLogout() {
     localStorage.clear();
-    this.currentUser$.next({})
+    this.currentUser$.next({});
   }
 }
