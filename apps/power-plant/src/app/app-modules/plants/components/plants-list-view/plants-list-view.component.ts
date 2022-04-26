@@ -7,7 +7,11 @@ import { SelectData } from 'apps/power-plant/src/app/shared/types/select-data';
   styleUrls: ['./plants-list-view.component.scss'],
 })
 export class PlantsListViewComponent implements OnInit {
-  alarmStatuses: Array<SelectData> = [{ name: 'x', value: 1 }];
+  alarmStatuses: Array<SelectData> = [
+    { name: 'Normal', value: 1 },
+    { name: 'Alarm', value: 2 },
+    { name: 'Fault', value: 3 },
+  ];
   constructor() {}
 
   ngOnInit(): void {}
