@@ -13,7 +13,17 @@
             >
               <mat-label>Plant Name</mat-label>
               <input matInput />
-            </mat-form-field>
+            </mat-form-field> 
+            <mat-form-field
+              class="w-full sm:w-[205px] px-1"
+              appearance="outline"
+            >
+              <mat-label>Alarm Status</mat-label>
+              <mat-select>
+                <mat-option *ngFor="let item of alarmStatuses" [value]="item.value">
+                  {{item.name}}
+                </mat-option>
+              </mat-select>            </mat-form-field>
           </div>
 
           <div class="flex items-center grow justify-end">
