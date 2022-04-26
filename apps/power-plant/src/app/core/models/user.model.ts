@@ -18,4 +18,8 @@ export class User {
     this.iat = el?.iat;
     this.exp = el?.exp;
   }
+
+  public get userFullName(): string {
+    return `${this.firstName ?? ''} ${this.lastName}`;
+  }
 }
