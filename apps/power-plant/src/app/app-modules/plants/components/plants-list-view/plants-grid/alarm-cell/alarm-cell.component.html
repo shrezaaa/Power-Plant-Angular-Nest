@@ -1,0 +1,15 @@
+<ng-container *ngIf="cellData == 1">
+  <div class="flex items-center">
+   <mat-icon color="primary">check</mat-icon><b class="ml-1">Normal</b>
+  </div>
+</ng-container>
+<ng-container *ngIf="cellData == 2">
+  <div class="flex items-center">
+   <mat-icon color="accent">notification_important</mat-icon><b class="ml-1">Alarm</b>
+  </div>
+</ng-container>
+<ng-container *ngIf="cellData == 3">
+  <div class="flex items-center">
+   <mat-icon color="warn">construction</mat-icon><b class="ml-1">Fault</b>
+  </div>
+</ng-container>
