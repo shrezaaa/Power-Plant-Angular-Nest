@@ -10,8 +10,9 @@ import { PlantsMapComponent } from './components/plants-map-view/plants-map/plan
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { SharedModule } from '../../shared/shared.module';
 import { PlantsMapViewComponent } from './components/plants-map-view/plants-map-view.component';
+import { MatSelectModule } from '@angular/material/select';
 
-const matModules = [MatFormFieldModule, MatInputModule];
+const matModules = [MatFormFieldModule, MatInputModule,MatSelectModule];
 @NgModule({
   declarations: [
     PlantsRoutingComponent,
