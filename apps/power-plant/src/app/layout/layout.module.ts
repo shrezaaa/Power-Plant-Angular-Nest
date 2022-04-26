@@ -14,6 +14,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { SharedModule } from '../shared/shared.module';
 
 const matModules = [
   MatSidenavModule,
@@ -24,7 +25,7 @@ const matModules = [
   MatListModule,
   MatDividerModule,
   MatMenuModule,
-  MatProgressBarModule
+  MatProgressBarModule,
 ];
 
 @NgModule({
@@ -34,6 +35,6 @@ const matModules = [
     LoadingBarComponent,
     TopNavbarComponent,
   ],
-  imports: [CommonModule, LayoutRoutingModule, matModules],
+  imports: [CommonModule, LayoutRoutingModule, matModules, SharedModule],
 })
 export class LayoutModule {}
