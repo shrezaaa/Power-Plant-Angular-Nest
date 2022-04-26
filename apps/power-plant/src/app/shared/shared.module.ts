@@ -4,12 +4,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ListSelectionComponent } from './components/list-selection/list-selection.component';
+import { PipesModule } from './pipes/pipes.module';
 
 const MAT_MODULES = [MatIconModule, MatButtonModule];
 
 const COMPONENTS = [ListSelectionComponent];
 
-const MODULES = [];
+const MODULES = [PipesModule];
 
 const DIRECTIVES = [];
 @NgModule({
