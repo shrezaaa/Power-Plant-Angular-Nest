@@ -24,7 +24,7 @@
       *ngIf="!pending"
     >
       <span>
-        <!-- {{ '-' | userInfo: 'username' }} -->
+        {{ userService.User.userFullName }}
       </span>
       <span class="text-xs text-gray-400">
         <!-- {{ '-' | tokenDecoder: 'role' | ACCESS }} -->
@@ -77,19 +77,21 @@
         />
       </ng-template>
       <b style="height: 22px" *ngIf="!pending">
-        <!-- {{ '-' | userInfo: 'username' | longTextCutter: 15 }} -->
+        {{ userService.User.username }}
+      </b>
+      <b style="height: 22px" *ngIf="!pending">
+        {{ userService.User.userFullName | longTextCutter: 15 }}
       </b>
       <p *ngIf="!pending">
-        <!-- {{ '-' | userInfo: 'email' | longTextCutter: 18 }} -->
+        {{ userService.User.email| longTextCutter: 18 }}
       </p>
-      <!-- mat-raised-button -->
-      <button
+      <!-- <button
         color="primary"
         (click)="onEditProfile(menuTrigger)"
         class="btn flex flex-nowrap items-center justify-around mb-2 mt-0 w-full"
       >
         <mat-icon class="text-white">edit</mat-icon>Edit profile
-      </button>
+      </button> -->
       <button
         class="w-full"
         mat-stroked-button
