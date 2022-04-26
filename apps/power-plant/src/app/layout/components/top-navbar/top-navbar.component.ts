@@ -19,7 +19,7 @@ export class TopNavbarComponent implements OnInit {
   hasProfileImg: boolean = false;
   constructor(
     private router: Router,
-    private userService: UserService,
+    public userService: UserService,
     private alertSrv: AlertService // private dialog: MatDialog,
   ) // private userSrv: UserService,
   // private userPipe: UserInfoPipe,
