@@ -14,8 +14,10 @@ export class SidenavComponent implements OnInit {
 
   data: SidenavNode[] = [];
 
-  @Input() isExpanded: boolean = false;
-  @Output() isExpandedChange = new EventEmitter<boolean>();
+  @Input() isLeftExpanded: boolean = false;
+  @Input() isRightExpanded: boolean = false;
+  @Output() isLeftExpandedChange = new EventEmitter<boolean>();
+  @Output() isRightExpandedChange = new EventEmitter<boolean>();
 
   constructor() {
     // private tokenDecoder: TokenDecoderPipe
