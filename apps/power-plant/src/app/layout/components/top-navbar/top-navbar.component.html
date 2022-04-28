@@ -1,6 +1,6 @@
 <nav class="sticky top-0 bg-white h-14 w-full z-50">
   <ul class="flex h-full justify-end items-center">
-    <li class="brodcrump pl-4"><h2 *ngIf="!isExpanded" class="text-bold brand-font">Power Plant</h2>
+    <li class="brodcrump pl-4"><h2 *ngIf="!isLeftExpanded" class="text-bold brand-font">Power Plant</h2>
       <!-- <nz-breadcrumb>
         <nz-breadcrumb-item
           [routerLink]="[item.url]"
@@ -15,16 +15,16 @@
     <li
       class="py-2 pr-2 ml-auto my-2 text-black rounded-full hover:text-yellow-600 cursor-pointer"
     >
-      <button mat-icon-button (click)="navigateToAnnouncements()">
+      <button mat-icon-button (click)="openAlarams()">
         <mat-icon>notifications</mat-icon>
       </button>
     </li>
     <li
       class="py-2 mx-2 rounded-sm text-black cursor-pointer flex flex-col items-end"
-      *ngIf="!pendding"
+      *ngIf="!pending"
     >
       <span>
-        <!-- {{ '-' | userInfo: 'username' }} -->
+        {{ userService.User.userFullName }}
       </span>
       <span class="text-xs text-gray-400">
         <!-- {{ '-' | tokenDecoder: 'role' | ACCESS }} -->
@@ -76,20 +76,22 @@
           alt=""
         />
       </ng-template>
-      <b style="height: 22px" *ngIf="!pendding">
-        <!-- {{ '-' | userInfo: 'username' | longTextCutter: 15 }} -->
+      <b style="height: 22px" *ngIf="!pending">
+        {{ userService.User.username }}
       </b>
-      <p *ngIf="!pendding">
-        <!-- {{ '-' | userInfo: 'email' | longTextCutter: 18 }} -->
+      <b style="height: 22px" *ngIf="!pending">
+        {{ userService.User.userFullName | longTextCutter: 15 }}
+      </b>
+      <p *ngIf="!pending">
+        {{ userService.User.email| longTextCutter: 18 }}
       </p>
-      <!-- mat-raised-button -->
-      <button
+      <!-- <button
         color="primary"
         (click)="onEditProfile(menuTrigger)"
         class="btn flex flex-nowrap items-center justify-around mb-2 mt-0 w-full"
       >
         <mat-icon class="text-white">edit</mat-icon>Edit profile
-      </button>
+      </button> -->
       <button
         class="w-full"
         mat-stroked-button

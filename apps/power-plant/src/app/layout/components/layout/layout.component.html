@@ -1,20 +1,33 @@
 <mat-drawer-container class="w-screen h-screen m-0 p-0">
   <mat-drawer
+    id="left-drawer"
     mode="side"
+    position="start"
     [opened]="true"
-    [ngClass]="{ 'w-[65px]': !isExpanded, 'w-[250px]': isExpanded }"
-    class="w-[250px] bg-gray-100 hi"
+    [ngClass]="{ 'w-[65px]': !isLeftExpanded, 'w-[250px]': isLeftExpanded }"
+    class="w-[250px] bg-gray-100"
     style="border: none"
   >
     <p-plant-sidenav
-      [(isExpanded)]="isExpanded"
-      (isExpandedChange)="logger()"
+      [(isLeftExpanded)]="isLeftExpanded"
+      [isRightExpanded]="isRightExpanded"
+      (isLeftExpandedChange)="saveLeftState()"
     ></p-plant-sidenav>
   </mat-drawer>
-  <mat-drawer-content [style.margin-left.px]="isExpanded ? 250 : 65">
+  <mat-drawer
+    mode="over"
+    position="end"
+    [opened]="isRightExpanded"
+    (openedChange)="isRightExpanded = $event"
+  >
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero nisi magni,
+    quo, quas omnis dolor
+  </mat-drawer>
+  <mat-drawer-content [style.margin-left.px]="isLeftExpanded ? 250 : 65">
     <p-plant-top-navbar
-      [(isExpanded)]="isExpanded"
-      (isExpandedChange)="logger()"
+      [(isLeftExpanded)]="isLeftExpanded"
+      [(isRightExpanded)]="isRightExpanded"
+      (isLeftExpandedChange)="saveLeftState()"
     ></p-plant-top-navbar>
     <div class="router-outlet bg-gray-100 relative">
       <p-plant-loading-bar></p-plant-loading-bar>
