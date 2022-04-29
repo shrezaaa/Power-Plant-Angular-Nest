@@ -28,17 +28,26 @@ export class ProducedPowerChartComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.data && changes.data.currentValue) {
-      this.initTwoSeriesChartOptions(
-        this.data.categories,
-        this.data.currentPowerSeries,
-        this.data.todayYieldSeries
-      );
-      this.chartInstance?.hideLoading();
+      this.initData(changes.data.currentValue);
     }
   }
 
   ngOnInit(): void {
     this.initTwoSeriesChartOptions([], [], []);
+  }
+
+  initData(data: YieldTrendChart) {
+    if (data.mode == 1) {
+      this.initTwoSeriesChartOptions(
+        data.categories,
+        data.currentPowerSeries,
+        data.todayYieldSeries
+      );
+    } else if ([2, 3].includes(data.mode)) {
+      this.initOneSeriesChartOptions(data.categories, data.todayYieldSeries);
+    }
+
+    this.chartInstance?.hideLoading();
   }
 
   onChartInit($event: ECharts) {
