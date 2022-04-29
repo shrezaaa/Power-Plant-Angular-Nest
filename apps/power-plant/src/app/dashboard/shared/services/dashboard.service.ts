@@ -9,7 +9,9 @@ export class DashboardService {
 
   getYieldTrend(model) {
     return this.baseHttp
-      .request('GET', 'dashboard/yieldTrend').setLoading(true)
+      .request('GET', 'dashboard/yieldTrend')
+      .setLoading(true)
+      .setQueryParams(model)
       .send();
   }
 }
