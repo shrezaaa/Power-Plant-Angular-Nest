@@ -4,14 +4,16 @@ import { BaseHttp } from '../../../core/services/base-http.service';
 @Injectable({
   providedIn: 'root',
 })
-export class DashboardService {
+export class LayoutService {
   constructor(private readonly baseHttp: BaseHttp) {}
 
-  getYieldTrend(model) {
-    return this.baseHttp
-      .request('GET', 'dashboard/yieldTrend')
+  checkConnection() {
+    this.baseHttp
+      .request('GET', 'hello')
       .setLoading(true)
-      .setQueryParams(model)
-      .send();
+      .send()
+      .subscribe((value) => {
+        console.log(value);
+      });
   }
 }

@@ -1,4 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { ECharts } from 'echarts';
+import { YieldTrendChart } from '../../shared/models/yield-trend.model';
+import { DashboardService } from '../../shared/services/dashboard.service';
 
 @Component({
   selector: 'p-plant-main-dashboard',
@@ -6,20 +9,48 @@ import { Component, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./main-dashboard.component.scss'],
 })
 export class MainDashboardComponent implements OnInit {
-  producePowerModes = [
+  currentDate = '2021-10-18';
+  activeYieldTrendModeID = 1;
+  yieldTrendModes = [
     { id: 1, name: 'Day' },
     { id: 2, name: 'Month' },
     { id: 3, name: 'Year' },
   ];
-  activeProducePowerModeID = 1;
 
-  
-  itemsClasses =
-    'w-full h-full bg-white bg-gradient-to-r rounded-lg flex flex-col items-center justify-around p-2 shadow-md';
+  yieldChartInstance: ECharts;
+  yieldTrendChartData = null;
 
-  ngOnInit(): void {}
+  constructor(private readonly dashboardService: DashboardService) {}
+
+  ngOnInit(): void {
+    this.getData();
+  }
+
+  getData() {
+    this.getYieldTrendData();
+  }
+
+  getYieldTrendData() {
+    this.yieldChartInstance?.showLoading();
+    this.dashboardService
+      .getYieldTrend({
+        mode: this.activeYieldTrendModeID,
+        date: this.currentDate,
+      })
+      .subscribe((value) => {
+        if (value) {
+          this.yieldTrendChartData = new YieldTrendChart(
+            value,
+            this.activeYieldTrendModeID
+          );
+        }
+      });
+  }
 
   changeProducePowerMode(item) {
-    this.activeProducePowerModeID = item.id;  
+    if (this.activeYieldTrendModeID != item.id) {
+      this.activeYieldTrendModeID = item.id;
+      this.getYieldTrendData();
+    }
   }
 }

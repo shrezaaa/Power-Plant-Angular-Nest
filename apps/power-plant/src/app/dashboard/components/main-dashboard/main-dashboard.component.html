@@ -9,8 +9,8 @@
             <h5>Yield Trend</h5>
             <div class="buttons ml-auto">
               <button
-                *ngFor="let item of producePowerModes"
-                [ngClass]="{ active: item.id == activeProducePowerModeID }"
+                *ngFor="let item of yieldTrendModes"
+                [ngClass]="{ active: item.id == activeYieldTrendModeID }"
                 class="mx-1"
                 mat-stroked-button
                 color="primary"
@@ -20,7 +20,10 @@
               </button>
             </div>
           </div>
-          <p-plant-produced-power-chart></p-plant-produced-power-chart>
+          <p-plant-yield-trend-chart
+            [data]="yieldTrendChartData"
+            (chartInstanceChange)="yieldChartInstance = $event"
+          ></p-plant-yield-trend-chart>
         </div>
       </div>
       <div class="w-full h-[20%] flex flex-wrap">
