@@ -33,8 +33,8 @@ export class RequestBuilder {
   httpVerb: HttpVerb;
   requestUrl: string;
   baseUrl = environment.serviceBaseUrl;
-  queryParams: Array<ParamDto>;
-  bodyParams: Array<ParamDto>;
+  queryParams: ParamDto = {};
+  bodyParams: ParamDto = {};
   loading: boolean = false;
   //other services
   http: HttpClient;
@@ -118,12 +118,23 @@ export class RequestBuilder {
     return this;
   }
 
-  private getSerializedParams(params: ParamDto[]) {
-    if (!params || params.length == 0) return '';
-    return '?' + params.map((param) => param.key + '=' + param.value).join('&');
+  private getSerializedParams(params: ParamDto): string {
+    let queryParamsUrl = '';
+    const objPropName = Object.getOwnPropertyNames(params);
+    if (objPropName.length) {
+      queryParamsUrl += '?';
+      let objStr = '';
+      for (const item of objPropName) {
+        if (params[item] !== '') {
+          objStr += item + '=' + encodeURIComponent(params[item]) + '&';
+        }
+      }
+      queryParamsUrl += objStr.substring(0, objStr.length - 1);
+    }
+    return queryParamsUrl;
   }
 
-  public createParamList(model: any): ParamDto[] {
+  public createParamList(model: any): ParamDto {
     return model;
   }
 
