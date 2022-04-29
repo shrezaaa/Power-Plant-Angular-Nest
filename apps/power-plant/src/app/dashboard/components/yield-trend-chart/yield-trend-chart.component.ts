@@ -11,11 +11,11 @@ import {
 import { ECharts, EChartsOption } from 'echarts';
 import { YieldTrendChart } from '../../shared/models/yield-trend.model';
 @Component({
-  selector: 'p-plant-produced-power-chart',
-  templateUrl: './produced-power-chart.component.html',
-  styleUrls: ['./produced-power-chart.component.scss'],
+  selector: 'p-plant-yield-trend-chart',
+  templateUrl: './yield-trend-chart.component.html',
+  styleUrls: ['./yield-trend-chart.component.scss'],
 })
-export class ProducedPowerChartComponent implements OnInit, OnChanges {
+export class YieldTrendChartComponent implements OnInit, OnChanges {
   @Input('data') data: YieldTrendChart;
   @Output('chartInstanceChange') chartInstanceChange =
     new EventEmitter<ECharts>();
