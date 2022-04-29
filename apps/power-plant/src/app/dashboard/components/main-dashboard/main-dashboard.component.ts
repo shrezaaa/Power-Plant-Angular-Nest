@@ -1,4 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { ECharts } from 'echarts';
+import { YieldTrendChart } from '../../shared/models/yield-trend.model';
+import { DashboardService } from '../../shared/services/dashboard.service';
 
 @Component({
   selector: 'p-plant-main-dashboard',
@@ -13,13 +16,25 @@ export class MainDashboardComponent implements OnInit {
   ];
   activeProducePowerModeID = 1;
 
-  
-  itemsClasses =
-    'w-full h-full bg-white bg-gradient-to-r rounded-lg flex flex-col items-center justify-around p-2 shadow-md';
+  yieldChartInstance: ECharts;
+  yieldTrendChartData = null;
 
-  ngOnInit(): void {}
+  constructor(private readonly dashboardService: DashboardService) {}
+
+  ngOnInit(): void {
+    this.getData();
+  }
+
+  getData() {
+    this.yieldChartInstance?.showLoading();
+    this.dashboardService.getYieldTrend({}).subscribe((value) => {
+      if (value) {
+        this.yieldTrendChartData = new YieldTrendChart(value);
+      }
+    });
+  }
 
   changeProducePowerMode(item) {
-    this.activeProducePowerModeID = item.id;  
+    this.activeProducePowerModeID = item.id;
   }
 }
