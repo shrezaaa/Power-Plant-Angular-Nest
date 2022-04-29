@@ -28,26 +28,30 @@ export class ProducedPowerChartComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.data && changes.data.currentValue) {
-      this.initChartOptions(
+      this.initTwoSeriesChartOptions(
         this.data.categories,
         this.data.currentPowerSeries,
         this.data.todayYieldSeries
       );
-      this.chartInstance.hideLoading();
+      this.chartInstance?.hideLoading();
     }
   }
 
   ngOnInit(): void {
-    this.initChartOptions([], [], []);
+    this.initTwoSeriesChartOptions([], [], []);
   }
 
   onChartInit($event: ECharts) {
     this.chartInstance = $event;
     this.chartInstanceChange.emit($event);
-    this.chartInstance.showLoading()
+    if (!this.data) this.chartInstance.showLoading();
   }
 
-  initChartOptions(categories = [], powerSeries = [], yieldSeries = []) {
+  initTwoSeriesChartOptions(
+    categories = [],
+    powerSeries = [],
+    yieldSeries = []
+  ) {
     this.chartOption = {
       color: this.colors,
       tooltip: {
@@ -64,6 +68,11 @@ export class ProducedPowerChartComponent implements OnInit, OnChanges {
         axisTick: {
           alignWithLabel: true,
         },
+        axisLabel: {
+          show: true,
+          // interval: 0,
+          rotate: 0,
+        },
         data: categories,
       },
       yAxis: [
@@ -75,7 +84,7 @@ export class ProducedPowerChartComponent implements OnInit, OnChanges {
           axisLine: {
             show: true,
             lineStyle: {
-              color: this.colors[0],
+              color: this.colors[1],
             },
           },
           axisLabel: {
@@ -91,7 +100,7 @@ export class ProducedPowerChartComponent implements OnInit, OnChanges {
           axisLine: {
             show: true,
             lineStyle: {
-              color: this.colors[1],
+              color: this.colors[0],
             },
           },
           axisLabel: {
@@ -114,6 +123,55 @@ export class ProducedPowerChartComponent implements OnInit, OnChanges {
           data: powerSeries,
         },
       ],
+    };
+  }
+
+  initOneSeriesChartOptions(categories = [], yieldSeries = []) {
+    this.chartOption = {
+      color: this.colors,
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          type: 'cross',
+        },
+      },
+      legend: {
+        data: ['Power', 'Today Yield'],
+      },
+      xAxis: {
+        type: 'category',
+        axisTick: {
+          alignWithLabel: true,
+        },
+        axisLabel: {
+          show: true,
+          // interval: 0,
+          rotate: 0,
+        },
+        data: categories,
+      },
+      yAxis: {
+        type: 'value',
+        name: 'Today Yield (kWh)',
+        position: 'left',
+        alignTicks: true,
+        // offset: 80,
+        axisLine: {
+          show: true,
+          lineStyle: {
+            color: this.colors[0],
+          },
+        },
+        axisLabel: {
+          formatter: '{value} kWh',
+        },
+      },
+      series: {
+        name: 'Today Yield',
+        type: 'bar',
+        // yAxisIndex: 0,
+        data: yieldSeries,
+      },
     };
   }
 }
