@@ -4,7 +4,7 @@ import { DashboardRoutingComponent } from './dashboard-routing/dashboard-routing
 import { MainDashboardComponent } from './components/main-dashboard/main-dashboard.component';
 import { SharedModule } from '../shared/shared.module';
 import { DashboardRoutingModule } from './dashboard.routing';
-import { ProducedPowerChartComponent } from './components/produced-power-chart/produced-power-chart.component';
+import { YieldTrendChartComponent } from './components/yield-trend-chart/yield-trend-chart.component';
 import { StatisticsChartComponent } from './components/statistics-chart/statistics-chart.component';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { TemperatureChartComponent } from './components/temperature-chart/temperature-chart.component';
@@ -13,7 +13,7 @@ import { TemperatureChartComponent } from './components/temperature-chart/temper
   declarations: [
     DashboardRoutingComponent,
     MainDashboardComponent,
-    ProducedPowerChartComponent,
+    YieldTrendChartComponent,
     StatisticsChartComponent,
     TemperatureChartComponent,
   ],
