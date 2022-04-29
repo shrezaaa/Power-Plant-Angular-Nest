@@ -9,12 +9,13 @@ import { DashboardService } from '../../shared/services/dashboard.service';
   styleUrls: ['./main-dashboard.component.scss'],
 })
 export class MainDashboardComponent implements OnInit {
-  producePowerModes = [
+  currentDate = '2021-10-18';
+  activeYieldTrendModeID = 1;
+  yieldTrendModes = [
     { id: 1, name: 'Day' },
     { id: 2, name: 'Month' },
     { id: 3, name: 'Year' },
   ];
-  activeProducePowerModeID = 1;
 
   yieldChartInstance: ECharts;
   yieldTrendChartData = null;
@@ -26,15 +27,30 @@ export class MainDashboardComponent implements OnInit {
   }
 
   getData() {
+    this.getYieldTrendData();
+  }
+
+  getYieldTrendData() {
     this.yieldChartInstance?.showLoading();
-    this.dashboardService.getYieldTrend({}).subscribe((value) => {
-      if (value) {
-        this.yieldTrendChartData = new YieldTrendChart(value);
-      }
-    });
+    this.dashboardService
+      .getYieldTrend({
+        mode: this.activeYieldTrendModeID,
+        date: this.currentDate,
+      })
+      .subscribe((value) => {
+        if (value) {
+          this.yieldTrendChartData = new YieldTrendChart(
+            value,
+            this.activeYieldTrendModeID
+          );
+        }
+      });
   }
 
   changeProducePowerMode(item) {
-    this.activeProducePowerModeID = item.id;
+    if (this.activeYieldTrendModeID != item.id) {
+      this.activeYieldTrendModeID = item.id;
+      this.getYieldTrendData();
+    }
   }
 }
