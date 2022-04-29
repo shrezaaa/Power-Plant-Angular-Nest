@@ -20,7 +20,10 @@
               </button>
             </div>
           </div>
-          <p-plant-produced-power-chart></p-plant-produced-power-chart>
+          <p-plant-produced-power-chart
+            [data]="yieldTrendChartData"
+            (chartInstanceChange)="yieldChartInstance = $event"
+          ></p-plant-produced-power-chart>
         </div>
       </div>
       <div class="w-full h-[20%] flex flex-wrap">
