@@ -25,6 +25,9 @@ import { NgxEchartsModule } from 'ngx-echarts';
 import { CustomCellComponent } from './components/test-grid/custom-cell/custom-cell.component';
 import { TestGridComponent } from './components/test-grid/test-grid.component';
 import { SharedModule } from '../../shared/shared.module';
+import { UnitsPageComponent } from './components/units-page/units-page.component';
+import { UnitsSelectionComponent } from './components/units-selection/units-selection.component';
+import { InvDataAnalysisComponent } from './components/inv-data-analysis/inv-data-analysis.component';
 // import 'ag-grid-enterprise';
 
 const matModules = [
@@ -46,6 +49,9 @@ const matModules = [
     UnitYieldChartComponent,
     CustomCellComponent,
     TestGridComponent,
+    UnitsPageComponent,
+    UnitsSelectionComponent,
+    InvDataAnalysisComponent,
   ],
   imports: [
     CommonModule,
