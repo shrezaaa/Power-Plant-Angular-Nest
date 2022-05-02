@@ -14,4 +14,11 @@ export class DashboardService {
     this.logger.debug(query);
     return await this.connection.query(query);
   }
+  
+  async getTemperatureChart(params) {
+    const { date } = params;
+    let query = `execute TemperatureChart_Search @Date = '${date}'`;
+    this.logger.debug(query);
+    return await this.connection.query(query);
+  }
 }

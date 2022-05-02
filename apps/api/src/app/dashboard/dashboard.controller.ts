@@ -1,12 +1,18 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, Query, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { DashboardService } from './dashboard.service';
-
+@UseGuards(AuthGuard('jwt'))
 @Controller('dashboard')
 export class DashboardController {
   constructor(private readonly dashboardService: DashboardService) {}
 
   @Get('/yieldTrend')
-  async signIn(@Query() params: any): Promise<void> {
+  async getYieldTrend(@Query() params: any): Promise<void> {
     return this.dashboardService.getYieldTrend(params);
+  } 
+  
+  @Get('/temperatureChart')
+  async getTemperatureChart(@Query() params: any): Promise<void> {
+    return this.dashboardService.getTemperatureChart(params);
   }
 }
