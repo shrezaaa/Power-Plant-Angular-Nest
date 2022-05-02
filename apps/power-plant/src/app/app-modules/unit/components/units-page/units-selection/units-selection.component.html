@@ -1,1 +1,16 @@
-<p>units-selection works!</p>
+<div class="w-full h-16 p-2">
+  <mat-form-field class="w-full" appearance="outline" floatLabel="never">
+    <mat-label> Search Invertor</mat-label>
+    <input matInput />
+    <button mat-icon-button matSuffix>
+      <mat-icon>search</mat-icon>
+    </button>
+  </mat-form-field>
+</div>
+
+<hr class="mt-1" />
+<p-plant-list-selection
+  [data]="data"
+  [(selected)]="selectedUnit"
+  (selectedChange)="selectedUnitChange.emit($event)"
+></p-plant-list-selection>
