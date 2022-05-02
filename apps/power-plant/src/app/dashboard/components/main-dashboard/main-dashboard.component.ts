@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ECharts } from 'echarts';
+import { TemperatureChart } from '../../shared/models/temperature-chart.model';
 import { YieldTrendChart } from '../../shared/models/yield-trend.model';
 import { DashboardService } from '../../shared/services/dashboard.service';
 
@@ -9,7 +10,7 @@ import { DashboardService } from '../../shared/services/dashboard.service';
   styleUrls: ['./main-dashboard.component.scss'],
 })
 export class MainDashboardComponent implements OnInit {
-  currentDate = new Date('2021-10-18').toLocaleDateString();
+  currentDate = new Date('2021-012-09').toLocaleDateString();
   activeYieldTrendModeID = 1;
   yieldTrendModes = [
     { id: 1, name: 'Day' },
@@ -20,6 +21,9 @@ export class MainDashboardComponent implements OnInit {
   yieldChartInstance: ECharts;
   yieldTrendChartData = null;
 
+  temperatureChartInstance: ECharts;
+  temperatureChartData = null;
+
   constructor(private readonly dashboardService: DashboardService) {}
 
   ngOnInit(): void {
@@ -28,6 +32,7 @@ export class MainDashboardComponent implements OnInit {
 
   getData() {
     this.getYieldTrendData();
+    this.getTemperatureChartData();
   }
 
   getYieldTrendData() {
@@ -43,6 +48,19 @@ export class MainDashboardComponent implements OnInit {
             value,
             this.activeYieldTrendModeID
           );
+        }
+      });
+  }
+
+  getTemperatureChartData() {
+    this.temperatureChartInstance?.showLoading();
+    this.dashboardService
+      .getTemperatureChart({
+        date: this.currentDate,
+      })
+      .subscribe((value) => {
+        if (value) {
+          this.temperatureChartData = new TemperatureChart(value);
         }
       });
   }

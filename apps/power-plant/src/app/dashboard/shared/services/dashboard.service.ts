@@ -14,4 +14,12 @@ export class DashboardService {
       .setQueryParams(model)
       .send();
   }
+ 
+  getTemperatureChart(model) {
+    return this.baseHttp
+      .request('GET', 'dashboard/temperatureChart')
+      .setLoading(true)
+      .setQueryParams(model)
+      .send();
+  }
 }
