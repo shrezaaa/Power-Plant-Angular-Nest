@@ -6,7 +6,10 @@
       <div
         class="w-full h-full bg-white bg-gradient-to-r rounded-sm shadow-md flex flex-col"
       >
-        <p-plant-units-selection [data]="units" (selectedUnitChange)="onSelectUnit($event)">
+        <p-plant-units-selection
+          [data]="units"
+          (selectedUnitChange)="onSelectUnit($event)"
+        ></p-plant-units-selection>
       </div>
     </div>
     <div
