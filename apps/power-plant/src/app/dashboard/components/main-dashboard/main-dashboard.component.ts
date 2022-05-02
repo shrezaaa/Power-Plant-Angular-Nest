@@ -9,7 +9,7 @@ import { DashboardService } from '../../shared/services/dashboard.service';
   styleUrls: ['./main-dashboard.component.scss'],
 })
 export class MainDashboardComponent implements OnInit {
-  currentDate = '2021-10-18';
+  currentDate = new Date('2021-10-18').toLocaleDateString();
   activeYieldTrendModeID = 1;
   yieldTrendModes = [
     { id: 1, name: 'Day' },
