@@ -33,7 +33,7 @@ export const SIDENAV_CONFIG: SidenavNode[] = [
   {
     name: 'Units',
     icon: 'layers',
-    url: '/unit/units-analysis/3',
+    url: '/unit/units-analysis/2',
     ACCESS: 'admin',
   },
   {
