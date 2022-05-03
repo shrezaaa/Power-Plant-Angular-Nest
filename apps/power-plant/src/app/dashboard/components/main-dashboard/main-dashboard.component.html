@@ -21,8 +21,8 @@
             </div>
           </div>
           <p-plant-yield-trend-chart
-            [data]="yieldTrendChartData"
-            (chartInstanceChange)="yieldChartInstance = $event"
+          [data]="yieldTrendChartData"
+          (chartInstanceChange)="yieldChartInstance = $event"
           ></p-plant-yield-trend-chart>
         </div>
       </div>
@@ -120,7 +120,10 @@
           class="w-full h-full bg-white bg-gradient-to-r rounded-lg flex flex-col p-2 shadow-md"
         >
           Temperature
-          <p-plant-temperature-chart></p-plant-temperature-chart>
+          <p-plant-temperature-chart
+          [data]="temperatureChartData"
+          (chartInstanceChange)="temperatureChartInstance = $event"
+          ></p-plant-temperature-chart>
         </div>
       </div>
     </div>

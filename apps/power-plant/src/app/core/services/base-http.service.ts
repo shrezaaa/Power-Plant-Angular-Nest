@@ -30,16 +30,16 @@ export class BaseHttp {
 }
 
 export class RequestBuilder {
-  httpVerb: HttpVerb;
-  requestUrl: string;
-  baseUrl = environment.serviceBaseUrl;
-  queryParams: ParamDto = {};
-  bodyParams: ParamDto = {};
-  loading: boolean = false;
+  private httpVerb: HttpVerb;
+  private requestUrl: string;
+  private baseUrl = environment.serviceBaseUrl;
+  private queryParams: ParamDto = {};
+  private bodyParams: ParamDto = {};
+  private loading: boolean = false;
   //other services
-  http: HttpClient;
-  alertSrvc: AlertService;
-  loadingService: LoadingService;
+  private http: HttpClient;
+  private alertSrvc: AlertService;
+  private loadingService: LoadingService;
 
   constructor(verb: HttpVerb, requestUrl: string, injector: Injector) {
     this.httpVerb = verb;

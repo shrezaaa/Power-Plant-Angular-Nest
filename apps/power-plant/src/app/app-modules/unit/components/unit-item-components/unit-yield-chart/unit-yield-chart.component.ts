@@ -4,31 +4,31 @@ import {
   OnInit,
   Output,
   EventEmitter,
-  SimpleChanges,
   OnChanges,
+  SimpleChanges,
 } from '@angular/core';
 import { ECharts, EChartsOption } from 'echarts';
-import { TemperatureChart } from '../../shared/models/temperature-chart.model';
+import { PowerChart } from '../../../shared/models/power-chart';
 
 @Component({
-  selector: 'p-plant-temperature-chart',
-  templateUrl: './temperature-chart.component.html',
-  styleUrls: ['./temperature-chart.component.scss'],
+  selector: 'p-plant-unit-yield-chart',
+  templateUrl: './unit-yield-chart.component.html',
+  styleUrls: ['./unit-yield-chart.component.scss'],
 })
-export class TemperatureChartComponent implements OnInit, OnChanges {
-  @Input('data') data: TemperatureChart;
+export class UnitYieldChartComponent implements OnInit, OnChanges {
+  @Input('data') data: PowerChart;
   @Output('chartInstanceChange') chartInstanceChange =
     new EventEmitter<ECharts>();
   chartInstance: ECharts;
   chartOption: EChartsOption = {};
-  colors = ['#2196F3', '#F08300'];
+  colors = ['#2196F3'];
 
   constructor() {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.data && changes.data.currentValue) {
-      this.initChartOptions(this.data.categories, this.data.currentTemperature);
-      this.chartInstance.hideLoading()
+      this.initChartOptions(this.data.categories, this.data.dayPowerSeries);
+      this.chartInstance.hideLoading();
     }
   }
 
@@ -45,12 +45,19 @@ export class TemperatureChartComponent implements OnInit, OnChanges {
   initChartOptions(categories = [], series = []) {
     this.chartOption = {
       color: this.colors,
+      title: {
+        text: 'Today Yield (kWh)',
+      },
       tooltip: {
         trigger: 'axis',
+        valueFormatter: (value) => value + ' kWh',
         axisPointer: {
           type: 'cross',
         },
       },
+      // legend: {
+      //   data: ['Today Yield'],
+      // },
       xAxis: {
         type: 'category',
         axisTick: {
@@ -60,26 +67,29 @@ export class TemperatureChartComponent implements OnInit, OnChanges {
       },
       yAxis: {
         type: 'value',
-        name: 'Temperature °C',
+        // name: 'Today Yield',
         position: 'left',
         alignTicks: true,
+        offset: 0,
         axisLine: {
           show: true,
           lineStyle: {
-            color: this.colors[1],
+            color: this.colors[0],
           },
         },
         axisLabel: {
-          formatter: '{value} °C',
+          formatter: '{value} kWh',
         },
       },
-      series: {
-        name: 'Temperature',
-        type: 'line',
-        // yAxisIndex:0,
-        smooth: true,
-        data: series,
-      },
+
+      series: [
+        {
+          name: 'Today Yield',
+          type: 'bar',
+          // yAxisIndex: 0,
+          data: series,
+        },
+      ],
     };
   }
 }
