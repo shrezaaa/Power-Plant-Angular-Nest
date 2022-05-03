@@ -6,29 +6,11 @@
       <div
         class="w-full h-full bg-white bg-gradient-to-r rounded-sm shadow-md flex flex-col overflow-auto"
       >
-        <!-- <p-plant-units-selection class="overflow-auto"
+        <p-plant-units-selection class="overflow-auto"
           [data]="units"
           (selectedUnitChange)="onSelectUnit($event)"
-        ></p-plant-units-selection> -->
+        ></p-plant-units-selection>
 
-
-        <div class="w-full h-16 p-2">
-          <mat-form-field class="w-full" appearance="outline" floatLabel="never">
-            <mat-label> Search Invertor</mat-label>
-            <input matInput />
-            <button mat-icon-button matSuffix>
-              <mat-icon>search</mat-icon>
-            </button>
-          </mat-form-field>
-        </div>
-        
-        <hr class="mt-1" />
-        <p-plant-list-selection class="overflow-auto"
-          [data]="units"
-          (selectedChange)="onSelectUnit($event)"
-          [labelProp]="'DeviceTitle'"
-        ></p-plant-list-selection>
-        
       </div>
     </div>
     <div
