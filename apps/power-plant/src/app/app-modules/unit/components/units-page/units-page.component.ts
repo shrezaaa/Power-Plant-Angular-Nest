@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SelectData } from 'apps/power-plant/src/app/shared/types/select-data';
 import { UnitService } from '../../shared/services/unit.service';
 
@@ -9,10 +10,16 @@ import { UnitService } from '../../shared/services/unit.service';
 })
 export class UnitsPageComponent implements OnInit {
   units: Array<SelectData> = [];
-  constructor(private unitService:UnitService) {}
+  deviceTypeID: number = null;
+  constructor(
+    private unitService: UnitService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.getUnitSelections()
+    const { params } = this.route.snapshot;
+    this.deviceTypeID = params.deviceTypeID ?? null;
+    this.getUnitSelections();
   }
 
   onSelectUnit(event) {
@@ -20,8 +27,10 @@ export class UnitsPageComponent implements OnInit {
   }
 
   getUnitSelections() {
-    this.unitService.getUnits().subscribe((value)=>{
-      this.units=value
-    })
+    this.unitService
+      .getUnits({ DeviceTypeID: this.deviceTypeID })
+      .subscribe((value) => {
+        this.units = value;
+      });
   }
 }

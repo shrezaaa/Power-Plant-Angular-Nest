@@ -9,7 +9,11 @@ import { BehaviorSubject } from 'rxjs';
 export class UnitService {
   constructor(private readonly baseHttp: BaseHttp) {}
 
-  getUnits() {
-    return this.baseHttp.request('GET', 'unit/search').setLoading(true).send();
+  getUnits(model) {
+    return this.baseHttp
+      .request('GET', 'unit/search')
+      .setQueryParams(model)
+      .setLoading(true)
+      .send();
   }
 }
