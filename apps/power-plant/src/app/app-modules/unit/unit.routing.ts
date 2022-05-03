@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { InverterUnitsComponent } from './components/inverter-units/inverter-units.component';
-import { UnitsPageComponent } from './components/units-page/units-page.component';
+import { UnitPageComponent } from './components/unit-page/unit-page.component';
 import { UnitRoutingComponent } from './unit-routing/unit-routing.component';
 
 const routes: Routes = [
@@ -11,16 +10,12 @@ const routes: Routes = [
     children: [
       // { path: '', redirectTo: '', pathMatch: 'full' },
       {
-        path: 'inv',
-        component: InverterUnitsComponent,
-      },
-      {
         path: 'units-analysis/:deviceTypeID',
-        component: UnitsPageComponent,
+        component: UnitPageComponent,
       },
       {
         path: 'units-analysis',
-        component: UnitsPageComponent,
+        component: UnitPageComponent,
       },
     ],
   },
