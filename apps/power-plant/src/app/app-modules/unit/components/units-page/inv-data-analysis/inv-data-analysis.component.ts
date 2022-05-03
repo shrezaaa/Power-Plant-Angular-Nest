@@ -25,7 +25,9 @@ export class InvDataAnalysisComponent implements OnInit, OnChanges {
   });
 
   unitPowerChartInstance: ECharts;
-  unitPowerChartData = null;
+  unitYieldChartInstance: ECharts;
+  PowerChartData = null;
+
   constructor(
     private readonly fb: FormBuilder,
     private unitService: UnitService
@@ -42,6 +44,7 @@ export class InvDataAnalysisComponent implements OnInit, OnChanges {
   getData() {
     const { DateTime } = this.filterForm.value;
     this.unitPowerChartInstance?.showLoading();
+    this.unitYieldChartInstance?.showLoading();
     this.loading = true;
     this.unitService
       .getInvAnalysisData({
@@ -51,7 +54,7 @@ export class InvDataAnalysisComponent implements OnInit, OnChanges {
       .subscribe({
         next: (res) => {
           this.loading = false;
-          this.unitPowerChartData = new PowerChart(res);
+          this.PowerChartData = new PowerChart(res);
         },
         error: (err) => {
           this.loading = false;
