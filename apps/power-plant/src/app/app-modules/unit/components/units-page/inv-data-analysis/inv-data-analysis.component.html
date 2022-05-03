@@ -34,7 +34,10 @@
       <p-plant-unit-yield-chart></p-plant-unit-yield-chart>
     </div>
     <div class="basis-1/2">
-      <p-plant-unit-power-chart></p-plant-unit-power-chart>
+      <p-plant-unit-power-chart
+        [data]="unitPowerChartData"
+        (chartInstanceChange)="unitPowerChartInstance = $event"
+      ></p-plant-unit-power-chart>
     </div>
   </div>
 

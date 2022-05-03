@@ -6,6 +6,8 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { ECharts } from 'echarts';
+import { PowerChart } from '../../../shared/models/power-chart';
 import { UnitService } from '../../../shared/services/unit.service';
 
 @Component({
@@ -21,6 +23,9 @@ export class InvDataAnalysisComponent implements OnInit, OnChanges {
     DateTime: '2021-12-09',
     isNormalized: false,
   });
+
+  unitPowerChartInstance: ECharts;
+  unitPowerChartData = null;
   constructor(
     private readonly fb: FormBuilder,
     private unitService: UnitService
@@ -36,6 +41,7 @@ export class InvDataAnalysisComponent implements OnInit, OnChanges {
 
   getData() {
     const { DateTime } = this.filterForm.value;
+    this.unitPowerChartInstance?.showLoading();
     this.loading = true;
     this.unitService
       .getInvAnalysisData({
@@ -44,8 +50,8 @@ export class InvDataAnalysisComponent implements OnInit, OnChanges {
       })
       .subscribe({
         next: (res) => {
-          console.log(res);
           this.loading = false;
+          this.unitPowerChartData = new PowerChart(res);
         },
         error: (err) => {
           this.loading = false;
