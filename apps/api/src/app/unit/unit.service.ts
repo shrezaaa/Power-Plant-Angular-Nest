@@ -1,4 +1,15 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
+import { InjectConnection } from '@nestjs/typeorm';
+import { Connection } from 'typeorm';
 
 @Injectable()
-export class UnitService {}
+export class UnitService {
+  private logger = new Logger('DashboardService');
+  constructor(@InjectConnection() private readonly connection: Connection) {}
+
+  async getUnits(params) {
+    let query = `execute Unit_Search `;
+    this.logger.debug(query);
+    return await this.connection.query(query);
+  }
+}
