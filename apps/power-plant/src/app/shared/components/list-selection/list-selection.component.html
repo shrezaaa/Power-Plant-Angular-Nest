@@ -2,7 +2,7 @@
   <ng-container *ngFor="let item of data">
     <button
       [ngClass]="
-        item.name == selectedObject?.name
+        item[labelProp] == (selectedObject ? selectedObject[labelProp] : '')
           ? ' bg-gray-200 rounded-sm'
           : 'hover:bg-gray-100 hover:text-blue-700'
       "
@@ -10,7 +10,7 @@
       (click)="onSelectItem(item)"
       class="w-full px-4 py-2 font-medium text-left cursor-pointer focus:outline-none"
     >
-      {{ item.name }}
+      {{ item[labelProp] }}
     </button>
     <hr class="m-1" />
   </ng-container>
