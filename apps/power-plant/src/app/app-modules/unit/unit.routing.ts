@@ -14,7 +14,11 @@ const routes: Routes = [
         path: 'inv',
         component: InverterUnitsComponent,
       },
-       {
+      {
+        path: 'units-analysis/:deviceTypeID',
+        component: UnitsPageComponent,
+      },
+      {
         path: 'units-analysis',
         component: UnitsPageComponent,
       },
