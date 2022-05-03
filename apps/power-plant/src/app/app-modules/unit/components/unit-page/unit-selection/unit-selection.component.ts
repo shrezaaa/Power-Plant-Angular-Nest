@@ -2,11 +2,11 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { SelectData } from 'apps/power-plant/src/app/shared/types/select-data';
 
 @Component({
-  selector: 'p-plant-units-selection',
-  templateUrl: './units-selection.component.html',
-  styleUrls: ['./units-selection.component.scss'],
+  selector: 'p-plant-unit-selection',
+  templateUrl: './unit-selection.component.html',
+  styleUrls: ['./unit-selection.component.scss'],
 })
-export class UnitsSelectionComponent implements OnInit {
+export class UnitSelectionComponent implements OnInit {
   @Input('data') data: Array<SelectData>;
   selectedUnit: SelectData;
   @Output('selectedUnitChange') selectedUnitChange =
