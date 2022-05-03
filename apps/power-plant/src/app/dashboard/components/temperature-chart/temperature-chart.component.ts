@@ -5,6 +5,7 @@ import {
   Output,
   EventEmitter,
   SimpleChanges,
+  OnChanges,
 } from '@angular/core';
 import { ECharts, EChartsOption } from 'echarts';
 import { TemperatureChart } from '../../shared/models/temperature-chart.model';
@@ -14,7 +15,7 @@ import { TemperatureChart } from '../../shared/models/temperature-chart.model';
   templateUrl: './temperature-chart.component.html',
   styleUrls: ['./temperature-chart.component.scss'],
 })
-export class TemperatureChartComponent implements OnInit {
+export class TemperatureChartComponent implements OnInit, OnChanges {
   @Input('data') data: TemperatureChart;
   @Output('chartInstanceChange') chartInstanceChange =
     new EventEmitter<ECharts>();
