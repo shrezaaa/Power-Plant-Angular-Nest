@@ -55,7 +55,7 @@ export class UnitPowerChartComponent implements OnInit, OnChanges {
       },
       tooltip: {
         trigger: 'axis',
-        valueFormatter: (value) => value + ' W',
+        valueFormatter: (value) => value + ' kW',
         axisPointer: {
           type: 'cross',
         },
@@ -83,7 +83,7 @@ export class UnitPowerChartComponent implements OnInit, OnChanges {
           },
         },
         axisLabel: {
-          formatter: '{value} W',
+          formatter: '{value} kW',
         },
       },
 
