@@ -1,12 +1,13 @@
 <div class="sticky top-0 w-full p-1">
   <div class="flex w-full justify-between">
-    <div class="flex items-center grow">
+    <form [formGroup]="filterForm" class="flex items-center grow">
       <mat-form-field class="w-full sm:w-[205px] px-1" appearance="outline">
         <mat-label>Date</mat-label>
         <input
           matInput
           [ngxMatDatetimePicker]="picker"
           placeholder="Choose a date"
+          formControlName="DateTime"
         />
         <mat-datepicker-toggle
           matSuffix
@@ -15,9 +16,11 @@
         <ngx-mat-datetime-picker #picker> </ngx-mat-datetime-picker>
       </mat-form-field>
       <section class="px-1">
-        <mat-checkbox class="">Display Normalized Data</mat-checkbox>
+        <mat-checkbox class="" formControlName="isNormalized"
+          >Display Normalized Data</mat-checkbox
+        >
       </section>
-    </div>
+    </form>
 
     <div class="flex items-center grow justify-end">
       <button mat-icon-button><mat-icon>fullscreen</mat-icon></button>

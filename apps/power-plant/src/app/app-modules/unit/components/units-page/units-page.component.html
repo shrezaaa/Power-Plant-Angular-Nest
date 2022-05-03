@@ -6,11 +6,11 @@
       <div
         class="w-full h-full bg-white bg-gradient-to-r rounded-sm shadow-md flex flex-col overflow-auto"
       >
-        <p-plant-units-selection class="overflow-auto"
+        <p-plant-units-selection
+          class="overflow-auto"
           [data]="units"
           (selectedUnitChange)="onSelectUnit($event)"
         ></p-plant-units-selection>
-
       </div>
     </div>
     <div
@@ -19,12 +19,11 @@
       <div
         class="w-full h-full bg-white bg-gradient-to-r rounded-sm shadow-md flex flex-col p-2 pt-1"
       >
-
-      <p-plant-inv-data-analysis></p-plant-inv-data-analysis>
-      
-
-
-    </div>
+        <p-plant-inv-data-analysis
+          [deviceTypeID]="deviceTypeID"
+          [deviceID]="deviceID"
+        ></p-plant-inv-data-analysis>
+      </div>
     </div>
   </div>
 </div>

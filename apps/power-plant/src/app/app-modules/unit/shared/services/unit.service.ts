@@ -16,4 +16,12 @@ export class UnitService {
       .setLoading(true)
       .send();
   }
+
+  getInvAnalysisData(model) {
+    return this.baseHttp
+      .request('GET', 'unit/invAnalysis')
+      .setQueryParams(model)
+      .setLoading(true)
+      .send();
+  }
 }
