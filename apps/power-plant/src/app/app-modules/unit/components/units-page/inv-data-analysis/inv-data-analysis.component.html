@@ -31,11 +31,14 @@
 <div class="flex flex-col w-full h-full">
   <div class="basis-1/2 w-full flex">
     <div class="basis-1/2">
-      <p-plant-unit-yield-chart></p-plant-unit-yield-chart>
+      <p-plant-unit-yield-chart
+        [data]="PowerChartData"
+        (chartInstanceChange)="unitYieldChartInstance = $event"
+      ></p-plant-unit-yield-chart>
     </div>
     <div class="basis-1/2">
       <p-plant-unit-power-chart
-        [data]="unitPowerChartData"
+        [data]="PowerChartData"
         (chartInstanceChange)="unitPowerChartInstance = $event"
       ></p-plant-unit-power-chart>
     </div>
