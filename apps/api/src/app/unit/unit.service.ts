@@ -8,7 +8,15 @@ export class UnitService {
   constructor(@InjectConnection() private readonly connection: Connection) {}
 
   async getUnits(params) {
-    let query = `execute Unit_Search `;
+    const { DeviceTypeID } = params;
+    let query = `execute Unit_Search @UnitName = null, @DeviceTypeID = ${DeviceTypeID}`;
+    this.logger.debug(query);
+    return await this.connection.query(query);
+  }
+
+  async getInvAnalysisData(params) {
+    const { DateTime, DeviceTypeID } = params;
+    let query = `execute InvAnalysis_Search @DateTime = '${DateTime}', @DeviceTypeID = ${DeviceTypeID}`;
     this.logger.debug(query);
     return await this.connection.query(query);
   }
