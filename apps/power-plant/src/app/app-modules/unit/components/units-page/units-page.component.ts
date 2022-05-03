@@ -10,6 +10,7 @@ import { UnitService } from '../../shared/services/unit.service';
 })
 export class UnitsPageComponent implements OnInit {
   units: Array<SelectData> = [];
+  deviceID: number = null;
   deviceTypeID: number = null;
   constructor(
     private unitService: UnitService,
@@ -23,7 +24,7 @@ export class UnitsPageComponent implements OnInit {
   }
 
   onSelectUnit(event) {
-    console.log(event);
+    this.deviceID = event.DeviceId;
   }
 
   getUnitSelections() {
