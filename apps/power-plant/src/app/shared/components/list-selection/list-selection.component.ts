@@ -7,10 +7,10 @@ import { SelectData } from '../../types/select-data';
   styleUrls: ['./list-selection.component.scss'],
 })
 export class ListSelectionComponent implements OnInit {
-  @Input('data') data: Array<SelectData> = [];
+  @Input('data') data: Array<any> = [];
   // @Input('valueProp') valueProp: string;
-  @Input('labelProp') labelProp: string;
-  @Input('selected') selectedObject: SelectData;
+  @Input('labelProp') labelProp: string = 'name';
+  @Input('selected') selectedObject: any = null;
   @Output('selectedChange') selectedChange = new EventEmitter<any>();
   constructor() {}
 
