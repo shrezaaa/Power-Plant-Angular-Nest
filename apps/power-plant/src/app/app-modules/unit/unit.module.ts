@@ -1,9 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UnitRoutingComponent } from './unit-routing/unit-routing.component';
-import { InverterUnitsComponent } from './components/inverter-units/inverter-units.component';
 import { UnitRoutingModule } from './unit.routing';
-import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -16,11 +15,11 @@ import {
   NgxMatTimepickerModule,
   // NgxMatDatePicker
 } from '@angular-material-components/datetime-picker';
-import { InvUnitTableComponent } from './components/inverter-units/inv-unit-table/inv-unit-table.component';
+import { InvUnitTableComponent } from './components/unit-item-components/inv-unit-table/inv-unit-table.component';
 import { AgGridModule } from 'ag-grid-angular';
 // import { AgGridModule } from 'ag-grid-enterprise';
-import { UnitPowerChartComponent } from './components/inverter-units/unit-power-chart/unit-power-chart.component';
-import { UnitYieldChartComponent } from './components/inverter-units/unit-yield-chart/unit-yield-chart.component';
+import { UnitPowerChartComponent } from './components/unit-item-components/unit-power-chart/unit-power-chart.component';
+import { UnitYieldChartComponent } from './components/unit-item-components/unit-yield-chart/unit-yield-chart.component';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { CustomCellComponent } from './components/test-grid/custom-cell/custom-cell.component';
 import { TestGridComponent } from './components/test-grid/test-grid.component';
@@ -45,12 +44,14 @@ const matModules = [
 @NgModule({
   declarations: [
     UnitRoutingComponent,
-    InverterUnitsComponent,
     InvUnitTableComponent,
     UnitPowerChartComponent,
     UnitYieldChartComponent,
     CustomCellComponent,
     TestGridComponent,
+    UnitPageComponent,
+    UnitSelectionComponent,
+    InvDataAnalysisComponent,
   ],
   imports: [
     CommonModule,
