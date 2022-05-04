@@ -9,7 +9,7 @@ export class UnitService {
 
   async getUnits(params) {
     const { DeviceTypeID, DeviceName } = params;
-    let query = `execute Unit_Search @DeviceName = ${DeviceName? `'${DeviceName}'` :null}, @DeviceTypeID = ${DeviceTypeID}`;
+    let query = `execute Unit_Search @DeviceName = ${DeviceName? `'${DeviceName}'` :null}, @DeviceTypeID = ${DeviceTypeID??null}`;
     this.logger.debug(query);
     return await this.connection.query(query);
   }
