@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { SelectData } from '../../types/select-data';
 
 @Component({
@@ -7,9 +7,17 @@ import { SelectData } from '../../types/select-data';
   styleUrls: ['./list-selection.component.scss'],
 })
 export class ListSelectionComponent implements OnInit {
-  @Input('data') data: Array<SelectData> = [];
-  @Input('selected') selectedObject: SelectData;
+  @Input('data') data: Array<any> = [];
+  // @Input('valueProp') valueProp: string;
+  @Input('labelProp') labelProp: string = 'name';
+  @Input('selected') selectedObject: any = null;
+  @Output('selectedChange') selectedChange = new EventEmitter<any>();
   constructor() {}
 
   ngOnInit(): void {}
+
+  onSelectItem(item) {
+    this.selectedObject = item;
+    this.selectedChange.emit(item);
+  }
 }

@@ -20,9 +20,8 @@ export class YieldTrendChartComponent implements OnInit, OnChanges {
   @Output('chartInstanceChange') chartInstanceChange =
     new EventEmitter<ECharts>();
   chartInstance: ECharts;
-  colors = ['#2196F3', '#F08300'];
-
   chartOption: EChartsOption = {};
+  colors = ['#2196F3', '#F08300'];
 
   constructor() {}
 

@@ -3,21 +3,20 @@ import { InjectConnection } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 
 @Injectable()
-export class DashboardService {
+export class UnitService {
   private logger = new Logger('DashboardService');
-
   constructor(@InjectConnection() private readonly connection: Connection) {}
 
-  async getYieldTrend(params) {
-    const { mode, date } = params;
-    let query = `execute YieldTrend_Search @Mode = ${mode} ,@Date = '${date}'`;
+  async getUnits(params) {
+    const { DeviceTypeID } = params;
+    let query = `execute Unit_Search @UnitName = null, @DeviceTypeID = ${DeviceTypeID}`;
     this.logger.debug(query);
     return await this.connection.query(query);
   }
-  
-  async getTemperatureChart(params) {
-    const { date } = params;
-    let query = `execute TemperatureChart_Search @Date = '${date}'`;
+
+  async getInvAnalysisData(params) {
+    const { DateTime, DeviceID } = params;
+    let query = `execute InvAnalysis_Search @DateTime = '${DateTime}', @DeviceID = ${DeviceID}`;
     this.logger.debug(query);
     return await this.connection.query(query);
   }
