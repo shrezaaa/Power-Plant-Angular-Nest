@@ -25,7 +25,6 @@ import { CustomCellComponent } from './components/test-grid/custom-cell/custom-c
 import { TestGridComponent } from './components/test-grid/test-grid.component';
 import { SharedModule } from '../../shared/shared.module';
 import { UnitPageComponent } from './components/unit-page/unit-page.component';
-import { UnitSelectionComponent } from './components/unit-page/unit-selection/unit-selection.component';
 import { InvDataAnalysisComponent } from './components/unit-page/inv-data-analysis/inv-data-analysis.component';
 import { MatSelectModule } from '@angular/material/select';
 // import 'ag-grid-enterprise';
@@ -50,7 +49,6 @@ const matModules = [
     CustomCellComponent,
     TestGridComponent,
     UnitPageComponent,
-    UnitSelectionComponent,
     InvDataAnalysisComponent,
   ],
   imports: [
