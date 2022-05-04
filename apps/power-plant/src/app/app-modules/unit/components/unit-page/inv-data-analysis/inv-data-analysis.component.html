@@ -29,22 +29,30 @@
   <hr />
 </div>
 <div class="flex flex-col w-full h-full">
-  <div class="basis-1/2 w-full flex">
-    <div class="basis-1/2">
-      <p-plant-unit-yield-chart
-        [data]="PowerChartData"
-        (chartInstanceChange)="unitYieldChartInstance = $event"
-      ></p-plant-unit-yield-chart>
+  <ng-container *ngIf="deviceID; else deviceNotSelected">
+    <div class="basis-1/2 w-full flex">
+      <div class="basis-1/2">
+        <p-plant-unit-yield-chart
+          [data]="PowerChartData"
+          (chartInstanceChange)="unitYieldChartInstance = $event"
+        ></p-plant-unit-yield-chart>
+      </div>
+      <div class="basis-1/2">
+        <p-plant-unit-power-chart
+          [data]="PowerChartData"
+          (chartInstanceChange)="unitPowerChartInstance = $event"
+        ></p-plant-unit-power-chart>
+      </div>
     </div>
-    <div class="basis-1/2">
-      <p-plant-unit-power-chart
-        [data]="PowerChartData"
-        (chartInstanceChange)="unitPowerChartInstance = $event"
-      ></p-plant-unit-power-chart>
-    </div>
-  </div>
 
-  <div class="basis-1/2 w-full">
-    <p-plant-inv-unit-table></p-plant-inv-unit-table>
-  </div>
+    <div class="basis-1/2 w-full">
+      <p-plant-inv-unit-table></p-plant-inv-unit-table>
+    </div>
+  </ng-container>
+
+  <ng-template #deviceNotSelected>
+    <div class="h-full self-center flex items-center">
+      Please Select a Device
+    </div>
+  </ng-template>
 </div>
