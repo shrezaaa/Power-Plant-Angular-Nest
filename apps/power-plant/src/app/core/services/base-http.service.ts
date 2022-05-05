@@ -135,7 +135,13 @@ export class RequestBuilder {
   }
 
   public createParamList(model: any): ParamDto {
-    return model;
+    let tempModel = {};
+    Object.entries(model).forEach((el) => {
+      if (el[1] != null) {
+        tempModel[el[0]] = el[1];
+      }
+    });
+    return tempModel;
   }
 
   private errorHandler(error: HttpErrorResponse) {

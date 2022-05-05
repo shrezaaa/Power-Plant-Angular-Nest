@@ -8,8 +8,8 @@ export class UnitService {
   constructor(@InjectConnection() private readonly connection: Connection) {}
 
   async getUnits(params) {
-    const { DeviceTypeID } = params;
-    let query = `execute Unit_Search @UnitName = null, @DeviceTypeID = ${DeviceTypeID}`;
+    const { DeviceTypeID, DeviceName } = params;
+    let query = `execute Unit_Search @DeviceName = ${DeviceName? `'${DeviceName}'` :null}, @DeviceTypeID = ${DeviceTypeID??null}`;
     this.logger.debug(query);
     return await this.connection.query(query);
   }
