@@ -4,6 +4,9 @@ export class Plants extends BaseEntity {
   @PrimaryGeneratedColumn()
   PlantID: number;
 
+  @Column()
+  PlantName:string
+
   @Column({ nullable: true, type: 'float' })
   Lat: number;
 
