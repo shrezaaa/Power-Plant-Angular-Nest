@@ -5,10 +5,12 @@ import {
   Column,
   Unique,
   OneToMany,
+  JoinColumn,
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
+import { Plants } from '../plants/plants.entity';
 
-@Entity()
+@Entity('User')
 @Unique(['username'])
 export class User extends BaseEntity {
   @PrimaryGeneratedColumn()
@@ -31,6 +33,11 @@ export class User extends BaseEntity {
 
   @Column()
   salt: string;
+
+  @Column({ default: 1 })
+  @OneToMany(() => Plants, (item) => item.PlantID)
+  @JoinColumn({ name: 'PlantID' })
+  PlantID: number;
 
   async validatePassword(password: string): Promise<boolean> {
     const hash = await bcrypt.hash(password, this.salt);
