@@ -1,5 +1,5 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { User } from './entities/user.entity';
+import { User } from '../auth/user.entity';
 
 export const typeOrmConfig: TypeOrmModuleOptions = {
   type: 'mssql',
