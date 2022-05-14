@@ -4,10 +4,10 @@ export class Plants extends BaseEntity {
   @PrimaryGeneratedColumn()
   PlantID: number;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, type: 'float' })
   Lat: number;
 
-  @Column({ nullable: true })
+  @Column({ nullable: true, type: 'float' })
   Lang: number;
 
   @Column({ nullable: true })
