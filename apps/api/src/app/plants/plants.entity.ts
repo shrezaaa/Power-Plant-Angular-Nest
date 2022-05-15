@@ -18,6 +18,9 @@ export class Plants extends BaseEntity {
 
   @Column({ nullable: true })
   RealProduction: number;
+  
+  @Column({ nullable: true })
+  InstalledPower: number;
 
   @Column({ nullable: true })
   Address: string;
