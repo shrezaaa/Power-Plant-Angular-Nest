@@ -8,7 +8,7 @@ export class PlantsService {
   constructor(private readonly baseHttp: BaseHttp) {}
 
   getPlants(model) {
-  return  this.baseHttp
+    return this.baseHttp
       .request('GET', 'plants/search')
       .setLoading(true)
       .setQueryParams(model)
