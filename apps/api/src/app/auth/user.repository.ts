@@ -5,7 +5,7 @@ import {
   ConflictException,
   InternalServerErrorException,
 } from '@nestjs/common';
-import { User } from '../database/entities/user.entity';
+import { User } from './user.entity';
 
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {

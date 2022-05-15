@@ -1,4 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
 import { AgGridAngular } from 'ag-grid-angular';
 import {
   ColDef,
@@ -6,6 +13,7 @@ import {
   GridReadyEvent,
   ICellRendererParams,
 } from 'ag-grid-community';
+import { PlantModel } from '../../../shared/models/plant.model';
 import { AlarmCellComponent } from './alarm-cell/alarm-cell.component';
 
 @Component({
@@ -13,13 +21,18 @@ import { AlarmCellComponent } from './alarm-cell/alarm-cell.component';
   templateUrl: './plants-grid.component.html',
   styleUrls: ['./plants-grid.component.scss'],
 })
-export class PlantsGridComponent implements OnInit {
+export class PlantsGridComponent implements OnInit, OnChanges {
   @ViewChild('grid') grid: AgGridAngular;
+  @Input('data') data: Array<PlantModel>;
+
   gridApi: GridReadyEvent;
   columnDefs: Array<ColDef> = [
-    { field: 'id', headerName: 'No.', width: 80 },
-    { field: 'plant', flex: 1, headerName: 'Plant Name' },
-    { field: 'Communication', flex: 1 },
+    { field: 'PlantName', headerName: 'Name.', flex: 1 },
+    { field: 'NormalProduction', headerName: 'Normal Production', flex: 1 },
+    { field: 'RealProduction', headerName: 'Real Production', flex: 1 },
+    { field: 'Address', headerName: 'Address', flex: 1 },
+    { field: 'Phone', headerName: 'Phone', flex: 1 },
+    { field: 'IsActive', headerName: 'IsActive', flex: 1 },
     {
       field: 'Alarm',
       flex: 1,
@@ -31,7 +44,6 @@ export class PlantsGridComponent implements OnInit {
         else return undefined;
       },
     },
-    { field: 'InstalledPower', flex: 1, headerName: 'Installed Power' },
   ];
   gridOptions: GridOptions = {
     defaultColDef: {
@@ -41,30 +53,14 @@ export class PlantsGridComponent implements OnInit {
     },
     animateRows: true,
   };
-  rowData = [
-    {
-      id: 1,
-      plant: 'p1',
-      Communication: 'Yes',
-      Alarm: 1,
-      InstalledPower: '12 kWh',
-    },
-    {
-      id: 2,
-      plant: 'Ford',
-      Communication: 'No',
-      Alarm: 2,
-      InstalledPower: '12 kWh',
-    },
-    {
-      id: 3,
-      plant: 'p2',
-      Communication: 'No',
-      Alarm: 3,
-      InstalledPower: '12 kWh',
-    },
-  ];
+  rowData = [];
   constructor() {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.data && changes.data.currentValue) {
+      this.rowData = this.data;
+    }
+  }
 
   ngOnInit(): void {}
 
