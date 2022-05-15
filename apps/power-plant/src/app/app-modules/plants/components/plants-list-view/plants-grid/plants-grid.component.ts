@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { AgGridAngular } from 'ag-grid-angular';
 import {
   ColDef,
@@ -6,6 +6,7 @@ import {
   GridReadyEvent,
   ICellRendererParams,
 } from 'ag-grid-community';
+import { PlantModel } from '../../../shared/models/plant.model';
 import { AlarmCellComponent } from './alarm-cell/alarm-cell.component';
 
 @Component({
@@ -15,6 +16,8 @@ import { AlarmCellComponent } from './alarm-cell/alarm-cell.component';
 })
 export class PlantsGridComponent implements OnInit {
   @ViewChild('grid') grid: AgGridAngular;
+  @Input('data') data: Array<PlantModel>;
+  
   gridApi: GridReadyEvent;
   columnDefs: Array<ColDef> = [
     { field: 'id', headerName: 'No.', width: 80 },
