@@ -7,22 +7,23 @@ import jwt_decode from 'jwt-decode';
   providedIn: 'root',
 })
 export class UserService {
-  private currentUser$: BehaviorSubject<Partial<User>> = new BehaviorSubject<
+  private user$: BehaviorSubject<Partial<User>> = new BehaviorSubject<
     Partial<User>
   >({});
   constructor() {
-    let user = localStorage.getItem('User');
-    if (user) this.currentUser$.next(new User(JSON.parse(user)));
+    if (this.token) this.setUserByToken(this.token);
+  }
+
+  public get token(): string {
+    return localStorage.getItem('Token');
   }
 
   public setCurrentUser(user: User) {
-    console.log(user);
-    localStorage.setItem('User', JSON.stringify(user));
-    this.currentUser$.next(user);
+    this.user$.next(user);
   }
 
   public get User(): Partial<User> {
-    return this.currentUser$.value;
+    return this.user$.value;
   }
 
   setUserByToken(encodedToken: string): any {
@@ -35,6 +36,6 @@ export class UserService {
 
   onLogout() {
     localStorage.clear();
-    this.currentUser$.next({});
+    this.user$.next({});
   }
 }

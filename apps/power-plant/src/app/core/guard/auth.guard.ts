@@ -15,6 +15,7 @@ import {
 } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { UserService } from '../services/user.service';
 
 @Injectable({
   providedIn: 'root',
@@ -39,11 +40,15 @@ export class AuthGuard implements CanActivate, HttpInterceptor {
     );
   }
 
-  constructor(private router: Router, public errorHandler: ErrorHandler) {}
+  constructor(
+    private router: Router,
+    public errorHandler: ErrorHandler,
+    private userService: UserService
+  ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    let Token = localStorage.getItem('Token');
-    if (Token) {
+    let token = this.userService.token;
+    if (token && Date.now() <= this.userService.User.exp * 1000) {
       return true;
     }
     this.router.navigate(['/auth/login']);
