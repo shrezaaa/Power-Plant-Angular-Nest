@@ -10,7 +10,18 @@ export class PlantsService {
     private plantsRepository: PlantsRepository
   ) {}
 
-  async getPlants() {
-    return await this.plantsRepository.find();
+  async getPlants(params) {
+    const { PlantName, PlantID, InstalledPowerFrom, InstalledPowerTo } = params;
+    let query = `execute Plant_Search @PlantID = ${
+      PlantID ?? null
+    }, @PlantName = ${
+      PlantName ? `'${PlantName}'` : null
+    }, @InstalledPowerFrom = ${
+      InstalledPowerFrom ? `'${InstalledPowerFrom}'` : null
+    }, @InstalledPowerTo = ${
+      InstalledPowerTo ? `'${InstalledPowerTo}'` : null
+    }`;
+    this.logger.debug('Plant Search')
+    return await this.plantsRepository.query(query);
   }
 }

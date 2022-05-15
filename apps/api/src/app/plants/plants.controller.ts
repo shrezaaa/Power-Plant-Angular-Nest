@@ -7,6 +7,6 @@ export class PlantsController {
 
   @Get('search')
   async getPlants(@Query() params: any) {
-    return this.plantsService.getPlants();
+    return this.plantsService.getPlants(params);
   }
 }
