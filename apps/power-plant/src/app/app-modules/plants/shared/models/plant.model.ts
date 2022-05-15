@@ -19,6 +19,6 @@ export class PlantModel {
     this.Address = el?.Address;
     this.Phone = el?.Phone;
     this.Description = el?.Description;
-    this.IsActive = el?.IsActive;
+    this.IsActive = el.IsActive ? 'Yes' : 'No';
   }
 }
