@@ -15,6 +15,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { SharedModule } from '../shared/shared.module';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 const matModules = [
   MatSidenavModule,
@@ -34,6 +35,7 @@ const matModules = [
     SidenavComponent,
     LoadingBarComponent,
     TopNavbarComponent,
+    PageNotFoundComponent
   ],
   imports: [CommonModule, LayoutRoutingModule, matModules, SharedModule],
 })
