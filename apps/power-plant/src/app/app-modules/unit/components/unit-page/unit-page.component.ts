@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SelectData } from 'apps/power-plant/src/app/shared/types/select-data';
-import { take, map } from 'rxjs';
+import { take, map, debounceTime } from 'rxjs';
 import { Unit } from '../../shared/models/unit.model';
 import { UnitService } from '../../shared/services/unit.service';
 
@@ -44,9 +44,14 @@ export class UnitPageComponent implements OnInit {
     if (deviceTypeID) {
       this.unitSelectionForm.get('deviceTypeID').setValue(deviceTypeID);
     }
-    this.deviceTypeControlRef.valueChanges.subscribe((value) => {
-      this.getUnitSelections();
-    });
+    this.unitSelectionForm.valueChanges
+      .pipe(debounceTime(400))
+      .subscribe(() => {
+        this.getUnitSelections();
+      });
+    // this.deviceTypeControlRef.valueChanges.subscribe((value) => {
+    //   this.getUnitSelections();
+    // });
     this.getUnitSelections();
   }
 
