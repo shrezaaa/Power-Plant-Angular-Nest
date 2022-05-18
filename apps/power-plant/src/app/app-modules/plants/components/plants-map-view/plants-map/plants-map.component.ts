@@ -13,7 +13,7 @@ export class PlantsMapComponent {
   infoWindow: any;
   lat: number = 36.67284479710437;
   lng: number = 48.4976206019898;
-  plantIDInfoWidget : number 
+  plantIDInfoWidget: number;
   constructor(private readonly _plantService: PlantsService) {
     this.getPlantsList();
   }
@@ -21,8 +21,6 @@ export class PlantsMapComponent {
   getPlantsList() {
     this._plantService.getPlants({}).subscribe((res) => {
       if (res) {
-        console.log(res);
-
         this.plantList = res.map((item) => new PlantModel(item));
       }
     });
@@ -34,11 +32,10 @@ export class PlantsMapComponent {
     }, 0);
   }
   onMouseOver(infoWindow, gm) {
-    
     if (gm.lastOpen != null) {
-        gm.lastOpen.close();
+      gm.lastOpen.close();
     }
     gm.lastOpen = infoWindow;
     infoWindow.open();
-}
+  }
 }
