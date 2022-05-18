@@ -28,6 +28,7 @@ export class PlantsGridComponent implements OnInit, OnChanges {
   gridApi: GridReadyEvent;
   columnDefs: Array<ColDef> = [
     { field: 'PlantName', headerName: 'Name.', flex: 1 },
+    { field: 'InstalledPower', headerName: 'Installed Power', flex: 1 },
     { field: 'NormalProduction', headerName: 'Normal Production', flex: 1 },
     { field: 'RealProduction', headerName: 'Real Production', flex: 1 },
     { field: 'Address', headerName: 'Address', flex: 1 },

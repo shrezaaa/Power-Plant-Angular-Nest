@@ -4,6 +4,7 @@ export class PlantModel {
   Lat;
   Lang;
   NormalProduction;
+  InstalledPower;
   RealProduction;
   Address;
   Phone;
@@ -15,6 +16,7 @@ export class PlantModel {
     this.Lat = el?.Lat;
     this.Lang = el?.Lang;
     this.NormalProduction = el?.NormalProduction;
+    this.InstalledPower = el?.InstalledPower;
     this.RealProduction = el?.RealProduction;
     this.Address = el?.Address;
     this.Phone = el?.Phone;

@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ECharts } from 'echarts';
+import { debounce, debounceTime } from 'rxjs';
 import { PowerChart } from '../../../shared/models/power-chart';
 import { UnitService } from '../../../shared/services/unit.service';
 
@@ -37,28 +38,33 @@ export class InvDataAnalysisComponent implements OnInit, OnChanges {
     if (changes.deviceID && changes.deviceID.currentValue) {
       this.getData();
     }
+    this.filterForm.valueChanges.pipe(debounceTime(400)).subscribe((value) => {
+      this.getData();
+    });
   }
 
   ngOnInit(): void {}
 
   getData() {
-    const { DateTime } = this.filterForm.value;
-    this.unitPowerChartInstance?.showLoading();
-    this.unitYieldChartInstance?.showLoading();
-    this.loading = true;
-    this.unitService
-      .getInvAnalysisData({
-        DateTime: new Date(DateTime).toLocaleDateString(),
-        DeviceID: this.deviceID,
-      })
-      .subscribe({
-        next: (res) => {
-          this.loading = false;
-          this.PowerChartData = new PowerChart(res);
-        },
-        error: (err) => {
-          this.loading = false;
-        },
-      });
+    if (this.deviceID) {
+      const { DateTime } = this.filterForm.value;
+      this.unitPowerChartInstance?.showLoading();
+      this.unitYieldChartInstance?.showLoading();
+      this.loading = true;
+      this.unitService
+        .getInvAnalysisData({
+          DateTime: new Date(DateTime).toLocaleDateString(),
+          DeviceID: this.deviceID,
+        })
+        .subscribe({
+          next: (res) => {
+            this.loading = false;
+            this.PowerChartData = new PowerChart(res);
+          },
+          error: (err) => {
+            this.loading = false;
+          },
+        });
+    }
   }
 }
