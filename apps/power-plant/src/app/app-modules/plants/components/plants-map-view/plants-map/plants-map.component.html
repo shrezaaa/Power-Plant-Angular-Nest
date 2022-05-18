@@ -1,6 +1,13 @@
-<div
-  class="map"
-  leaflet
-  (leafletMapReady)="onMapReady($event)"
-  [leafletOptions]="options"
-></div>
+<agm-map #gm [zoom]="13" [latitude]="lat" [longitude]="lng">
+  <agm-marker
+    *ngFor="let plant of plantList"
+    [iconUrl]="'../../../../assets/images/map/power-plant-chimney-svgrepo-com.svg'"
+    [latitude]="plant.Lat"
+    [longitude]="plant.Lang"
+    (markerClick)="onMouseOver(infoWindow, gm)"
+  >
+    <agm-info-window id="info-window" #infoWindow class="d-flex"
+      ><div style="background-color: white">asdasdas</div></agm-info-window
+    >
+  </agm-marker>
+</agm-map>
