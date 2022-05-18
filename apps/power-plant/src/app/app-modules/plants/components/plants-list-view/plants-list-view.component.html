@@ -6,13 +6,13 @@
       <!--Filters-->
       <div class="sticky top-0 w-full p-1">
         <div class="flex w-full justify-between">
-          <div class="flex items-center grow">
+          <form [formGroup]="form" class="flex items-center grow">
             <mat-form-field
               class="w-full sm:w-[205px] px-1"
               appearance="outline"
             >
               <mat-label>Plant Name</mat-label>
-              <input matInput />
+              <input matInput formControlName='PlantName'/>
             </mat-form-field>
 
             <mat-form-field
@@ -38,7 +38,7 @@
                 appearance="outline"
               >
                 <mat-label>from</mat-label>
-                <input matInput />
+                <input matInput type="number" formControlName="InstalledPowerFrom" />
                 <span matSuffix>kWp</span>
               </mat-form-field>
               <mat-form-field
@@ -46,15 +46,15 @@
                 appearance="outline"
               >
                 <mat-label>to</mat-label>
-                <input matInput />
+                <input matInput type="number" formControlName="InstalledPowerTo" />
                 <span matSuffix>kWp</span>
               </mat-form-field>
             </section>
-          </div>
+          </form>
 
           <div class="flex items-center grow justify-end">
             <button mat-icon-button><mat-icon>fullscreen</mat-icon></button>
-            <button mat-icon-button><mat-icon>refresh</mat-icon></button>
+            <button mat-icon-button (click)="getData()"><mat-icon>refresh</mat-icon></button>
           </div>
         </div>
         <hr />

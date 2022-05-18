@@ -24,7 +24,10 @@
 
         <p-plant-list-selection
           [data]="plants"
-          [selected]="selectedPlant"
+          [(selected)]="selectedPlant"
+          (selectedChange)="onSelectPlant($event)"
+          [labelProp]="'PlantName'"
+          [loading]="selectionLoading"
         ></p-plant-list-selection>
 
       </div>
