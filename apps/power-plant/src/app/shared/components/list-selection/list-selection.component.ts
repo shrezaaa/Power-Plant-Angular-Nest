@@ -12,6 +12,9 @@ export class ListSelectionComponent implements OnInit {
   @Input('labelProp') labelProp: string = 'name';
   @Input('selected') selectedObject: any = null;
   @Output('selectedChange') selectedChange = new EventEmitter<any>();
+
+  @Input('loading') loading: boolean = false;
+  
   constructor() {}
 
   ngOnInit(): void {}

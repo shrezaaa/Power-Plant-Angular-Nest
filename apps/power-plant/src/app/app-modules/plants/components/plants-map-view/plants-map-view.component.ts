@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { SelectData } from 'apps/power-plant/src/app/shared/types/select-data';
+import { map } from 'rxjs';
+import { PlantModel } from '../../shared/models/plant.model';
+import { PlantsService } from '../../shared/services/plants.service';
 
 @Component({
   selector: 'p-plant-plants-map-view',
@@ -8,12 +12,37 @@ import { SelectData } from 'apps/power-plant/src/app/shared/types/select-data';
 })
 export class PlantsMapViewComponent implements OnInit {
   selectedPlant: SelectData;
-  plants: Array<SelectData> = [
-    { name: 'Plant a', value: 1 },
-    { name: 'Plant ab', value: 1 },
-    { name: 'Plant abc', value: 1 },
-  ];
-  constructor() {}
+  selectedPlantID: number;
+  plants: Array<PlantModel> = [];
+  plantSelectionForm = this.fb.group({
+    PlantName: null,
+  });
+  selectionLoading: boolean = false;
+  constructor(
+    private readonly fb: FormBuilder,
+    private readonly plantsService: PlantsService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getPlantSelectionData();
+  }
+
+  getPlantSelectionData() {
+    this.selectionLoading = true;
+    this.plantsService
+      .getPlants(this.plantSelectionForm.value)
+      .pipe(
+        map((res) => {
+          return res.map((el) => new PlantModel(el));
+        })
+      )
+      .subscribe((value) => {
+        this.selectionLoading = false;
+        this.plants = value;
+      });
+  }
+
+  onSelectPlant(event: PlantModel) {
+    this.selectedPlantID = event.PlantID;
+  }
 }
