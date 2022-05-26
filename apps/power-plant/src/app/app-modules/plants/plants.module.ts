@@ -14,6 +14,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { PlantsGridComponent } from './components/plants-list-view/plants-grid/plants-grid.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { AlarmCellComponent } from './components/plants-list-view/plants-grid/alarm-cell/alarm-cell.component';
+import { AgmCoreModule } from '@agm/core';
 
 const matModules = [MatFormFieldModule, MatInputModule, MatSelectModule];
 @NgModule({
@@ -32,6 +33,9 @@ const matModules = [MatFormFieldModule, MatInputModule, MatSelectModule];
     matModules,
     PlantsRoutingModule,
     LeafletModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'Api-key',
+    }),
     AgGridModule.withComponents([]),
     SharedModule,
   ],
