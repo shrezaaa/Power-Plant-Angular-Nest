@@ -34,7 +34,7 @@ const matModules = [MatFormFieldModule, MatInputModule, MatSelectModule];
     PlantsRoutingModule,
     LeafletModule,
     AgmCoreModule.forRoot({
-      apiKey: 'Api-key',
+      // apiKey: 'Api-key',
     }),
     AgGridModule.withComponents([]),
     SharedModule,

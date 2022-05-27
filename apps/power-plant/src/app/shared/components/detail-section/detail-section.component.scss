@@ -1,0 +1,33 @@
+.link-class {
+  color: #0056b3;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.item-list-divided {
+  grid-template-rows: repeat(4, 3.3vh);
+  margin-bottom: 0;
+
+  li {
+    display: flex;
+    // align-items: center;
+    margin-bottom: 0.4rem;
+  }
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.value {
+  color: black;
+  text-decoration: none;
+}
+
+.header-container-title{
+  color: royalblue;
+}
+
+:host {
+  display: contents;
+}

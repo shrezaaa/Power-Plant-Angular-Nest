@@ -11,7 +11,7 @@ export class Plants extends BaseEntity {
   Lat: number;
 
   @Column({ nullable: true, type: 'float' })
-  Lang: number;
+  Long: number;
 
   @Column({ nullable: true })
   NormalProduction: number;
