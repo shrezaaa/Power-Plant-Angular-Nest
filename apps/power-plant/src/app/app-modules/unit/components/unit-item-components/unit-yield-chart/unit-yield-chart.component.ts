@@ -28,7 +28,7 @@ export class UnitYieldChartComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.data && changes.data.currentValue) {
       this.initChartOptions(this.data.categories, this.data.dayPowerSeries);
-      this.chartInstance.hideLoading();
+      this.chartInstance?.hideLoading();
     }
   }
 
