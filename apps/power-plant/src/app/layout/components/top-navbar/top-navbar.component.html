@@ -1,16 +1,28 @@
 <nav class="sticky top-0 bg-white h-14 w-full z-50">
   <ul class="flex h-full justify-end items-center">
-    <li class="brodcrump pl-4"><h2 *ngIf="!isLeftExpanded" class="text-bold brand-font">Power Plant</h2>
+    <li class="brodcrump pl-4">
+      <!-- <h2 *ngIf="!isLeftExpanded" class="text-bold brand-font">Power Plant</h2> -->
       <!-- <nz-breadcrumb>
         <nz-breadcrumb-item
-          [routerLink]="[item.url]"
-          *ngFor="let item of breadcrump; let i = index"
+        [routerLink]="[item.url]"
+        *ngFor="let item of breadcrump; let i = index"
         >
-          <a [ngClass]="{ 'text-2xl': i == breadcrump.length - 1 }">
-            {{ item.name }}
-          </a>
-        </nz-breadcrumb-item>
-      </nz-breadcrumb> -->
+        <a [ngClass]="{ 'text-2xl': i == breadcrump.length - 1 }">
+          {{ item.name }}
+        </a>
+      </nz-breadcrumb-item>
+    </nz-breadcrumb> -->
+    </li>
+    <li class="">
+      <div class="">
+        <span class="flex items-center">
+          <strong>Current Plant:&nbsp;</strong>
+          <p>Default</p>
+          <button mat-icon-button matTooltip="'Change Plant'">
+            <mat-icon>sync</mat-icon>
+          </button>
+        </span>
+      </div>
     </li>
     <li
       class="py-2 pr-2 ml-auto my-2 text-black rounded-full hover:text-yellow-600 cursor-pointer"
@@ -83,7 +95,7 @@
         {{ userService.User.userFullName | longTextCutter: 15 }}
       </b>
       <p *ngIf="!pending">
-        {{ userService.User.email| longTextCutter: 18 }}
+        {{ userService.User.email | longTextCutter: 18 }}
       </p>
       <!-- <button
         color="primary"
