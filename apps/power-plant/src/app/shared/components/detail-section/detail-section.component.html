@@ -1,0 +1,50 @@
+<div class="d-flex w-100 align-items-center">
+  <strong class="header-container-title">{{ headerTitle }}</strong>
+  <mat-divider class="grow ml-2"></mat-divider>
+</div>
+<div class="pl-4" *ngIf="data?.length == 0">
+  No Data
+</div>
+<div class="pl-4">
+  <ng-content class="" select="[upper-data]"></ng-content>
+</div>
+<ul class="mt-2 grid gap-x-4 grid-cols-12 item-list-divided">
+  <ng-container *ngFor="let item of data">
+    <li
+      class="col-span-6 m-0"
+      [ngClass]="item.class ? item.class : ''"
+      *ngIf="item.name || item.value"
+    >
+      <div>
+        <strong class="inline-block mb-0">
+          {{ item.name }}<ng-container *ngIf="item.name">:</ng-container>
+        </strong>
+
+        <ng-container *ngIf="item.type; else noType">
+          <a
+            class="inline-block mb-0 ml-1"
+            [ngClass]="item.onClick ? 'link-class' : ''"
+            [href]="getTypeHref(item.type, item.value)"
+            (click)="item.onClick ? item.onClick(item) : null"
+          >
+            {{ item.value | replaceUnderline }}
+          </a>
+        </ng-container>
+
+        <ng-template #noType>
+          <p
+            class="inline-block mb-0 ml-1"
+            [ngClass]="item.onClick ? 'link-class' : ''"
+            (click)="item.onClick ? item.onClick(item) : null"
+          >
+            {{ item.value | replaceUnderline }}
+          </p>
+        </ng-template>
+      </div>
+    </li>
+  </ng-container>
+</ul>
+<div class="pl-4">
+  <ng-content class="" select="[below-data]"></ng-content>
+  <ng-content class=""></ng-content>
+</div>

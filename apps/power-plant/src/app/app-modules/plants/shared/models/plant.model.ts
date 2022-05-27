@@ -2,7 +2,7 @@ export class PlantModel {
   PlantID;
   PlantName;
   Lat;
-  Lang;
+  Long;
   NormalProduction;
   InstalledPower;
   RealProduction;
@@ -14,7 +14,7 @@ export class PlantModel {
     this.PlantID = el?.PlantID;
     this.PlantName = el?.PlantName;
     this.Lat = el?.Lat;
-    this.Lang = el?.Lang;
+    this.Long = el?.Long;
     this.NormalProduction = el?.NormalProduction;
     this.InstalledPower = el?.InstalledPower;
     this.RealProduction = el?.RealProduction;

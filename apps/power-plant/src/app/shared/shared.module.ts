@@ -6,10 +6,12 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ListSelectionComponent } from './components/list-selection/list-selection.component';
 import { PipesModule } from './pipes/pipes.module';
 import { ClickStopPropagationDirective } from './directives/click-stop-propagation.directive';
+import { DetailSectionComponent } from './components/detail-section/detail-section.component';
+import { MatDividerModule } from '@angular/material/divider';
 
-const MAT_MODULES = [MatIconModule, MatButtonModule];
+const MAT_MODULES = [MatIconModule, MatButtonModule, MatDividerModule];
 
-const COMPONENTS = [ListSelectionComponent];
+const COMPONENTS = [ListSelectionComponent, DetailSectionComponent];
 
 const MODULES = [PipesModule];
 
