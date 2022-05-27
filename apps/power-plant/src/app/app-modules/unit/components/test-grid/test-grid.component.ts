@@ -15,6 +15,7 @@ import { CustomCellComponent } from './custom-cell/custom-cell.component';
 })
 export class TestGridComponent implements OnInit {
   @ViewChild('grid') grid: AgGridAngular;
+  @ViewChild('cs') cs: CustomCellComponent;
   gridColumnApi;
   public pivotPanelShow = 'always';
 
@@ -77,7 +78,14 @@ export class TestGridComponent implements OnInit {
   ];
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // setInterval(() => {
+    //   this.cs.sayTitle();
+    // },4000);
+    // setTimeout(() => {
+    //   this.cs.title = 'ttr'
+    // }, 5000);
+  }
 
   onGridReady(params: GridReadyEvent) {
     this.gridColumnApi = params.columnApi;
