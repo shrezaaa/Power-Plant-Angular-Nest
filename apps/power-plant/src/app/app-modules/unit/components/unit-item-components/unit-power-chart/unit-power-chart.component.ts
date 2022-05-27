@@ -33,7 +33,7 @@ export class UnitPowerChartComponent implements OnInit, OnChanges {
         this.data.currentBSeries,
         this.data.currentCSeries
       );
-      this.chartInstance.hideLoading();
+      this.chartInstance?.hideLoading();
     }
   }
 
