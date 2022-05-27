@@ -21,7 +21,7 @@ export class InvDataAnalysisComponent implements OnInit, OnChanges {
   @Input('deviceID') deviceID = null;
   loading = false;
   filterForm = this.fb.group({
-    DateTime: '2021-12-09',
+    DateTime: '2022-05-24',
     isNormalized: false,
   });
 
@@ -43,7 +43,11 @@ export class InvDataAnalysisComponent implements OnInit, OnChanges {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.filterForm.valueChanges.pipe(debounceTime(400)).subscribe((res)=>{
+      this.getData()
+    })
+  }
 
   getData() {
     if (this.deviceID) {
