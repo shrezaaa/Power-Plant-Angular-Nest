@@ -9,12 +9,21 @@ import { ICellRendererParams } from 'ag-grid-community';
 })
 export class CustomCellComponent implements OnInit, ICellRendererAngularComp {
   params: ICellRendererParams;
+  title= 'ss';
   constructor() {}
 
   ngOnInit(): void {}
 
   agInit(params: ICellRendererParams): void {
     this.params = params;
+  }
+
+  sayHi() {
+    console.log('hi');
+  }
+
+  sayTitle() {
+    console.log(this.title);
   }
 
   refresh(params: ICellRendererParams) {
