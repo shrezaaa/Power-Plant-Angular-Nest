@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { SelectData } from 'apps/power-plant/src/app/shared/types/select-data';
-import { map } from 'rxjs';
+import { debounceTime, map } from 'rxjs';
 import { PlantModel } from '../../shared/models/plant.model';
 import { PlantsService } from '../../shared/services/plants.service';
 
@@ -13,24 +13,31 @@ import { PlantsService } from '../../shared/services/plants.service';
 export class PlantsMapViewComponent implements OnInit {
   selectedPlant: SelectData;
   selectedPlantID: number;
-  plants: Array<PlantModel> = [];
+  allPlants: Array<PlantModel> = [];
+  selectionPlants: Array<PlantModel> = [];
   plantSelectionForm = this.fb.group({
     PlantName: null,
   });
   selectionLoading: boolean = false;
+
   constructor(
     private readonly fb: FormBuilder,
     private readonly plantsService: PlantsService
   ) {}
 
   ngOnInit(): void {
-    this.getPlantSelectionData();
+    this.getPlantSelectionData(true);
+    this.plantSelectionForm.valueChanges
+      .pipe(debounceTime(400))
+      .subscribe((res) => {
+        this.getPlantSelectionData(false);
+      });
   }
 
-  getPlantSelectionData() {
-    this.selectionLoading = true;
+  getPlantSelectionData(firstLoad?: boolean) {
+    if(firstLoad)this.selectionLoading = true;
     this.plantsService
-      .getPlants(this.plantSelectionForm.value)
+      .getPlants(!firstLoad ? this.plantSelectionForm.value : {})
       .pipe(
         map((res) => {
           return res.map((el) => new PlantModel(el));
@@ -38,11 +45,12 @@ export class PlantsMapViewComponent implements OnInit {
       )
       .subscribe((value) => {
         this.selectionLoading = false;
-        this.plants = value;
+        if (firstLoad) this.allPlants = value;
+        this.selectionPlants = value;
       });
   }
 
-  onSelectPlant(event: PlantModel) {
+  onSelectPlant(event: PlantModel) {    
     this.selectedPlantID = event.PlantID;
   }
 }
