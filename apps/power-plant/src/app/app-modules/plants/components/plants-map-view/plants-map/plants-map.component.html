@@ -1,13 +1,17 @@
-<agm-map #gm [zoom]="13" [latitude]="lat" [longitude]="lng">
+<agm-map class="h-100" #gm [zoom]="11" [latitude]="mapView.lat" [longitude]="mapView.lng">
   <agm-marker
-    *ngFor="let plant of plantList"
-    [iconUrl]="'../../../../assets/images/map/power-plant-chimney-svgrepo-com.svg'"
+    *ngFor="let plant of plantsList"
+    [iconUrl]="
+      '../../../../assets/images/map/power-plant-chimney-svgrepo-com.svg'
+    "
+    [animation]="'DROP'"
     [latitude]="plant.Lat"
-    [longitude]="plant.Lang"
-    (markerClick)="onMouseOver(infoWindow, gm)"
+    [longitude]="plant.Long"
+    (markerClick)="onSelectPlant(infoWindows, plant)"
   >
-    <agm-info-window id="info-window" #infoWindow class="d-flex"
-      ><div style="background-color: white">asdasdas</div></agm-info-window
-    >
+    <agm-info-window id="info-window" #infoWindows class="d-flex">
+      <app-detail-section class="w-full" [headerTitle]="plant.PlantName" [data]="infoData"></app-detail-section>
+      
+    </agm-info-window>
   </agm-marker>
 </agm-map>
