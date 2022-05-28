@@ -1,5 +1,5 @@
 <mat-progress-bar
-  *ngIf="loadingSrv.isLoading"
+  *ngIf="loadingSrv.isLoading|async"
   mode="indeterminate"
   color="primary"
 ></mat-progress-bar>

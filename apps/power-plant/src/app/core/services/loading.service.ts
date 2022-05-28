@@ -1,17 +1,18 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
+import { BehaviorSubject, Observable } from "rxjs";
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: "root",
 })
 export class LoadingService {
-  private _isLoading: boolean;
+  private _isLoading = new BehaviorSubject<boolean>(false);
   loading_counter = 0;
   constructor() {
-    this._isLoading = false;
+    this._isLoading.next(false);
   }
 
-  public get isLoading(): boolean {
-    return this._isLoading;
+  public get isLoading(): Observable<boolean> {
+    return this._isLoading.asObservable();
   }
 
   public show() {
@@ -20,15 +21,15 @@ export class LoadingService {
       return;
     }
     this.loading_counter++;
-    this._isLoading = true;
+    this._isLoading.next(true);
   }
-  
+
   public hide() {
     if (this.loading_counter > 1) {
       this.loading_counter--;
       return;
     }
     this.loading_counter--;
-    this._isLoading = false;
+    this._isLoading.next(false);
   }
 }
