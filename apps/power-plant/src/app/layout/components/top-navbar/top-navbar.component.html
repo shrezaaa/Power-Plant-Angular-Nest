@@ -16,9 +16,13 @@
     <li class="">
       <div class="">
         <span class="flex items-center">
-          <strong>Current Plant:&nbsp;</strong>
-          <p>Default</p>
-          <button mat-icon-button matTooltip="'Change Plant'">
+          <strong>Plant:&nbsp;</strong>
+          <p>{{ selectedPlant.PlantName }}</p>
+          <button
+            mat-icon-button
+            matTooltip="'Change Plant'"
+            (click)="onSelectPlant()"
+          >
             <mat-icon>sync</mat-icon>
           </button>
         </span>
@@ -27,7 +31,7 @@
     <li
       class="py-2 pr-2 ml-auto my-2 text-black rounded-full hover:text-yellow-600 cursor-pointer"
     >
-      <button mat-icon-button (click)="openAlarams()">
+      <button mat-icon-button (click)="openAlarms()">
         <mat-icon>notifications</mat-icon>
       </button>
     </li>

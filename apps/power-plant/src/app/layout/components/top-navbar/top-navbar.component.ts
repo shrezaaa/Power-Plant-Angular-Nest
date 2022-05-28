@@ -1,8 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { Router } from '@angular/router';
+import { PlantModel } from '../../../app-modules/plants/shared/models/plant.model';
 import { AlertService } from '../../../core/alert/alert.service';
 import { UserService } from '../../../core/services/user.service';
+import { PlantSelectDialogComponent } from '../plant-select-dialog/plant-select-dialog.component';
 
 @Component({
   selector: 'p-plant-top-navbar',
@@ -15,67 +18,44 @@ export class TopNavbarComponent implements OnInit {
   @Output() isLeftExpandedChange = new EventEmitter<boolean>();
   @Output() isRightExpandedChange = new EventEmitter<boolean>();
   pending: boolean = false;
-  breadcrump: { url: string; value: string; name: string }[] = [];
   hasProfileImg: boolean = false;
+
+  selectedPlant:Partial<PlantModel>={
+    PlantID:null,PlantName:'All'
+  }
   constructor(
     private router: Router,
     public userService: UserService,
-    private alertSrv: AlertService // private dialog: MatDialog,
-  ) // private userSrv: UserService,
-  // private userPipe: UserInfoPipe,
-  // private alertSrv: AlertService
-  // private breadcrumbPipe: BreadcrumpPipe
-  {}
+    private alertSrv: AlertService,
+    private dialog: MatDialog
+  ) {}
 
   getImageUrl(): string {
-    // return this.userPipe.transform('', 'profileImage');
     return '';
   }
 
-  ngOnInit(): void {
-    // this.pendding = true;
-    // this.userSrv.getMyInfo().subscribe(
-    //   (res) => {
-    //     this.userSrv.getUserFullInfo(res.id, res.role).subscribe(
-    //       (res2: any) => {
-    //         localStorage.setItem(
-    //           'USER_INFO',
-    //           JSON.stringify({ ...res, ...res2 })
-    //         );
-    //         this.pendding = false;
-    //       },
-    //       (e) => {
-    //         localStorage.setItem('USER_INFO', JSON.stringify({ ...res }));
-    //         this.pendding = false;
-    //       }
-    //     );
-    //   },
-    //   (e) => {
-    //     this.pendding = false;
-    //   }
-    // );
-    // this.setBreadCrumps();
-    // this.router.events.subscribe((event) => {
-    //   if (event instanceof NavigationEnd) {
-    //     this.setBreadCrumps();
-    //   }
-    // });
+  ngOnInit(): void {}
+
+  onSelectPlant() {
+    let dialogRef = this.dialog.open(PlantSelectDialogComponent, {
+      minWidth: '50vw',
+      width:'50vw',
+      height:'50vh',
+      minHeight: '50vh',
+    });
+    dialogRef.afterClosed().subscribe((value:Partial<PlantModel>)=>{
+      if(value){
+            this.onChangePlant(value)
+      }
+    })
   }
 
-  private setBreadCrumps() {
-    // try {
-    //   this.breadcrump = this.breadcrumbPipe.transform([]).map((i) => {
-    //     return {
-    //       name: i && i.name ? i.name : '',
-    //       url: i && i.url ? i.url : '',
-    //       value: i && i.value ? i.value : '',
-    //     };
-    //   });
-    // } catch {}
+  onChangePlant(value){
+    this.selectedPlant=value
   }
 
-  openAlarams(){
-    this.isRightExpandedChange.emit(true)
+  openAlarms() {
+    this.isRightExpandedChange.emit(true);
   }
 
   onEditProfile(menu: MatMenuTrigger) {
@@ -87,6 +67,5 @@ export class TopNavbarComponent implements OnInit {
     this.userService.onLogout();
     this.router.navigate(['auth/login']);
     this.alertSrv.showToaster('You logged out Successfully!', 'INFO');
-    // this.router.navigate(['/auth/login']);
   }
 }

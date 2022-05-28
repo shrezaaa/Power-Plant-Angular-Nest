@@ -16,6 +16,11 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { SharedModule } from '../shared/shared.module';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { PlantSelectDialogComponent } from './components/plant-select-dialog/plant-select-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const matModules = [
   MatSidenavModule,
@@ -26,7 +31,10 @@ const matModules = [
   MatListModule,
   MatDividerModule,
   MatMenuModule,
+  MatDialogModule,
   MatProgressBarModule,
+  MatFormFieldModule,
+  MatInputModule,
 ];
 
 @NgModule({
@@ -35,8 +43,16 @@ const matModules = [
     SidenavComponent,
     LoadingBarComponent,
     TopNavbarComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    PlantSelectDialogComponent,
   ],
-  imports: [CommonModule, LayoutRoutingModule, matModules, SharedModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
+    LayoutRoutingModule,
+    matModules,
+    SharedModule,
+  ],
 })
 export class LayoutModule {}
