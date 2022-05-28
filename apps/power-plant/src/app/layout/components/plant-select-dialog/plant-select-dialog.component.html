@@ -1,0 +1,47 @@
+<div class="w-full h-full flex flex-col">
+  <div class="mr-3 mt-0 mb-1 flex">
+    <h5 class="mb-0 align-self-center">Select Plant</h5>
+    <button class="ml-auto" mat-icon-button [mat-dialog-close]="true">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <hr class="mb-1" />
+  <section class="flex items-center">
+    <p class="mb-2">Filters:&nbsp;&nbsp;</p>
+    <form [formGroup]="form">
+      <mat-form-field appearance="outline">
+        <mat-label>Plant Name</mat-label>
+        <input matInput formControlName="PlantName" />
+      </mat-form-field>
+    </form>
+  </section>
+  <!-- <hr> -->
+  <p-plant-list-selection
+    [data]="selectionPlants"
+    [(selected)]="selectedPlant"
+    [labelProp]="'PlantName'"
+    [loading]="selectionLoading"
+  ></p-plant-list-selection>
+
+  <div class="container flex justify-center w-full mt-auto mb-1">
+    <button
+      mat-button
+      color="warn"
+      class="mr-2"
+      type="button"
+      [mat-dialog-close]="true"
+    >
+      Cancel
+    </button>
+    <button
+      mat-stroked-button
+      color="primary"
+      class="ml-2"
+      [disabled]="!selectedPlant"
+      type="submit"
+        (click)="onSubmit()"
+      >
+      Submit
+    </button>
+  </div>
+</div>
