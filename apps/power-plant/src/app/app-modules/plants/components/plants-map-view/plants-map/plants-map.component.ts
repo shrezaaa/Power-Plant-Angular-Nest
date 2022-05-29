@@ -78,7 +78,7 @@ export class PlantsMapComponent implements AfterViewInit, OnChanges {
       },
       {
         name: 'Is Active?',
-        value: plant.IsActive,
+        value: plant.IsActiveName,
       },
       {
         name: 'Installed Power',

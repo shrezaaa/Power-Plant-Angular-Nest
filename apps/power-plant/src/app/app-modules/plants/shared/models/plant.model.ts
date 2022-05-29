@@ -10,6 +10,7 @@ export class PlantModel {
   Phone;
   Description;
   IsActive;
+  IsActiveName;
   constructor(el) {
     this.PlantID = el?.PlantID;
     this.PlantName = el?.PlantName;
@@ -21,6 +22,7 @@ export class PlantModel {
     this.Address = el?.Address;
     this.Phone = el?.Phone;
     this.Description = el?.Description;
-    this.IsActive = el.IsActive ? 'Yes' : 'No';
+    this.IsActive = el?.this.IsActive;
+    this.IsActiveName = el.IsActive ? 'Yes' : 'No';
   }
 }
