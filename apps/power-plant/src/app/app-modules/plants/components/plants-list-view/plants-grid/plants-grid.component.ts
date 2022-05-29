@@ -33,7 +33,7 @@ export class PlantsGridComponent implements OnInit, OnChanges {
     { field: 'RealProduction', headerName: 'Real Production', flex: 1 },
     { field: 'Address', headerName: 'Address', flex: 1 },
     { field: 'Phone', headerName: 'Phone', flex: 1 },
-    { field: 'IsActive', headerName: 'IsActive', flex: 1 },
+    { field: 'IsActiveName', headerName: 'IsActive', flex: 1 },
     {
       field: 'Alarm',
       flex: 1,

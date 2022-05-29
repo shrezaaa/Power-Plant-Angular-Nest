@@ -10,6 +10,7 @@ export class Unit {
   StartAddress;
   DeviceNoInIP;
   IsActive;
+  IsActiveName;
   setAddress;
   getAddress;
   constructor(element) {
@@ -24,6 +25,7 @@ export class Unit {
     this.StartAddress = element?.StartAddress;
     this.DeviceNoInIP = element?.DeviceNoInIP;
     this.IsActive = element?.IsActive;
+    this.IsActive = element.IsActive ? 'Yes' : 'No';
     this.setAddress = element?.setAddress;
     this.getAddress = element?.getAddress;
   }
