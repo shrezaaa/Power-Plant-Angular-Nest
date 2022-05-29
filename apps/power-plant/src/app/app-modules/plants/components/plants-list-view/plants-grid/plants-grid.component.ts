@@ -14,6 +14,7 @@ import {
   ICellRendererParams,
 } from 'ag-grid-community';
 import { PlantModel } from '../../../shared/models/plant.model';
+import { ActionCellComponent } from './action-cell/action-cell.component';
 import { AlarmCellComponent } from './alarm-cell/alarm-cell.component';
 
 @Component({
@@ -33,16 +34,13 @@ export class PlantsGridComponent implements OnInit, OnChanges {
     { field: 'RealProduction', headerName: 'Real Production', flex: 1 },
     { field: 'Address', headerName: 'Address', flex: 1 },
     { field: 'Phone', headerName: 'Phone', flex: 1 },
-    { field: 'IsActiveName', headerName: 'IsActive', flex: 1 },
+    { field: 'IsActiveName', headerName: 'Is Active', flex: 1 },
     {
-      field: 'Alarm',
+      field: 'actions',
+      headerName: 'Actions',
       flex: 1,
       cellRendererSelector: function (params: ICellRendererParams) {
-        const myCustom = {
-          component: AlarmCellComponent,
-        };
-        if ([1, 2, 3].includes(params.data.Alarm)) return myCustom;
-        else return undefined;
+        return { component: ActionCellComponent };
       },
     },
   ];
