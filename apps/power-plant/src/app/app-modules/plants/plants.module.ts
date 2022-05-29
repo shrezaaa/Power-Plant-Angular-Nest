@@ -15,8 +15,15 @@ import { PlantsGridComponent } from './components/plants-list-view/plants-grid/p
 import { AgGridModule } from 'ag-grid-angular';
 import { AlarmCellComponent } from './components/plants-list-view/plants-grid/alarm-cell/alarm-cell.component';
 import { AgmCoreModule } from '@agm/core';
+import { ActionCellComponent } from './components/plants-list-view/plants-grid/action-cell/action-cell.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
-const matModules = [MatFormFieldModule, MatInputModule, MatSelectModule];
+const matModules = [
+  MatFormFieldModule,
+  MatInputModule,
+  MatSelectModule,
+  MatTooltipModule,
+];
 @NgModule({
   declarations: [
     PlantsRoutingComponent,
@@ -25,6 +32,7 @@ const matModules = [MatFormFieldModule, MatInputModule, MatSelectModule];
     PlantsMapViewComponent,
     PlantsGridComponent,
     AlarmCellComponent,
+    ActionCellComponent,
   ],
   imports: [
     CommonModule,
