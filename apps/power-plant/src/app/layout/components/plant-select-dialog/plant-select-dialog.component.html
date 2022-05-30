@@ -18,8 +18,9 @@
   <!-- <hr> -->
   <p-plant-list-selection
     [data]="selectionPlants"
-    [(selected)]="selectedPlant"
+    (selectedObjectChange)="onSelectPlant($event)"
     [labelProp]="'PlantName'"
+    [valueProp]="'PlantID'"
     [loading]="selectionLoading"
   ></p-plant-list-selection>
 
@@ -39,8 +40,8 @@
       class="ml-2"
       [disabled]="!selectedPlant"
       type="submit"
-        (click)="onSubmit()"
-      >
+      (click)="onSubmit()"
+    >
       Submit
     </button>
   </div>

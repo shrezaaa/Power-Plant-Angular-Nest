@@ -56,7 +56,7 @@ export class PlantsMapComponent implements AfterViewInit, OnChanges {
     map.invalidateSize();
   }
 
-  onSelectPlant(infoWindow, plant: PlantModel) {    
+  onSelectPlant(infoWindow, plant: PlantModel) {
     if (this.gm.lastOpen != null) {
       this.gm.lastOpen.close();
     }
