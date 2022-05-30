@@ -17,6 +17,10 @@ const routes: Routes = [
       {
         path: 'map',
         component: PlantsMapViewComponent,
+      }, 
+      {
+        path: 'map/:id',
+        component: PlantsMapViewComponent,
       },
     ],
   },
