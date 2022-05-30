@@ -17,7 +17,7 @@
       <div class="">
         <span class="flex items-center">
           <strong>Plant:&nbsp;</strong>
-          <p>{{ selectedPlant.PlantName }}</p>
+          <p>{{ (sharedService.selectedPlant | async).PlantName }}</p>
           <button
             mat-icon-button
             matTooltip="'Change Plant'"

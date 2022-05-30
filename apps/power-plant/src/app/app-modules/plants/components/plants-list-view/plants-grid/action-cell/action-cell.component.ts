@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { ICellRendererParams } from 'ag-grid-community';
+import { SharedService } from 'apps/power-plant/src/app/shared/services/shared.service';
 import { PlantModel } from '../../../../shared/models/plant.model';
 
 @Component({
@@ -14,7 +15,10 @@ export class ActionCellComponent implements OnInit, ICellRendererAngularComp {
   field: string;
   rowData: PlantModel;
   cellData: any;
-  constructor(private readonly router: Router) {}
+  constructor(
+    private readonly router: Router,
+    private readonly sharedService: SharedService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -32,5 +36,9 @@ export class ActionCellComponent implements OnInit, ICellRendererAngularComp {
 
   openPlantMap(PlantID: number) {
     this.router.navigate([`plants/map/${PlantID}`]);
+  }
+
+  onSetAsCurrent(plant: PlantModel) {
+    this.sharedService.setSelectedPlant(plant);
   }
 }
