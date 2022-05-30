@@ -55,7 +55,6 @@ export class PlantsMapViewComponent implements OnInit {
         //todo: refactor needed
         const { id } = this.route.snapshot.params;
         this.selectedPlantID = id;
-        this.selectedPlant = value.find((el) => el.PlantID == id);
       });
   }
 

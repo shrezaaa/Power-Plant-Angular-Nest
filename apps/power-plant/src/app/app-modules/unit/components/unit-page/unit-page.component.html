@@ -46,9 +46,9 @@
         <p-plant-list-selection
           class="overflow-auto"
           [data]="units"
-          [(selected)]="selectedUnit"
-          (selectedChange)="onSelectUnit($event)"
+          (selectedObjectChange)="onSelectUnit($event)"
           [labelProp]="'DeviceTitle'"
+          [valueProp]="'DeviceID'"
         ></p-plant-list-selection>
       </div>
     </div>
