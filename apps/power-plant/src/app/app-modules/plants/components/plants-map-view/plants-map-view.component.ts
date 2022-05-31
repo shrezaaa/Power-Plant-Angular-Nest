@@ -26,7 +26,7 @@ export class PlantsMapViewComponent implements OnInit {
     private readonly plantsService: PlantsService,
     private readonly route: ActivatedRoute,
     private readonly router: Router,
-    private cdr:ChangeDetectorRef
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -51,18 +51,19 @@ export class PlantsMapViewComponent implements OnInit {
         this.selectionLoading = false;
         if (firstLoad) this.allPlants = value;
         this.selectionPlants = value;
-        this.cdr.detectChanges()
+        this.cdr.detectChanges();
         //todo: refactor needed
-        const { id } = this.route.snapshot.params;
+        const { id } = this.route.snapshot.queryParams;
         this.selectedPlantID = id;
       });
   }
 
   onSelectPlant(event: PlantModel) {
     this.selectedPlantID = event.PlantID;
-    const { id } = this.route.snapshot.params;
-    this.router.navigate([`${id ? '../' : './'}${event.PlantID}`], {
+    this.router.navigate([], {
       relativeTo: this.route,
+      queryParams: { id: event.PlantID },
+      replaceUrl: true,
     });
   }
 }
