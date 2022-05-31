@@ -35,7 +35,7 @@ export class ActionCellComponent implements OnInit, ICellRendererAngularComp {
   }
 
   openPlantMap(PlantID: number) {
-    this.router.navigate([`plants/map/${PlantID}`]);
+    this.router.navigate([`plants/map`], { queryParams: { id: PlantID } });
   }
 
   onSetAsCurrent(plant: PlantModel) {
