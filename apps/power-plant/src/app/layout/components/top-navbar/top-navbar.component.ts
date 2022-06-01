@@ -1,3 +1,4 @@
+import { MediaMatcher } from '@angular/cdk/layout';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatMenuTrigger } from '@angular/material/menu';
@@ -20,6 +21,8 @@ export class TopNavbarComponent implements OnInit {
   @Output() isRightExpandedChange = new EventEmitter<boolean>();
   pending: boolean = false;
   hasProfileImg: boolean = false;
+
+  @Input('mobileQuery') mobileQuery: MediaQueryList;
 
   constructor(
     private router: Router,

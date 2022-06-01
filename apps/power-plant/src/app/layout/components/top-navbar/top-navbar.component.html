@@ -13,8 +13,19 @@
       </nz-breadcrumb-item>
     </nz-breadcrumb> -->
     </li>
+    <li *ngIf="mobileQuery.matches" >
+      <button
+        style="margin-left: auto"
+        mat-icon-button
+        (click)="
+          isLeftExpanded = !isLeftExpanded;
+          isLeftExpandedChange.emit(isLeftExpanded)
+        "
+      >
+        <mat-icon> menu </mat-icon>
+      </button>
+    </li>
     <li class="">
-      <div class="">
         <span class="flex items-center">
           <strong>Plant:&nbsp;</strong>
           <p>{{ (sharedService.selectedPlant | async).PlantName }}</p>
@@ -26,7 +37,6 @@
             <mat-icon>sync</mat-icon>
           </button>
         </span>
-      </div>
     </li>
     <li
       class="py-2 pr-2 ml-auto my-2 text-black rounded-full hover:text-yellow-600 cursor-pointer"

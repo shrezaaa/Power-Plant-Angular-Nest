@@ -1,14 +1,19 @@
 <mat-drawer-container class="w-screen h-screen m-0 p-0">
   <mat-drawer
+  (openedChange)="onOpenedChange($event)"
     id="left-drawer"
-    mode="side"
+    [mode]="mobileQuery.matches ? 'over' : 'side'"
     position="start"
-    [opened]="true"
-    [ngClass]="{ 'w-[65px]': !isLeftExpanded, 'w-[250px]': isLeftExpanded }"
+    [opened]="mobileQuery.matches ? isLeftExpanded : true"
+    [ngClass]="{
+      'w-[65px]': !isLeftExpanded && !mobileQuery.matches,
+      'w-[250px]': isLeftExpanded || mobileQuery.matches
+    }"
     class="w-[250px] bg-gray-100"
     style="border: none"
   >
     <p-plant-sidenav
+      [mobileQuery]="mobileQuery"
       [(isLeftExpanded)]="isLeftExpanded"
       [isRightExpanded]="isRightExpanded"
       (isLeftExpandedChange)="saveLeftState()"
@@ -23,8 +28,11 @@
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero nisi magni,
     quo, quas omnis dolor
   </mat-drawer>
-  <mat-drawer-content [style.margin-left.px]="isLeftExpanded ? 250 : 65">
+  <mat-drawer-content
+    [style.margin-left.px]="mobileQuery.matches ? 0 : isLeftExpanded ? 250 : 65"
+  >
     <p-plant-top-navbar
+      [mobileQuery]="mobileQuery"
       [(isLeftExpanded)]="isLeftExpanded"
       [(isRightExpanded)]="isRightExpanded"
       (isLeftExpandedChange)="saveLeftState()"
