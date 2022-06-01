@@ -22,7 +22,9 @@ export class LayoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLeftExpanded =
-      localStorage.getItem('FOLDED') == 'true' ? true : false;
+      localStorage.getItem('FOLDED') == 'true' && !this.mobileQuery.matches
+        ? true
+        : false;
   }
 
   saveLeftState() {
