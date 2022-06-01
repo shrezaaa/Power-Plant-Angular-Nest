@@ -44,6 +44,11 @@ export class PlantSelectDialogComponent implements OnInit {
       });
   }
 
+  onSelectPlant($event){
+    console.log($event);
+    this.selectedPlant=$event
+  }
+
   onSubmit() {
     this.dialogRef.close(this.selectedPlant);
   }

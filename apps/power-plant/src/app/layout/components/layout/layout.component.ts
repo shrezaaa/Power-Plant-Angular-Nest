@@ -11,13 +11,27 @@ import { LayoutService } from '../../shared/services/layout.service';
 export class LayoutComponent implements OnInit {
   isLeftExpanded = true;
   isRightExpanded = false;
-  constructor(private layoutService: LayoutService) {}
+  mobileQuery: MediaQueryList;
+
+  constructor(
+    private layoutService: LayoutService,
+    private media: MediaMatcher
+  ) {
+    this.mobileQuery = media.matchMedia('(max-width: 768px)'); //md support
+  }
+
   ngOnInit(): void {
     this.isLeftExpanded =
-      localStorage.getItem('FOLDED') == 'true' ? true : false;
+      localStorage.getItem('FOLDED') == 'true' && !this.mobileQuery.matches
+        ? true
+        : false;
   }
 
   saveLeftState() {
     localStorage.setItem('FOLDED', this.isLeftExpanded.toString());
+  }
+
+  onOpenedChange(event) {
+    if (this.mobileQuery.matches) this.isLeftExpanded = event;
   }
 }
