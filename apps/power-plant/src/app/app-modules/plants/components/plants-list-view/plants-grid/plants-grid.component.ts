@@ -49,7 +49,7 @@ export class PlantsGridComponent implements OnInit, OnChanges {
     },
     { field: 'Address', headerName: 'Address', flex: 1, minWidth: 200 },
     { field: 'Phone', headerName: 'Phone', flex: 1, minWidth: 150 },
-    { field: 'IsActiveName', headerName: 'Is Active', flex: 1, minWidth: 70 },
+    { field: 'IsActiveName', headerName: 'Is Active', flex: 1, minWidth: 120 },
     {
       field: 'actions',
       headerName: 'Actions',
