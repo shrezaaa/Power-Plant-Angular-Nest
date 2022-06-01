@@ -28,17 +28,18 @@ export class PlantsGridComponent implements OnInit, OnChanges {
 
   gridApi: GridReadyEvent;
   columnDefs: Array<ColDef> = [
-    { field: 'PlantName', headerName: 'Name.', flex: 1 },
-    { field: 'InstalledPower', headerName: 'Installed Power', flex: 1 },
-    { field: 'NormalProduction', headerName: 'Normal Production', flex: 1 },
-    { field: 'RealProduction', headerName: 'Real Production', flex: 1 },
-    { field: 'Address', headerName: 'Address', flex: 1 },
-    { field: 'Phone', headerName: 'Phone', flex: 1 },
-    { field: 'IsActiveName', headerName: 'Is Active', flex: 1 },
+    { field: 'PlantName', headerName: 'Name.', flex: 1,minWidth:130 },
+    { field: 'InstalledPower', headerName: 'Installed Power', flex: 1,minWidth:100 },
+    { field: 'NormalProduction', headerName: 'Normal Production', flex: 1,minWidth:100 },
+    { field: 'RealProduction', headerName: 'Real Production', flex: 1,minWidth:100 },
+    { field: 'Address', headerName: 'Address', flex: 1,minWidth:200 },
+    { field: 'Phone', headerName: 'Phone', flex: 1,minWidth:150 },
+    { field: 'IsActiveName', headerName: 'Is Active', flex: 1,minWidth:70 },
     {
       field: 'actions',
       headerName: 'Actions',
       flex: 1,
+      minWidth:150,
       cellRendererSelector: function (params: ICellRendererParams) {
         return { component: ActionCellComponent };
       },
