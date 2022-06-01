@@ -1,6 +1,6 @@
-<div class="sticky top-0 w-full p-1">
-  <div class="flex w-full justify-between">
-    <form [formGroup]="filterForm" class="flex items-center grow">
+<div class="w-full p-1">
+  <div class="flex-container w-full justify-between">
+    <form [formGroup]="filterForm" class="flex items-center grow flex-wrap">
       <mat-form-field class="w-full sm:w-[205px] px-1" appearance="outline">
         <mat-label>Date</mat-label>
         <input
@@ -15,14 +15,14 @@
         ></mat-datepicker-toggle>
         <ngx-mat-datetime-picker #picker> </ngx-mat-datetime-picker>
       </mat-form-field>
-      <section class="px-1">
+      <section class="w-full md:w-[205px] px-1">
         <mat-checkbox class="" formControlName="isNormalized"
           >Display Normalized Data</mat-checkbox
         >
       </section>
     </form>
 
-    <div class="flex items-center grow justify-end">
+    <div class="flex items-center min-w-full md:min-w-0 md:grow justify-end">
       <button mat-icon-button><mat-icon>fullscreen</mat-icon></button>
       <button mat-icon-button (click)="getData()">
         <mat-icon>refresh</mat-icon>
@@ -33,7 +33,7 @@
 </div>
 <div class="flex flex-col w-full h-full">
   <ng-container *ngIf="deviceID; else deviceNotSelected">
-    <div class="basis-1/2 w-full flex">
+    <div class="basis-1/2 w-full flex flex-col md:flex-row">
       <div class="basis-1/2">
         <p-plant-unit-yield-chart
           [data]="PowerChartData"
@@ -48,13 +48,13 @@
       </div>
     </div>
 
-    <div class="basis-1/2 w-full">
+    <div class="min-h-[400px] md:min-h-0 basis-1/2 w-full">
       <p-plant-inv-unit-table></p-plant-inv-unit-table>
     </div>
   </ng-container>
 
   <ng-template #deviceNotSelected>
-    <div class="h-full self-center flex items-center">
+    <div class="p-4 h-full self-center flex items-center">
       Please Select a Device
     </div>
   </ng-template>
