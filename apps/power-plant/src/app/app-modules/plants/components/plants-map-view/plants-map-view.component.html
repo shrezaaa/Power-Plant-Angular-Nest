@@ -1,7 +1,6 @@
-<div class="flex flex-col h-full">
-  <div class="flex-1 grid grid-cols-12">
+  <div class="h-full flex flex-col md:grid md:grid-cols-12 overflow-auto">
     <div
-      class="col-span-5 md:col-span-3 lg:col-span-2 w-full h-full flex flex-wrap p-2 pr-1"
+      class="w-full min-h-[500px] max-h-96 md:max-h-full md:h-full col-span-12 md:col-span-3 lg:col-span-2 flex flex-wrap p-2 pr-1 overflow-auto"
     >
       <div
         class="w-full h-full bg-white bg-gradient-to-r rounded-sm shadow-md flex flex-col"
@@ -37,24 +36,27 @@
       </div>
     </div>
     <div
-      class="col-span-7 md:col-span-9 lg:col-span-10 w-full h-full flex flex-wrap p-2"
+      class="w-full min-h-[500px] md:h-full col-span-12 md:col-span-9 lg:col-span-10 flex flex-wrap p-2"
     >
       <div
         class="w-full h-full bg-white bg-gradient-to-r rounded-sm shadow-md flex flex-col p-2 pt-1"
       >
         <!--filters-->
         <div class="w-full p-1">
-          <div class="flex w-full justify-between">
-            <div class="flex items-center grow"></div>
+          <div class="flex-container w-full justify-between">
+            <form class="flex items-center grow flex-wrap"></form>
 
-            <!-- <div class="flex items-center grow justify-end">
-              <button mat-icon-button><mat-icon>fullscreen</mat-icon></button>
-            </div> -->
+            <div class="flex items-center min-w-full md:min-w-0 md:grow justify-end">
+              <!-- <button mat-icon-button><mat-icon>fullscreen</mat-icon></button> -->
+              <!-- <button mat-icon-button (click)="getData()">
+                <mat-icon>refresh</mat-icon>
+              </button> -->
+            </div>
           </div>
           <hr />
         </div>
 
-        <div class="grow p-1">
+        <div class="md:min-h-0 grow p-1">
           <p-plant-plants-map
             [plantsList]="allPlants"
             [selectedPlantID]="selectedPlantID"
@@ -63,4 +65,3 @@
       </div>
     </div>
   </div>
-</div>
