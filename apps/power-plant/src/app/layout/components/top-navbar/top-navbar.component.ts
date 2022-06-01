@@ -40,10 +40,10 @@ export class TopNavbarComponent implements OnInit {
 
   onSelectPlant() {
     let dialogRef = this.dialog.open(PlantSelectDialogComponent, {
-      minWidth: '50vw',
-      width: '50vw',
-      height: '50vh',
-      minHeight: '50vh',
+      // minWidth: '50vw',
+      // width: '50vw',
+      // height: '50vh',
+      // minHeight: '50vh',
     });
     dialogRef.afterClosed().subscribe((value: Partial<PlantModel>) => {
       if (value) {
