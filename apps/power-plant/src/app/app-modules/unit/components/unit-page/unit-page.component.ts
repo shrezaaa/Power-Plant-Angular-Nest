@@ -49,9 +49,6 @@ export class UnitPageComponent implements OnInit {
       .subscribe(() => {
         this.getUnitSelections();
       });
-    // this.deviceTypeControlRef.valueChanges.subscribe((value) => {
-    //   this.getUnitSelections();
-    // });
     this.getUnitSelections();
   }
 
