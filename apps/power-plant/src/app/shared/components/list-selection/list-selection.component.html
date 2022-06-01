@@ -3,7 +3,7 @@
     <ng-container *ngFor="let item of data">
       <button
         [ngClass]="
-          item[labelProp] == (selectedObject ? selectedObject[labelProp] : '')
+          item[valueProp] == (selectedValue ?? '')
             ? ' bg-gray-200 rounded-sm'
             : 'hover:bg-gray-100 hover:text-blue-700'
         "
@@ -18,9 +18,7 @@
   </ng-container>
   <ng-template #isLoading>
     <div class="flex flex-col h-100 w-100">
-      <div class="pt-4 text-center self-center">
-        Loading
-      </div>
+      <div class="pt-4 text-center self-center">Loading</div>
     </div>
   </ng-template>
 </div>

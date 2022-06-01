@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SelectData } from 'apps/power-plant/src/app/shared/types/select-data';
 import { debounceTime, map } from 'rxjs';
 import { PlantModel } from '../../shared/models/plant.model';
@@ -11,7 +12,7 @@ import { PlantsService } from '../../shared/services/plants.service';
   styleUrls: ['./plants-map-view.component.scss'],
 })
 export class PlantsMapViewComponent implements OnInit {
-  selectedPlant: SelectData;
+  selectedPlant: any;
   selectedPlantID: number;
   allPlants: Array<PlantModel> = [];
   selectionPlants: Array<PlantModel> = [];
@@ -22,7 +23,10 @@ export class PlantsMapViewComponent implements OnInit {
 
   constructor(
     private readonly fb: FormBuilder,
-    private readonly plantsService: PlantsService
+    private readonly plantsService: PlantsService,
+    private readonly route: ActivatedRoute,
+    private readonly router: Router,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -35,7 +39,7 @@ export class PlantsMapViewComponent implements OnInit {
   }
 
   getPlantSelectionData(firstLoad?: boolean) {
-    if(firstLoad)this.selectionLoading = true;
+    if (firstLoad) this.selectionLoading = true;
     this.plantsService
       .getPlants(!firstLoad ? this.plantSelectionForm.value : {})
       .pipe(
@@ -43,14 +47,23 @@ export class PlantsMapViewComponent implements OnInit {
           return res.map((el) => new PlantModel(el));
         })
       )
-      .subscribe((value) => {
+      .subscribe((value: Array<PlantModel>) => {
         this.selectionLoading = false;
         if (firstLoad) this.allPlants = value;
         this.selectionPlants = value;
+        this.cdr.detectChanges();
+        //todo: refactor needed
+        const { id } = this.route.snapshot.queryParams;
+        this.selectedPlantID = id;
       });
   }
 
-  onSelectPlant(event: PlantModel) {    
+  onSelectPlant(event: PlantModel) {
     this.selectedPlantID = event.PlantID;
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { id: event.PlantID },
+      replaceUrl: true,
+    });
   }
 }

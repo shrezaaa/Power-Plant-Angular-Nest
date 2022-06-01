@@ -1,3 +1,4 @@
+import { MediaMatcher } from '@angular/cdk/layout';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatMenuTrigger } from '@angular/material/menu';
@@ -5,6 +6,7 @@ import { Router } from '@angular/router';
 import { PlantModel } from '../../../app-modules/plants/shared/models/plant.model';
 import { AlertService } from '../../../core/alert/alert.service';
 import { UserService } from '../../../core/services/user.service';
+import { SharedService } from '../../../shared/services/shared.service';
 import { PlantSelectDialogComponent } from '../plant-select-dialog/plant-select-dialog.component';
 
 @Component({
@@ -20,12 +22,12 @@ export class TopNavbarComponent implements OnInit {
   pending: boolean = false;
   hasProfileImg: boolean = false;
 
-  selectedPlant:Partial<PlantModel>={
-    PlantID:null,PlantName:'All'
-  }
+  @Input('mobileQuery') mobileQuery: MediaQueryList;
+
   constructor(
     private router: Router,
     public userService: UserService,
+    public sharedService: SharedService,
     private alertSrv: AlertService,
     private dialog: MatDialog
   ) {}
@@ -39,19 +41,15 @@ export class TopNavbarComponent implements OnInit {
   onSelectPlant() {
     let dialogRef = this.dialog.open(PlantSelectDialogComponent, {
       minWidth: '50vw',
-      width:'50vw',
-      height:'50vh',
+      width: '50vw',
+      height: '50vh',
       minHeight: '50vh',
     });
-    dialogRef.afterClosed().subscribe((value:Partial<PlantModel>)=>{
-      if(value){
-            this.onChangePlant(value)
+    dialogRef.afterClosed().subscribe((value: Partial<PlantModel>) => {
+      if (value) {
+        this.sharedService.setSelectedPlant(value);
       }
-    })
-  }
-
-  onChangePlant(value){
-    this.selectedPlant=value
+    });
   }
 
   openAlarms() {

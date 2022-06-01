@@ -8,19 +8,23 @@ import { SelectData } from '../../types/select-data';
 })
 export class ListSelectionComponent implements OnInit {
   @Input('data') data: Array<any> = [];
-  // @Input('valueProp') valueProp: string;
+  @Input('valueProp') valueProp: string = 'value';
   @Input('labelProp') labelProp: string = 'name';
-  @Input('selected') selectedObject: any = null;
-  @Output('selectedChange') selectedChange = new EventEmitter<any>();
+  @Input('selectedValue') selectedValue: any;
+  @Output('selectedValueChange') selectedValueChange = new EventEmitter<any>();
+
+  @Output('selectedObjectChange') selectedObjectChange =
+    new EventEmitter<any>();
 
   @Input('loading') loading: boolean = false;
-  
+
   constructor() {}
 
   ngOnInit(): void {}
 
   onSelectItem(item) {
-    this.selectedObject = item;
-    this.selectedChange.emit(item);
+    this.selectedValue = item[this.valueProp];
+    this.selectedValueChange.emit(this.selectedValue);
+    this.selectedObjectChange.emit(item);
   }
 }

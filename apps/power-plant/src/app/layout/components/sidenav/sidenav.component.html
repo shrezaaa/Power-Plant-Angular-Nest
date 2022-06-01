@@ -1,4 +1,4 @@
-<ng-container *ngIf="isLeftExpanded; else noExpand">
+<ng-container *ngIf="isLeftExpanded || mobileQuery.matches; else noExpand">
   <div class="w-full h-full bg-white flex flex-col">
     <div
       class="p-2 flex justify-start items-center mx-2"
