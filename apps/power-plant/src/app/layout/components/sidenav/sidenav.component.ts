@@ -13,7 +13,7 @@ export class SidenavComponent implements OnInit {
   readonly ACCESS_LIST = ['M', 'S', 'T'];
 
   data: SidenavNode[] = [];
-
+  @Input('mobileQuery') mobileQuery: MediaQueryList;
   @Input() isLeftExpanded: boolean = false;
   @Input() isRightExpanded: boolean = false;
   @Output() isLeftExpandedChange = new EventEmitter<boolean>();
