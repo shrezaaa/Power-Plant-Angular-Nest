@@ -1,65 +1,64 @@
-<div class="flex flex-col h-full">
-  <div class="flex-1 grid grid-cols-12">
+<div class="h-full flex flex-col md:grid md:grid-cols-12 overflow-auto">
+  <div
+    class="w-full min-h-[500px] max-h-96 md:max-h-full md:h-full col-span-12 md:col-span-3 lg:col-span-2 flex flex-wrap p-2 pr-1 overflow-auto"
+  >
     <div
-      class="col-span-5 md:col-span-3 lg:col-span-2 w-full h-full flex flex-wrap p-2 pr-1"
+      class="w-full h-full bg-white bg-gradient-to-r rounded-sm shadow-md flex flex-col"
     >
-      <div
-        class="w-full h-full bg-white bg-gradient-to-r rounded-sm shadow-md flex flex-col"
+      <form
+        class="w-full h-16 p-2"
+        [formGroup]="plantSelectionForm"
+        (ngSubmit)="getPlantSelectionData()"
       >
-        <form
-          class="w-full h-16 p-2"
-          [formGroup]="plantSelectionForm"
-          (ngSubmit)="getPlantSelectionData()"
-        >
-          <mat-form-field
-            class="w-full"
-            appearance="outline"
-            floatLabel="never"
-          >
-            <mat-label> Search Plant</mat-label>
-            <input matInput formControlName="PlantName" />
-            <button mat-icon-button matSuffix>
-              <mat-icon>search</mat-icon>
-            </button>
-          </mat-form-field>
-        </form>
+        <mat-form-field class="w-full" appearance="outline" floatLabel="never">
+          <mat-label> Search Plant</mat-label>
+          <input matInput formControlName="PlantName" />
+          <button mat-icon-button matSuffix>
+            <mat-icon>search</mat-icon>
+          </button>
+        </mat-form-field>
+      </form>
 
-        <hr class="mt-1" />
+      <hr class="mt-1" />
 
-        <p-plant-list-selection
-          [data]="selectionPlants"
-          [(selectedValue)]="selectedPlantID"
-          (selectedObjectChange)="onSelectPlant($event)"
-          [labelProp]="'PlantName'"
-          [valueProp]="'PlantID'"
-          [loading]="selectionLoading"
-        ></p-plant-list-selection>
-      </div>
+      <p-plant-list-selection
+        [data]="selectionPlants"
+        [(selectedValue)]="selectedPlantID"
+        (selectedObjectChange)="onSelectPlant($event)"
+        [labelProp]="'PlantName'"
+        [valueProp]="'PlantID'"
+        [loading]="selectionLoading"
+      ></p-plant-list-selection>
     </div>
+  </div>
+  <div
+    class="w-full min-h-[500px] md:h-full col-span-12 md:col-span-9 lg:col-span-10 flex flex-wrap p-2"
+  >
     <div
-      class="col-span-7 md:col-span-9 lg:col-span-10 w-full h-full flex flex-wrap p-2 pl-1"
+      class="w-full h-full bg-white bg-gradient-to-r rounded-sm shadow-md flex flex-col p-2 pt-1"
     >
-      <div
-        class="w-full h-full bg-white bg-gradient-to-r rounded-sm shadow-md flex flex-col p-2 pt-1"
-      >
-        <!--filters-->
-        <div class="sticky top-0 w-full p-1">
-          <div class="flex w-full justify-between">
-            <div class="flex items-center grow"></div>
+      <!--filters-->
+      <div class="w-full p-1">
+        <div class="flex-container w-full justify-between">
+          <form class="flex items-center grow flex-wrap"></form>
 
-            <div class="flex items-center grow justify-end">
-              <button mat-icon-button><mat-icon>fullscreen</mat-icon></button>
-            </div>
+          <div
+            class="flex items-center min-w-full md:min-w-0 md:grow justify-end"
+          >
+            <!-- <button mat-icon-button><mat-icon>fullscreen</mat-icon></button> -->
+            <!-- <button mat-icon-button (click)="getData()">
+                <mat-icon>refresh</mat-icon>
+              </button> -->
           </div>
-          <hr />
         </div>
+        <hr />
+      </div>
 
-        <div class="grow p-1">
-          <p-plant-plants-map
-            [plantsList]="allPlants"
-            [selectedPlantID]="selectedPlantID"
-          ></p-plant-plants-map>
-        </div>
+      <div class="md:min-h-0 grow p-1">
+        <p-plant-plants-map
+          [plantsList]="allPlants"
+          [selectedPlantID]="selectedPlantID"
+        ></p-plant-plants-map>
       </div>
     </div>
   </div>

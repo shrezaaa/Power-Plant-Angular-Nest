@@ -1,68 +1,70 @@
-<div class="flex flex-col h-full w-full">
-  <div class="w-full h-full flex flex-wrap p-2">
-    <div
-      class="w-full h-full bg-white bg-gradient-to-r rounded-sm shadow-md flex flex-col"
-    >
-      <!--Filters-->
-      <div class="sticky top-0 w-full p-1">
-        <div class="flex w-full justify-between">
-          <form [formGroup]="form" class="flex items-center grow">
+<div class="w-full h-full flex flex-wrap p-2">
+  <div
+    class="w-full h-full bg-white bg-gradient-to-r rounded-sm shadow-md flex flex-col"
+  >
+    <!--Filters-->
+    <div class="w-full p-1">
+      <div class="flex-container w-full justify-between">
+        <form [formGroup]="form" class="flex items-center grow md:min-w-0 flex-wrap">
+          <mat-form-field class="w-full md:w-[20%] md:max-w-[175px] px-1" appearance="outline">
+            <mat-label>Plant Name</mat-label>
+            <input matInput formControlName="PlantName" />
+          </mat-form-field>
+
+          <mat-form-field class="w-full md:w-[20%] md:max-w-[175px] px-1" appearance="outline">
+            <mat-label>Alarm Status</mat-label>
+            <mat-select>
+              <mat-option [value]="null"> None </mat-option>
+              <mat-option
+                *ngFor="let item of alarmStatuses"
+                [value]="item.value"
+              >
+                {{ item.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <section class="ml-2 flex w-[60px] md:w-[374px] items-center">
+            <p class="max-w-[270px] mb-2">Installed Power:</p>
             <mat-form-field
-              class="w-full sm:w-[205px] px-1"
+              class="flex-1 max-w-[130px] px-1"
               appearance="outline"
             >
-              <mat-label>Plant Name</mat-label>
-              <input matInput formControlName='PlantName'/>
+              <mat-label>from</mat-label>
+              <input
+                matInput
+                type="number"
+                formControlName="InstalledPowerFrom"
+              />
+              <span matSuffix>kWp</span>
             </mat-form-field>
-
             <mat-form-field
-              class="w-full sm:w-[205px] px-1"
+              class="flex-1 max-w-[130px] px-1"
               appearance="outline"
             >
-              <mat-label>Alarm Status</mat-label>
-              <mat-select>
-                <mat-option [value]="null"> None </mat-option>
-                <mat-option
-                  *ngFor="let item of alarmStatuses"
-                  [value]="item.value"
-                >
-                  {{ item.name }}
-                </mat-option>
-              </mat-select>
+              <mat-label>to</mat-label>
+              <input
+                matInput
+                type="number"
+                formControlName="InstalledPowerTo"
+              />
+              <span matSuffix>kWp</span>
             </mat-form-field>
+          </section>
+        </form>
 
-            <section class="ml-2 flex items-center">
-              <p class="mb-2">Installed Power:</p>
-              <mat-form-field
-                class="w-full sm:w-[205px] px-1"
-                appearance="outline"
-              >
-                <mat-label>from</mat-label>
-                <input matInput type="number" formControlName="InstalledPowerFrom" />
-                <span matSuffix>kWp</span>
-              </mat-form-field>
-              <mat-form-field
-                class="w-full sm:w-[205px] px-1"
-                appearance="outline"
-              >
-                <mat-label>to</mat-label>
-                <input matInput type="number" formControlName="InstalledPowerTo" />
-                <span matSuffix>kWp</span>
-              </mat-form-field>
-            </section>
-          </form>
-
-          <div class="flex items-center grow justify-end">
-            <button mat-icon-button><mat-icon>fullscreen</mat-icon></button>
-            <button mat-icon-button (click)="getData()"><mat-icon>refresh</mat-icon></button>
-          </div>
+        <div class="flex items-center min-w-full md:min-w-0 md:grow justify-end">
+          <button mat-icon-button><mat-icon>fullscreen</mat-icon></button>
+          <button mat-icon-button (click)="getData()">
+            <mat-icon>refresh</mat-icon>
+          </button>
         </div>
-        <hr />
       </div>
+      <hr />
+    </div>
 
-      <div class="grow p-2">
-        <p-plant-plants-grid [data]="gridData"></p-plant-plants-grid>
-      </div>
+    <div class="grow p-2">
+      <p-plant-plants-grid [data]="gridData"></p-plant-plants-grid>
     </div>
   </div>
 </div>
