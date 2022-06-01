@@ -1,7 +1,7 @@
 module.exports = {
   mode: 'jit',
-  // TAILWIND_MODE=watch, 
-  content: [
+  // TAILWIND_MODE=watch,  
+  content: [  
      // Example content paths...
     './apps/power-plant/src/**/*.html', 
     './apps/power-plant/src/**/*.scss', 
@@ -11,7 +11,7 @@ module.exports = {
   important: true,
   theme: { 
     extend: {
-      colors: {
+      colors: { 
         primary: {
           900: '#0d47a1',
           800: '#1565c0',
