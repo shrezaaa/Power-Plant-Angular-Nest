@@ -12,11 +12,11 @@ import { UnitService } from '../../shared/services/unit.service';
   styleUrls: ['./unit-page.component.scss'],
 })
 export class UnitPageComponent implements OnInit {
+  
   selectedUnit;
   units: Array<Unit> = [];
   selectedDeviceID: number = null;
   selectedDeviceTypeID: number = null;
-
   unitSelectionForm = this.fb.group({
     deviceTitle: null,
     deviceTypeID: 'All',
@@ -61,8 +61,8 @@ export class UnitPageComponent implements OnInit {
     this.unitService
       .getUnits({
         DeviceTypeID:
-          this.deviceTypeControlRef.value != 'All'
-            ? this.deviceTypeControlRef.value
+          this.unitSelectionForm.value.deviceTypeID != 'All'
+            ? this.unitSelectionForm.value.deviceTypeID
             : null,
         DeviceName: this.unitSelectionForm.value.deviceTitle,
       })
