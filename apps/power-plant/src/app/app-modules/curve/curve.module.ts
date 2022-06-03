@@ -3,9 +3,23 @@ import { CommonModule } from '@angular/common';
 import { CurveRoutingComponent } from './curve-routing/curve-routing.component';
 import { CurveRoutingModule } from './curve.routing';
 import { CurePageComponent } from './components/cure-page/cure-page.component';
+import { SharedModule } from '../../shared/shared.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+
+const matModules = [MatFormFieldModule, MatInputModule, MatSelectModule];
 
 @NgModule({
   declarations: [CurveRoutingComponent, CurePageComponent],
-  imports: [CommonModule, CurveRoutingModule],
+  imports: [
+    CommonModule,
+    matModules,
+    CurveRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SharedModule,
+  ],
 })
 export class CurveModule {}
