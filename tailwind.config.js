@@ -3,9 +3,7 @@ module.exports = {
   // TAILWIND_MODE=watch,  
   content: [  
      // Example content paths...
-    './apps/power-plant/src/**/*.html', 
-    './apps/power-plant/src/**/*.scss', 
-    './apps/power-plant/src/**/*.ts',
+    './apps/power-plant/src/**/*.{html,scss,ts}',    
   ], 
   darkMode: 'media', // or 'media' or 'class'
   important: true,

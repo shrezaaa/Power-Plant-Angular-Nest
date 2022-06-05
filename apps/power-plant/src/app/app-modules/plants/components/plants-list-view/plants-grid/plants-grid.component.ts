@@ -16,6 +16,7 @@ import {
 import { PlantModel } from '../../../shared/models/plant.model';
 import { ActionCellComponent } from './action-cell/action-cell.component';
 import { AlarmCellComponent } from './alarm-cell/alarm-cell.component';
+import { IsactiveCellComponent } from './isactive-cell/isactive-cell.component';
 
 @Component({
   selector: 'p-plant-plants-grid',
@@ -49,7 +50,15 @@ export class PlantsGridComponent implements OnInit, OnChanges {
     },
     { field: 'Address', headerName: 'Address', flex: 1, minWidth: 200 },
     { field: 'Phone', headerName: 'Phone', flex: 1, minWidth: 150 },
-    { field: 'IsActiveName', headerName: 'Is Active', flex: 1, minWidth: 120 },
+    {
+      field: 'IsActive',
+      headerName: 'Is Active',
+      flex: 1,
+      minWidth: 120,
+      cellRendererSelector: function (params: ICellRendererParams) {
+        return { component: IsactiveCellComponent };
+      },
+    },
     {
       field: 'actions',
       headerName: 'Actions',

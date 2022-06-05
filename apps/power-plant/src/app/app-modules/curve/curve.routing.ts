@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { CurePageComponent } from './components/cure-page/cure-page.component';
 import { CurveRoutingComponent } from './curve-routing/curve-routing.component';
 
 const routes: Routes = [
@@ -7,7 +8,8 @@ const routes: Routes = [
     path: '',
     component: CurveRoutingComponent,
     children: [
-      // { path: '', redirectTo: '', pathMatch: 'full' },
+      { path: '', redirectTo: 'page', pathMatch: 'full' },
+      { path: 'page', component: CurePageComponent },
     ],
   },
 ];
