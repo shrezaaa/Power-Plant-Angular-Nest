@@ -1,0 +1,10 @@
+<ng-container *ngIf="cellData; else notActive">
+  <button mat-icon-button class="text-green-700">
+    <mat-icon>check_circle</mat-icon>
+  </button>
+</ng-container>
+<ng-template #notActive>
+  <button mat-icon-button class="text-red-700">
+    <mat-icon>block</mat-icon>
+  </button>
+</ng-template>

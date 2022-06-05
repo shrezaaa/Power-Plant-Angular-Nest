@@ -26,7 +26,7 @@ export class PlantSelectDialogComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.getPlantSelectionData();
+    this.getPlantSelectionData(true);
   }
 
   getPlantSelectionData(firstLoad?: boolean) {
@@ -44,9 +44,9 @@ export class PlantSelectDialogComponent implements OnInit {
       });
   }
 
-  onSelectPlant($event){
+  onSelectPlant($event) {
     console.log($event);
-    this.selectedPlant=$event
+    this.selectedPlant = $event;
   }
 
   onSubmit() {
