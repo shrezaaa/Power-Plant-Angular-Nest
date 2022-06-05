@@ -9,11 +9,34 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { CureDynamicChartComponent } from './components/cure-dynamic-chart/cure-dynamic-chart.component';
+import {
+  NgxMatDatetimePickerModule,
+  NgxMatNativeDateModule,
+  NgxMatTimepickerModule,
+} from '@angular-material-components/datetime-picker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
-const matModules = [MatFormFieldModule, MatInputModule, MatSelectModule];
+const matModules = [
+  MatFormFieldModule,
+  MatInputModule,
+  MatSelectModule,
+  MatCheckboxModule,
+
+  NgxMatNativeDateModule,
+  NgxMatDatetimePickerModule,
+  NgxMatTimepickerModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+];
 
 @NgModule({
-  declarations: [CurveRoutingComponent, CurePageComponent, CureDynamicChartComponent],
+  declarations: [
+    CurveRoutingComponent,
+    CurePageComponent,
+    CureDynamicChartComponent,
+  ],
   imports: [
     CommonModule,
     matModules,
