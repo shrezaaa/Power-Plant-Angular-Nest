@@ -26,6 +26,8 @@ export class CurePageComponent implements OnInit {
     { name: 'Wamp', value: 3 },
   ];
 
+  filterForm = this.fb.group({ DateTime: new Date(), isNormalized: false });
+
   constructor(private fb: FormBuilder, private unitService: UnitService) {}
 
   ngOnInit(): void {
@@ -66,4 +68,6 @@ export class CurePageComponent implements OnInit {
     this.selectedDeviceID = event.DeviceId;
     this.selectedDeviceTypeID = event.DeviceTypeId;
   }
+
+  getData() {}
 }
