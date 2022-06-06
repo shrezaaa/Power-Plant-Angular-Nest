@@ -4,6 +4,7 @@ import { SelectData } from 'apps/power-plant/src/app/shared/types/select-data';
 import { debounceTime, map, take } from 'rxjs';
 import { Unit } from '../../../unit/shared/models/unit.model';
 import { UnitService } from '../../../unit/shared/services/unit.service';
+import * as CurveConfig from '../../../../../../../../libs/configs/curve-column.config';
 
 @Component({
   selector: 'p-plant-cure-page',
@@ -25,6 +26,8 @@ export class CurePageComponent implements OnInit {
     { name: 'Inverter', value: 2 },
     { name: 'Wamp', value: 3 },
   ];
+
+  curveTypes: Array<any> = [];
 
   filterForm = this.fb.group({ DateTime: new Date(), isNormalized: false });
 
@@ -65,8 +68,25 @@ export class CurePageComponent implements OnInit {
   }
 
   onSelectUnit(event) {
-    this.selectedDeviceID = event.DeviceId;
+    this.selectedDeviceID = event.DeviceId;    
     this.selectedDeviceTypeID = event.DeviceTypeId;
+    this.fillCurveTypes(event.DeviceTypeId);
+  }
+
+  fillCurveTypes(deviceTypeID) {
+    switch (+deviceTypeID) {
+      case 1:
+        this.curveTypes = CurveConfig.CombinerCurveColumns;
+        break;
+
+      case 2:
+        this.curveTypes = CurveConfig.InverterCurveColumns;
+        break;
+
+      case 3:
+        this.curveTypes = CurveConfig.WampCurveColumns;
+        break;
+    }
   }
 
   getData() {}

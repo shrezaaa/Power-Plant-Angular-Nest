@@ -1,9 +1,11 @@
 export const SharedCurveColumns = [{}];
 
-export const CombinerCurveColumns = [
-  { name: 'VoltageAB', column: 'VoltageAB' },
-];
+export const CombinerCurveColumns = [];
 
-export const InverterCurveColumns = [];
+export const InverterCurveColumns = [
+  { name: 'VoltageAB', column: 'VoltageAB' },
+  { name: 'VoltageBC', column: 'VoltageBC' },
+  { name: 'VoltageCA', column: 'VoltageCA' },
+];
 
 export const WampCurveColumns = [];
