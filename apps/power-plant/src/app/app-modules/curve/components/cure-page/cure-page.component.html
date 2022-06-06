@@ -39,7 +39,7 @@
         [data]="units"
         (selectedObjectChange)="onSelectUnit($event)"
         [labelProp]="'DeviceTitle'"
-        [valueProp]="'DeviceID'"
+        [valueProp]="'DeviceId'"
       ></p-plant-list-selection>
     </div>
   </div>
@@ -72,6 +72,22 @@
               ></mat-datepicker-toggle>
               <ngx-mat-datetime-picker #picker> </ngx-mat-datetime-picker>
             </mat-form-field>
+
+            <mat-form-field
+              class="w-full sm:w-[205px] px-1"
+              appearance="outline"
+            >
+              <mat-label>Curve Item</mat-label>
+              <mat-select>
+                <mat-option
+                  *ngFor="let item of curveTypes"
+                  [value]="item.column"
+                >
+                  {{ item.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
             <section class="w-full md:w-[215px] px-1">
               <mat-checkbox class="" formControlName="isNormalized"
                 >Display Normalized Data</mat-checkbox
@@ -94,10 +110,6 @@
       <section>
         <p-plant-cure-dynamic-chart></p-plant-cure-dynamic-chart>
       </section>
-
-
-
-
     </div>
   </div>
 </div>
