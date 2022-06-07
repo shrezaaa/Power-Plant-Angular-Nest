@@ -39,7 +39,7 @@
         [data]="units"
         (selectedObjectChange)="onSelectUnit($event)"
         [labelProp]="'DeviceTitle'"
-        [valueProp]="'DeviceID'"
+        [valueProp]="'DeviceId'"
       ></p-plant-list-selection>
     </div>
   </div>
@@ -72,6 +72,22 @@
               ></mat-datepicker-toggle>
               <ngx-mat-datetime-picker #picker> </ngx-mat-datetime-picker>
             </mat-form-field>
+
+            <mat-form-field
+              class="w-full sm:w-[205px] px-1"
+              appearance="outline"
+            >
+              <mat-label>Curve Type</mat-label>
+              <mat-select formControlName="curveColumn">
+                <mat-option
+                  *ngFor="let item of curveTypes"
+                  [value]="item.column"
+                >
+                  {{ item.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
             <section class="w-full md:w-[215px] px-1">
               <mat-checkbox class="" formControlName="isNormalized"
                 >Display Normalized Data</mat-checkbox
@@ -83,7 +99,7 @@
             class="flex items-center min-w-full md:min-w-0 md:grow justify-end"
           >
             <button mat-icon-button><mat-icon>fullscreen</mat-icon></button>
-            <button mat-icon-button (click)="getData()">
+            <button mat-icon-button (click)="getCurveData()">
               <mat-icon>refresh</mat-icon>
             </button>
           </div>
@@ -92,12 +108,10 @@
       </section>
 
       <section>
-        <p-plant-cure-dynamic-chart></p-plant-cure-dynamic-chart>
+        <!-- <ng-container *ngIf="device"></ng-container> -->
+
+        <p-plant-cure-dynamic-chart #curveComponent [data]="curveData"></p-plant-cure-dynamic-chart>
       </section>
-
-
-
-
     </div>
   </div>
 </div>

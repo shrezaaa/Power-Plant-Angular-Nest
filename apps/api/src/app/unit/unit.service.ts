@@ -1,7 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectConnection } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
-import * as CurveConfig from '../../../../../libs/configs/curve-column.config';
 
 @Injectable()
 export class UnitService {
@@ -24,7 +23,7 @@ export class UnitService {
     return await this.connection.query(query);
   }
 
-  async getUnitCurve(params) {
+  async getUnitCurve(params) {    
     let { Date, DeviceTypeID, DeviceID, Column } = params;
     if (DeviceID == undefined) DeviceID = null;
     let TableName = this.getTableByDeviceType(DeviceTypeID);
