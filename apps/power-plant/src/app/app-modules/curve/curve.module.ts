@@ -17,6 +17,7 @@ import {
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { NgxEchartsModule } from 'ngx-echarts';
 
 const matModules = [
   MatFormFieldModule,
@@ -43,6 +44,14 @@ const matModules = [
     CurveRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxEchartsModule.forRoot({
+      /**
+       * This will import all modules from echarts.
+       * If you only need custom modules,
+       * please refer to [Custom Build] section.
+       */
+      echarts: () => import('echarts'), // or import('./path-to-my-custom-echarts')
+    }),
     SharedModule,
   ],
 })

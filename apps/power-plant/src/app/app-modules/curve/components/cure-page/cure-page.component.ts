@@ -1,10 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { AlertService } from 'apps/power-plant/src/app/core/alert/alert.service';
 import { SelectData } from 'apps/power-plant/src/app/shared/types/select-data';
 import { debounceTime, map, take } from 'rxjs';
 import { Unit } from '../../../unit/shared/models/unit.model';
 import { UnitService } from '../../../unit/shared/services/unit.service';
 import * as CurveConfig from '../../shared/configs/curve-column.config';
+import { CurveDynamicChart } from '../../shared/models/curve-dynamic-chart.model';
+import { CurveService } from '../../shared/services/curve.service';
+import { CureDynamicChartComponent } from '../cure-dynamic-chart/cure-dynamic-chart.component';
 
 @Component({
   selector: 'p-plant-cure-page',
@@ -12,6 +16,7 @@ import * as CurveConfig from '../../shared/configs/curve-column.config';
   styleUrls: ['./cure-page.component.scss'],
 })
 export class CurePageComponent implements OnInit {
+  @ViewChild('curveComponent') curveComponent: CureDynamicChartComponent;
   selectedUnit;
   units: Array<Unit> = [];
   selectedDeviceID: number = null;
@@ -29,9 +34,20 @@ export class CurePageComponent implements OnInit {
 
   curveTypes: Array<any> = [];
 
-  filterForm = this.fb.group({ DateTime: new Date(), isNormalized: false });
+  filterForm = this.fb.group({
+    DateTime: '2022-05-24',
+    isNormalized: false,
+    curveColumn: null,
+  });
 
-  constructor(private fb: FormBuilder, private unitService: UnitService) {}
+  curveData: CurveDynamicChart;
+
+  constructor(
+    private fb: FormBuilder,
+    private unitService: UnitService,
+    private curveService: CurveService,
+    private alertService: AlertService
+  ) {}
 
   ngOnInit(): void {
     // const { params } = this.route.snapshot;
@@ -39,12 +55,15 @@ export class CurePageComponent implements OnInit {
     // if (deviceTypeID) {
     //   this.unitSelectionForm.get('deviceTypeID').setValue(deviceTypeID);
     // }
+    this.getUnitSelections();
     this.unitSelectionForm.valueChanges
       .pipe(debounceTime(400))
       .subscribe(() => {
         this.getUnitSelections();
       });
-    this.getUnitSelections();
+    this.filterForm.valueChanges.pipe(debounceTime(400)).subscribe(() => {
+      this.getCurveData();
+    });
   }
 
   getUnitSelections() {
@@ -68,7 +87,7 @@ export class CurePageComponent implements OnInit {
   }
 
   onSelectUnit(event) {
-    this.selectedDeviceID = event.DeviceId;    
+    this.selectedDeviceID = event.DeviceId;
     this.selectedDeviceTypeID = event.DeviceTypeId;
     this.fillCurveTypes(event.DeviceTypeId);
   }
@@ -89,5 +108,34 @@ export class CurePageComponent implements OnInit {
     }
   }
 
-  getData() {}
+  getCurveData() {
+    if (this.selectedDeviceID) {
+      let tempModel = this.filterForm.value;
+      console.log(tempModel);
+      if (tempModel.curveColumn) {
+        this.curveComponent.chartInstance.showLoading();
+        this.curveService
+          .getCurveData({
+            Date: new Date(tempModel.DateTime).toLocaleDateString(),
+            Column: tempModel.curveColumn,
+            DeviceID: this.selectedDeviceID,
+            DeviceTypeID: this.selectedDeviceTypeID,
+          })
+          .pipe(
+            take(1),
+            map(
+              (res) =>
+                new CurveDynamicChart(this.filterForm.value.curveColumn, res)
+            )
+          )
+          .subscribe((value) => {
+            this.curveData = value;
+          });
+      } else {
+        this.alertService.showToaster('Please Select Curve Type!', 'WARNING');
+      }
+    } else {
+      this.alertService.showToaster('Please Select a Unit First!', 'WARNING');
+    }
+  }
 }

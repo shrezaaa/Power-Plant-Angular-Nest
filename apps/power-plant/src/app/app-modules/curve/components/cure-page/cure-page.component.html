@@ -77,8 +77,8 @@
               class="w-full sm:w-[205px] px-1"
               appearance="outline"
             >
-              <mat-label>Curve Item</mat-label>
-              <mat-select>
+              <mat-label>Curve Type</mat-label>
+              <mat-select formControlName="curveColumn">
                 <mat-option
                   *ngFor="let item of curveTypes"
                   [value]="item.column"
@@ -99,7 +99,7 @@
             class="flex items-center min-w-full md:min-w-0 md:grow justify-end"
           >
             <button mat-icon-button><mat-icon>fullscreen</mat-icon></button>
-            <button mat-icon-button (click)="getData()">
+            <button mat-icon-button (click)="getCurveData()">
               <mat-icon>refresh</mat-icon>
             </button>
           </div>
@@ -108,7 +108,9 @@
       </section>
 
       <section>
-        <p-plant-cure-dynamic-chart></p-plant-cure-dynamic-chart>
+        <!-- <ng-container *ngIf="device"></ng-container> -->
+
+        <p-plant-cure-dynamic-chart #curveComponent [data]="curveData"></p-plant-cure-dynamic-chart>
       </section>
     </div>
   </div>
