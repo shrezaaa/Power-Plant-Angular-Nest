@@ -1,1 +1,8 @@
-<p>cure-dynamic-chart works!</p>
+<div class="w-full">
+  <div
+    class="w-full"
+    echarts
+    [options]="chartOption"
+    (chartInit)="onChartInit($event)"
+  ></div>
+</div>
