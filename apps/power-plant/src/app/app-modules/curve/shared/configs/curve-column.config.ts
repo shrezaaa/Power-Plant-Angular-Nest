@@ -1,8 +1,10 @@
-export const SharedCurveColumns = [{}];
+import { curveColumnItem } from '../interfaces/curve-column.interface';
 
-export const CombinerCurveColumns = [];
+export const SharedCurveColumns: Array<curveColumnItem> = [];
 
-export const InverterCurveColumns = [
+export const CombinerCurveColumns: Array<curveColumnItem> = [];
+
+export const InverterCurveColumns: Array<curveColumnItem> = [
   { name: 'VoltageAB', column: 'VoltageAB' },
   { name: 'VoltageBC', column: 'VoltageBC' },
   { name: 'VoltageCA', column: 'VoltageCA' },
@@ -28,4 +30,4 @@ export const InverterCurveColumns = [
   { name: 'Temperature', column: 'Temperature' },
 ];
 
-export const WampCurveColumns = [];
+export const WampCurveColumns: Array<curveColumnItem> = [];
