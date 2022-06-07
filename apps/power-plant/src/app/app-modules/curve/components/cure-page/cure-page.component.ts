@@ -4,7 +4,7 @@ import { SelectData } from 'apps/power-plant/src/app/shared/types/select-data';
 import { debounceTime, map, take } from 'rxjs';
 import { Unit } from '../../../unit/shared/models/unit.model';
 import { UnitService } from '../../../unit/shared/services/unit.service';
-import * as CurveConfig from '../../../../../../../../libs/configs/curve-column.config';
+import * as CurveConfig from '../../shared/configs/curve-column.config';
 
 @Component({
   selector: 'p-plant-cure-page',
