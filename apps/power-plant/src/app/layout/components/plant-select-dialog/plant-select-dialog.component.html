@@ -16,7 +16,7 @@
   </section>
   <!-- <hr> -->
   <p-plant-list-selection
-    [data]="selectionPlants"
+    [data]="sharedService.plants | async"
     (selectedObjectChange)="onSelectPlant($event)"
     [labelProp]="'PlantName'"
     [valueProp]="'PlantID'"

@@ -40,7 +40,6 @@ export class SharedService {
     let subject: Subject<any> = new Subject<any>();
     this.baseHttp
       .request('GET', 'plants/search')
-      .setLoading(loading)
       .setQueryParams(model)
       .send()
       .pipe(
