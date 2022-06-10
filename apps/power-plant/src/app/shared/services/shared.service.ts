@@ -10,7 +10,7 @@ import { SelectData } from '../types/select-data';
 export class SharedService {
   selectedPlant$: BehaviorSubject<Partial<PlantModel>> = new BehaviorSubject<
     Partial<PlantModel>
-  >({ PlantID: null, PlantName: 'All' });
+  >({ PlantID: 1, PlantName: 'Origin' });
 
   plants$: BehaviorSubject<Array<PlantModel>> = new BehaviorSubject<
     Array<PlantModel>
