@@ -24,8 +24,10 @@ export class DashboardService {
   }
 
   async getDashboardSearch(params) {
-    const { date } = params;
-    let query = `execute Dashboard_Search @Date = '${date}'`;
+    const { date, PlantID } = params;
+    let query = `execute Dashboard_Search @Date = '${date}', @PlantID = ${
+      PlantID ?? 1
+    } `;
     this.logger.debug(query);
     return await this.connection.query(query).then((result) => {
       return SharedUtil.parseObjectData(result[0]);
