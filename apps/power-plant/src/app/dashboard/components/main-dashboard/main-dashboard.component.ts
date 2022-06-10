@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ECharts } from 'echarts';
 import { map, Observable } from 'rxjs';
+import { SharedService } from '../../../shared/services/shared.service';
 import { DashboardDataModel } from '../../shared/models/dashboard-data.model';
 import { TemperatureChart } from '../../shared/models/temperature-chart.model';
 import { YieldTrendChart } from '../../shared/models/yield-trend.model';
@@ -12,7 +13,7 @@ import { DashboardService } from '../../shared/services/dashboard.service';
   styleUrls: ['./main-dashboard.component.scss'],
 })
 export class MainDashboardComponent implements OnInit {
-  currentDate = new Date('2022-05-24').toLocaleDateString();
+  currentDate = new Date(this.sharedService.currentDate).toLocaleDateString();
   activeYieldTrendModeID = 1;
   yieldTrendModes = [
     { id: 1, name: 'Day' },
@@ -28,7 +29,10 @@ export class MainDashboardComponent implements OnInit {
 
   dashboardData: DashboardDataModel = new DashboardDataModel({});
 
-  constructor(private readonly dashboardService: DashboardService) {}
+  constructor(
+    private readonly dashboardService: DashboardService,
+    private sharedService: SharedService
+  ) {}
 
   ngOnInit(): void {
     this.getData();
