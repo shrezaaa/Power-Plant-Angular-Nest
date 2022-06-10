@@ -21,5 +21,13 @@ export class DashboardService {
       .setLoading(true)
       .setQueryParams(model)
       .send();
+  } 
+  
+  getDashboardData(model) {
+    return this.baseHttp
+      .request('GET', 'dashboard/search')
+      .setLoading(true)
+      .setQueryParams(model)
+      .send();
   }
 }
