@@ -6,6 +6,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { SharedService } from 'apps/power-plant/src/app/shared/services/shared.service';
 import { ECharts } from 'echarts';
 import { debounce, debounceTime } from 'rxjs';
 import { PowerChart } from '../../../../../shared/models/power-chart';
@@ -21,7 +22,7 @@ export class InvDataAnalysisComponent implements OnInit, OnChanges {
   @Input('deviceID') deviceID = null;
   loading = false;
   filterForm = this.fb.group({
-    DateTime: '2022-05-24',
+    DateTime: this.sharedService.currentDate,
     isNormalized: false,
   });
 
@@ -31,7 +32,8 @@ export class InvDataAnalysisComponent implements OnInit, OnChanges {
 
   constructor(
     private readonly fb: FormBuilder,
-    private unitService: UnitService
+    private unitService: UnitService,
+    private sharedService: SharedService
   ) {}
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -44,9 +46,9 @@ export class InvDataAnalysisComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    this.filterForm.valueChanges.pipe(debounceTime(400)).subscribe((res)=>{
-      this.getData()
-    })
+    this.filterForm.valueChanges.pipe(debounceTime(400)).subscribe((res) => {
+      this.getData();
+    });
   }
 
   getData() {
