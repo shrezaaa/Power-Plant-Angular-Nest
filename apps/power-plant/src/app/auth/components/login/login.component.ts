@@ -14,8 +14,11 @@ export class LoginComponent implements OnInit {
   private loginRef$!: Subscription;
   hide = true;
   forms = new FormGroup({
-    username: new FormControl('',[Validators.required]),
-    password: new FormControl('',[Validators.required, Validators.minLength(6)]),
+    username: new FormControl('', [Validators.required]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(6),
+    ]),
     remember_me: new FormControl(false),
   });
   pending = false;
@@ -31,19 +34,16 @@ export class LoginComponent implements OnInit {
   onLogin() {
     if (this.forms.valid) {
       this.pending = true;
-      // this.forms.disable();
-      this.loginRef$ = this.authService.login(this.forms.value).subscribe(
-        (response) => {
+      this.loginRef$ = this.authService.login(this.forms.value).subscribe({
+        next: (response) => {
           this.userService.setUserByToken(response.accessToken);
-          this.pending=false
+          this.pending = false;
           this.router.navigate(['/dashboard']);
-        }
-        // (error) => {
-        //   this.pending = false;
-        //   this.forms.enable();
-        // },
-        // () => {}
-      );
+        },
+        error: (error) => {
+          this.pending = false;
+        },
+      });
     }
   }
 
