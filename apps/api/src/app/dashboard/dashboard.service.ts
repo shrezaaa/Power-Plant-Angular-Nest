@@ -1,6 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectConnection } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
+import { SharedUtil } from '../shared/shared.util';
 
 @Injectable()
 export class DashboardService {
@@ -14,11 +15,20 @@ export class DashboardService {
     this.logger.debug(query);
     return await this.connection.query(query);
   }
-  
+
   async getTemperatureChart(params) {
     const { date } = params;
     let query = `execute TemperatureChart_Search @Date = '${date}'`;
     this.logger.debug(query);
     return await this.connection.query(query);
+  }
+
+  async getDashboardSearch(params) {
+    const { date } = params;
+    let query = `execute Dashboard_Search @Date = '${date}'`;
+    this.logger.debug(query);
+    return await this.connection.query(query).then((result) => {
+      return SharedUtil.parseObjectData(result[0]);
+    });
   }
 }
