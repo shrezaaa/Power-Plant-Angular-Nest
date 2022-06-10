@@ -45,6 +45,7 @@ export class CureDynamicChartComponent implements OnInit, OnChanges {
   }
 
   initChartOptions(categories = [], series = []) {
+    let formatter = ''
     this.chartOption = {
       color: this.colors,
       title: {
@@ -52,7 +53,7 @@ export class CureDynamicChartComponent implements OnInit, OnChanges {
       },
       tooltip: {
         trigger: 'axis',
-        valueFormatter: (value) => value + ' vahed',
+        valueFormatter: (value) => value + formatter,
         axisPointer: {
           type: 'cross',
         },
@@ -80,7 +81,7 @@ export class CureDynamicChartComponent implements OnInit, OnChanges {
           },
         },
         axisLabel: {
-          formatter: '{value} vahed',
+          formatter: '{value} ' + formatter,
         },
       },
 
