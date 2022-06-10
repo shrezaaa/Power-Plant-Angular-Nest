@@ -12,7 +12,6 @@ import { UnitService } from '../../shared/services/unit.service';
   styleUrls: ['./unit-page.component.scss'],
 })
 export class UnitPageComponent implements OnInit {
-  
   selectedUnit;
   units: Array<Unit> = [];
   selectedDeviceID: number = null;
@@ -35,6 +34,7 @@ export class UnitPageComponent implements OnInit {
   constructor(
     private unitService: UnitService,
     private route: ActivatedRoute,
+    private router: Router,
     private fb: FormBuilder
   ) {}
 
@@ -55,6 +55,13 @@ export class UnitPageComponent implements OnInit {
   onSelectUnit(event) {
     this.selectedDeviceID = event.DeviceId;
     this.selectedDeviceTypeID = event.DeviceTypeId;
+  }
+
+  updateRoute(deviceTypeID){
+    this.router.navigate([`../${deviceTypeID}`], {
+      relativeTo:this.route,
+      queryParams: this.route.snapshot.queryParams,
+    });
   }
 
   getUnitSelections() {
