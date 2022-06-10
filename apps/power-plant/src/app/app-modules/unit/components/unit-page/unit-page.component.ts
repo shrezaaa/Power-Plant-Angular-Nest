@@ -36,6 +36,16 @@ export class UnitPageComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.initDefaultValues();
+    this.unitSelectionForm.valueChanges
+      .pipe(debounceTime(400))
+      .subscribe(() => {
+        this.getUnitSelections();
+      });
+    this.getUnitSelections();
+  }
+
+  initDefaultValues() {
     const { deviceTypeID } = this.route.snapshot.params;
     const { PlantID } = this.route.snapshot.queryParams;
     if (PlantID) {
@@ -45,12 +55,6 @@ export class UnitPageComponent implements OnInit {
     if (deviceTypeID) {
       this.unitSelectionForm.get('deviceTypeID').setValue(+deviceTypeID);
     }
-    this.unitSelectionForm.valueChanges
-      .pipe(debounceTime(400))
-      .subscribe(() => {
-        this.getUnitSelections();
-      });
-    this.getUnitSelections();
   }
 
   onSelectUnit(event) {
