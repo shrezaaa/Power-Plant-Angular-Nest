@@ -28,7 +28,7 @@ export class TemperatureChartComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.data && changes.data.currentValue) {
       this.initChartOptions(this.data.categories, this.data.currentTemperature);
-      this.chartInstance.hideLoading()
+      this.chartInstance?.hideLoading()
     }
   }
 
