@@ -18,8 +18,6 @@ import {
 import { InvUnitTableComponent } from './components/unit-item-components/inv-unit-table/inv-unit-table.component';
 import { AgGridModule } from 'ag-grid-angular';
 // import { AgGridModule } from 'ag-grid-enterprise';
-import { UnitPowerChartComponent } from './components/unit-item-components/unit-power-chart/unit-power-chart.component';
-import { UnitYieldChartComponent } from './components/unit-item-components/unit-yield-chart/unit-yield-chart.component';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { CustomCellComponent } from './components/test-grid/custom-cell/custom-cell.component';
 import { TestGridComponent } from './components/test-grid/test-grid.component';
@@ -44,8 +42,6 @@ const matModules = [
   declarations: [
     UnitRoutingComponent,
     InvUnitTableComponent,
-    UnitPowerChartComponent,
-    UnitYieldChartComponent,
     CustomCellComponent,
     TestGridComponent,
     UnitPageComponent,

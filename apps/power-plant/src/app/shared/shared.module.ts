@@ -8,10 +8,17 @@ import { PipesModule } from './pipes/pipes.module';
 import { ClickStopPropagationDirective } from './directives/click-stop-propagation.directive';
 import { DetailSectionComponent } from './components/detail-section/detail-section.component';
 import { MatDividerModule } from '@angular/material/divider';
+import { UnitYieldChartComponent } from './components/unit-yield-chart/unit-yield-chart.component';
+import { UnitPowerChartComponent } from './components/unit-power-chart/unit-power-chart.component';
 
 const MAT_MODULES = [MatIconModule, MatButtonModule, MatDividerModule];
 
-const COMPONENTS = [ListSelectionComponent, DetailSectionComponent];
+const COMPONENTS = [
+  ListSelectionComponent,
+  DetailSectionComponent,
+  UnitPowerChartComponent,
+  UnitYieldChartComponent,
+];
 
 const MODULES = [PipesModule];
 
