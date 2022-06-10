@@ -18,6 +18,7 @@ import { AgmCoreModule } from '@agm/core';
 import { ActionCellComponent } from './components/plants-list-view/plants-grid/action-cell/action-cell.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { IsactiveCellComponent } from './components/plants-list-view/plants-grid/isactive-cell/isactive-cell.component';
+import { PlantUnitComponent } from './components/plant-unit/plant-unit.component';
 
 const matModules = [
   MatFormFieldModule,
@@ -35,6 +36,7 @@ const matModules = [
     AlarmCellComponent,
     ActionCellComponent,
     IsactiveCellComponent,
+    PlantUnitComponent,
   ],
   imports: [
     CommonModule,
