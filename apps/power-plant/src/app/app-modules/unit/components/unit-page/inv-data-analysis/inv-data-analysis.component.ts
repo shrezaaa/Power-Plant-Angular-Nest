@@ -8,7 +8,7 @@ import {
 import { FormBuilder } from '@angular/forms';
 import { ECharts } from 'echarts';
 import { debounce, debounceTime } from 'rxjs';
-import { PowerChart } from '../../../shared/models/power-chart';
+import { PowerChart } from '../../../../../shared/models/power-chart';
 import { UnitService } from '../../../shared/services/unit.service';
 
 @Component({

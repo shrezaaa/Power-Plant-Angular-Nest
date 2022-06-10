@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { TemperatureChart } from 'apps/power-plant/src/app/dashboard/shared/models/temperature-chart.model';
 import { ECharts, EChartsOption } from 'echarts';
-import { PowerChart } from '../../../shared/models/power-chart';
+import { PowerChart } from '../../models/power-chart';
 
 @Component({
   selector: 'p-plant-unit-power-chart',

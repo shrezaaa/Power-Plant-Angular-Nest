@@ -8,7 +8,7 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { ECharts, EChartsOption } from 'echarts';
-import { PowerChart } from '../../../app-modules/unit/shared/models/power-chart';
+import { PowerChart } from '../../models/power-chart';
 
 @Component({
   selector: 'p-plant-unit-yield-chart',
