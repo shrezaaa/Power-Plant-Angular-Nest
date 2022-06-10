@@ -14,5 +14,10 @@ export class DashboardController {
   @Get('/temperatureChart')
   async getTemperatureChart(@Query() params: any): Promise<void> {
     return this.dashboardService.getTemperatureChart(params);
+  } 
+  
+  @Get('/search')
+  async getDashboardSearch(@Query() params: any): Promise<void> {
+    return this.dashboardService.getDashboardSearch(params);
   }
 }

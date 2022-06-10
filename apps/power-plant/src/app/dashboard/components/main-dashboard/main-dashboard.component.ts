@@ -1,5 +1,7 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ECharts } from 'echarts';
+import { map, Observable } from 'rxjs';
+import { DashboardDataModel } from '../../shared/models/dashboard-data.model';
 import { TemperatureChart } from '../../shared/models/temperature-chart.model';
 import { YieldTrendChart } from '../../shared/models/yield-trend.model';
 import { DashboardService } from '../../shared/services/dashboard.service';
@@ -24,6 +26,8 @@ export class MainDashboardComponent implements OnInit {
   temperatureChartInstance: ECharts;
   temperatureChartData = null;
 
+  dashboardData: DashboardDataModel = new DashboardDataModel({});
+
   constructor(private readonly dashboardService: DashboardService) {}
 
   ngOnInit(): void {
@@ -33,6 +37,7 @@ export class MainDashboardComponent implements OnInit {
   getData() {
     this.getYieldTrendData();
     this.getTemperatureChartData();
+    this.getDashboardData();
   }
 
   getYieldTrendData() {
@@ -64,6 +69,14 @@ export class MainDashboardComponent implements OnInit {
         }
       });
   }
+
+  getDashboardData() {
+    this.dashboardService
+      .getDashboardData({ date: this.currentDate })
+      .pipe(map((el) => new DashboardDataModel(el)))
+      .subscribe((value) => (this.dashboardData = value));
+  }
+  1;
 
   changeProducePowerMode(item) {
     if (this.activeYieldTrendModeID != item.id) {
