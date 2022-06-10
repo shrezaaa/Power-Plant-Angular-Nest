@@ -5,7 +5,7 @@ export class TemperatureChart {
   constructor(data) {
     data.forEach((element) => {
         this.categories.push(element.Time);
-        this.currentTemperature.push(element.CurrentTemperature);
+        this.currentTemperature.push(element.CurrentValue);
       });
   }
 }
