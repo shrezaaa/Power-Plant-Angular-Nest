@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ECharts } from 'echarts';
 import { debounceTime, map } from 'rxjs';
 import { PlantModel } from '../../shared/models/plant.model';
 import { PlantsService } from '../../shared/services/plants.service';
@@ -20,6 +21,10 @@ export class PlantUnitComponent implements OnInit {
   });
   selectionLoading: boolean = false;
 
+  unitPowerChartInstance: ECharts;
+  unitYieldChartInstance: ECharts;
+  PowerChartData = null;
+
   constructor(
     private readonly fb: FormBuilder,
     private readonly plantsService: PlantsService,
@@ -38,6 +43,14 @@ export class PlantUnitComponent implements OnInit {
   }
 
   getData() {}
+
+  routeToInverterUnitsPage() {
+    this.router.navigate(['unit/units-analysis/2'], {
+      queryParams: {
+        PlantID: this.selectedPlantID,
+      },
+    });
+  }
 
   getPlantSelectionData(firstLoad?: boolean) {
     if (firstLoad) this.selectionLoading = true;
