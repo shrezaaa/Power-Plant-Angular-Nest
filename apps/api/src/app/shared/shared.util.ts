@@ -8,7 +8,10 @@ export class SharedUtil {
       if (typeof raw[key] == 'string') {
         let parsedXml = this.parser.parse(raw[key]);        
         if (JSON.stringify(parsedXml) != "{}") {
-          raw[key] = parsedXml;
+          if(parsedXml.row){
+            parsedXml = parsedXml.row;
+          }
+          raw[key] = parsedXml
         }
       }
     });
