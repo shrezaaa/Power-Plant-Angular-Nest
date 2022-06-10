@@ -40,34 +40,18 @@ export class RegisterComponent implements OnInit {
 
   onRegister() {
     if (this.forms.valid) {
-      // this.pending = true;
-      // this.forms.disable();
-      this.loginRef$ = this.authService
-        .signUp(this.forms.value)
-        .subscribe((res: any) => {
+      this.pending = true;
+      this.loginRef$ = this.authService.signUp(this.forms.value).subscribe({
+        next: (res) => {
           this.alertService.showToaster('Successful SignUp', 'SUCCESS');
           this.onRedirectToLogin();
           this.pending = false;
           this.forms.enable();
-        });
-      // this.loginRef$ = this.userSrv
-      //   .register({ ...this.forms.value, role: 'S', password2: undefined })
-      //   .subscribe(
-      //     (response) => {
-      //       this.alertSrv.showToaster('user created Successfully!', 'SUCCESS');
-      //       this.router.navigate(['/auth/login']);
-      //       this.pending = false;
-      //       this.forms.enable();
-      //     },
-      //     (error) => {
-      //       this.alertSrv.showToaster(
-      //         'please enter valid information',
-      //         'DANGER'
-      //       );
-      //       this.pending = false;
-      //       this.forms.enable();
-      //     }
-      //   );
+        },
+        error: (err) => {
+          this.pending = false;
+        },
+      });
     }
   }
 
