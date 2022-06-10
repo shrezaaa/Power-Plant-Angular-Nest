@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SharedService } from 'apps/power-plant/src/app/shared/services/shared.service';
 import { SelectData } from 'apps/power-plant/src/app/shared/types/select-data';
 import { take, map, debounceTime } from 'rxjs';
 import { Unit } from '../../shared/models/unit.model';
@@ -12,7 +13,6 @@ import { UnitService } from '../../shared/services/unit.service';
   styleUrls: ['./unit-page.component.scss'],
 })
 export class UnitPageComponent implements OnInit {
-  
   selectedUnit;
   units: Array<Unit> = [];
   selectedDeviceID: number = null;
@@ -20,30 +20,23 @@ export class UnitPageComponent implements OnInit {
   unitSelectionForm = this.fb.group({
     deviceTitle: null,
     deviceTypeID: 'All',
+    PlantID: 'All',
   });
 
   deviceTypeControlRef: FormControl = this.unitSelectionForm.get(
     'deviceTypeID'
   ) as FormControl;
 
-  deviceTypes: Array<SelectData> = [
-    { name: 'CombinerBox', value: 1 },
-    { name: 'Inverter', value: 2 },
-    { name: 'Wamp', value: 3 },
-  ];
-
   constructor(
     private unitService: UnitService,
     private route: ActivatedRoute,
-    private fb: FormBuilder
+    private router: Router,
+    private fb: FormBuilder,
+    public sharedService: SharedService
   ) {}
 
   ngOnInit(): void {
-    const { params } = this.route.snapshot;
-    let deviceTypeID = params.deviceTypeID ? +params.deviceTypeID : null;
-    if (deviceTypeID) {
-      this.unitSelectionForm.get('deviceTypeID').setValue(deviceTypeID);
-    }
+    this.initDefaultValues();
     this.unitSelectionForm.valueChanges
       .pipe(debounceTime(400))
       .subscribe(() => {
@@ -52,9 +45,28 @@ export class UnitPageComponent implements OnInit {
     this.getUnitSelections();
   }
 
+  initDefaultValues() {
+    const { deviceTypeID } = this.route.snapshot.params;
+    const { PlantID } = this.route.snapshot.queryParams;
+    if (PlantID) {
+      this.sharedService.getPlants({}, true);
+      this.unitSelectionForm.get('PlantID').setValue(+PlantID);
+    }
+    if (deviceTypeID) {
+      this.unitSelectionForm.get('deviceTypeID').setValue(+deviceTypeID);
+    }
+  }
+
   onSelectUnit(event) {
     this.selectedDeviceID = event.DeviceId;
     this.selectedDeviceTypeID = event.DeviceTypeId;
+  }
+
+  updateRoute(deviceTypeID) {
+    this.router.navigate([`../${deviceTypeID}`], {
+      relativeTo: this.route,
+      queryParams: this.route.snapshot.queryParams,
+    });
   }
 
   getUnitSelections() {
@@ -65,6 +77,10 @@ export class UnitPageComponent implements OnInit {
             ? this.unitSelectionForm.value.deviceTypeID
             : null,
         DeviceName: this.unitSelectionForm.value.deviceTitle,
+        PlantID:
+          this.unitSelectionForm.value.PlantID != 'All'
+            ? this.unitSelectionForm.value.PlantID
+            : null,
       })
       .pipe(
         take(1),

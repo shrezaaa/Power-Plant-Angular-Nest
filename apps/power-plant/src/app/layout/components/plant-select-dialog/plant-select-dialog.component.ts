@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { map } from 'rxjs';
 import { PlantModel } from '../../../app-modules/plants/shared/models/plant.model';
 import { PlantsService } from '../../../app-modules/plants/shared/services/plants.service';
+import { SharedService } from '../../../shared/services/shared.service';
 
 @Component({
   selector: 'p-plant-plant-select-dialog',
@@ -18,7 +19,7 @@ export class PlantSelectDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<any>,
     private readonly fb: FormBuilder,
-    private plantsService: PlantsService
+    private sharedService: SharedService
   ) {}
 
   form = this.fb.group({
@@ -31,7 +32,7 @@ export class PlantSelectDialogComponent implements OnInit {
 
   getPlantSelectionData(firstLoad?: boolean) {
     if (firstLoad) this.selectionLoading = true;
-    this.plantsService
+    this.sharedService
       .getPlants(!firstLoad ? this.form.value : {}, false)
       .pipe(
         map((res) => {

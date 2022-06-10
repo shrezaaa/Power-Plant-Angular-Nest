@@ -31,10 +31,10 @@
         <div
           class="w-full h-full bg-white bg-gradient-to-r rounded-lg flex flex-col relative p-2 shadow-md"
         >
-          <p>Number of Online Plants</p>
-          <p>1 Piece</p>
-          <p class="mt-auto">Number of Online Plants</p>
-          <p>1 Piece</p>
+          <p>Number of Active Plants</p>
+          <p>{{ dashboardData?.activePlantsCount }} Piece</p>
+          <p class="mt-auto">Number of DeActive Plants</p>
+          <p>{{ dashboardData?.deActivePlantsCount }} Piece</p>
           <img class="absolute right-0" src="assets/icons/plant-online.png" />
         </div>
       </div>
@@ -44,8 +44,8 @@
         >
           <p>Real-time Power</p>
           <p>0 W</p>
-          <p class="mt-auto">Installer Power</p>
-          <p>200 W</p>
+          <p class="mt-auto">Installed Power</p>
+          <p>{{dashboardData.currentPlant.InstalledPower}} W</p>
           <img
             class="absolute right-0"
             src="../../../../assets/icons/real-time-power.png"
@@ -57,9 +57,9 @@
           class="w-full h-full bg-white bg-gradient-to-r rounded-lg flex flex-col relative p-2 shadow-md"
         >
           <p>Avg Temperature</p>
-          <p>30 degree</p>
+          <p>{{ dashboardData.temperatureSummary.AvgTemperature }} degree</p>
           <p class="mt-auto">Max Temperature</p>
-          <p>50 degree</p>
+          <p>{{ dashboardData.temperatureSummary.MaxTemperature }} degree</p>
           <div class="absolute right-0 h-full flex flex-col justify-center">
             <img class="" src="../../../../assets/icons/high-temp.png" />
           </div>

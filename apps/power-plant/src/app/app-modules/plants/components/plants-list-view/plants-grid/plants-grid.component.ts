@@ -63,7 +63,7 @@ export class PlantsGridComponent implements OnInit, OnChanges {
       field: 'actions',
       headerName: 'Actions',
       flex: 1,
-      minWidth: 150,
+      minWidth: 240,
       cellRendererSelector: function (params: ICellRendererParams) {
         return { component: ActionCellComponent };
       },

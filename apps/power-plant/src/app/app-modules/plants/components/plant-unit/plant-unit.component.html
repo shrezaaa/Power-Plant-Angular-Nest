@@ -1,0 +1,82 @@
+<div class="h-full flex flex-col md:grid md:grid-cols-12 overflow-auto">
+  <div
+    class="w-full min-h-[500px] max-h-96 md:max-h-full md:h-full col-span-12 md:col-span-3 lg:col-span-2 flex flex-wrap p-2 pr-1 overflow-auto"
+  >
+    <div
+      class="w-full h-full bg-white bg-gradient-to-r rounded-sm shadow-md flex flex-col"
+    >
+      <form
+        class="w-full h-16 p-2"
+        [formGroup]="plantSelectionForm"
+        (ngSubmit)="getPlantSelectionData()"
+      >
+        <mat-form-field class="w-full" appearance="outline" floatLabel="never">
+          <mat-label> Search Plant</mat-label>
+          <input matInput formControlName="PlantName" />
+          <button mat-icon-button matSuffix>
+            <mat-icon>search</mat-icon>
+          </button>
+        </mat-form-field>
+      </form>
+
+      <hr class="mt-1" />
+
+      <p-plant-list-selection
+        [data]="selectionPlants"
+        [(selectedValue)]="selectedPlantID"
+        (selectedObjectChange)="onSelectPlant($event)"
+        [labelProp]="'PlantName'"
+        [valueProp]="'PlantID'"
+        [loading]="selectionLoading"
+      ></p-plant-list-selection>
+    </div>
+  </div>
+  <div
+    class="w-full min-h-[500px] md:h-full col-span-12 md:col-span-9 lg:col-span-10 flex flex-wrap p-2"
+  >
+    <div
+      class="w-full h-full bg-white bg-gradient-to-r rounded-sm shadow-md flex flex-col p-2 pt-1"
+    >
+      <!--filters-->
+      <section class="w-full p-1">
+        <div class="flex-container w-full justify-between">
+          <form class="flex items-center grow flex-wrap"></form>
+
+          <div
+            class="flex items-center min-w-full md:min-w-0 md:grow justify-end"
+          >
+            <button mat-icon-button><mat-icon>fullscreen</mat-icon></button>
+            <button mat-icon-button (click)="getData()">
+              <mat-icon>refresh</mat-icon>
+            </button>
+          </div>
+        </div>
+        <hr />
+      </section>
+      <section class="flex flex-col w-full h-full">
+        <div class="basis-1/2 w-full flex flex-col md:flex-row">
+          <div class="basis-1/2">
+            <p-plant-unit-yield-chart
+              [data]="PowerChartData"
+              (chartInstanceChange)="unitYieldChartInstance = $event"
+            ></p-plant-unit-yield-chart>
+          </div>
+          <div class="basis-1/2">
+            <p-plant-unit-power-chart
+              [data]="PowerChartData"
+              (chartInstanceChange)="unitPowerChartInstance = $event"
+            ></p-plant-unit-power-chart>
+          </div>
+        </div>
+      </section>
+
+      <div class="min-h-[400px] md:min-h-0 basis-1/2 w-full">
+        <div>
+          <button mat-flat-button color="primary" (click)="routeToInverterUnitsPage()">
+            View Inverters
+            </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

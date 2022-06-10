@@ -38,6 +38,10 @@ export class ActionCellComponent implements OnInit, ICellRendererAngularComp {
     this.router.navigate([`plants/map`], { queryParams: { id: PlantID } });
   }
 
+  routeToPlantUnit(PlantID: number) {
+    this.router.navigate([`plants/list/${PlantID}`]);
+  }
+
   onSetAsCurrent(plant: PlantModel) {
     this.sharedService.setSelectedPlant(plant);
   }

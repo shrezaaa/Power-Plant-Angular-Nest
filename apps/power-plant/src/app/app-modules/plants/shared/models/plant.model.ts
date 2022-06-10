@@ -23,6 +23,6 @@ export class PlantModel {
     this.Phone = el?.Phone;
     this.Description = el?.Description;
     this.IsActive = el?.IsActive;
-    this.IsActiveName = el.IsActive ? 'Yes' : 'No';
+    this.IsActiveName = el?.IsActive ? 'Yes' : 'No';
   }
 }

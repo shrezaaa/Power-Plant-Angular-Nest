@@ -2,10 +2,22 @@
   <button mat-icon-button matTooltip="Show Units" color="primary">
     <mat-icon>layers</mat-icon>
   </button>
-  <button mat-icon-button matTooltip="Show on Map" (click)="openPlantMap(rowData.PlantID)">
-    <mat-icon>pin_drop</mat-icon></button
+  <button
+    mat-icon-button
+    matTooltip="Show on Map"
+    (click)="openPlantMap(rowData.PlantID)"
   >
-  <button mat-icon-button matTooltip="Set as Current" (click)="onSetAsCurrent(rowData)">
+    <mat-icon>pin_drop</mat-icon>
+  </button>
+  <button
+    mat-icon-button
+    matTooltip="Set as Current"
+    (click)="onSetAsCurrent(rowData)"
+  >
     <mat-icon>check_circle</mat-icon>
   </button>
+  <div>
+
+    <button mat-flat-button color="primary" (click)="routeToPlantUnit(rowData.PlantID)">View Unit</button>
+  </div>
 </div>

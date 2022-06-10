@@ -3,10 +3,12 @@ import { AppService } from './app.service';
 import { AuthGuard } from '@nestjs/passport';
 import { Connection, QueryResult, Repository } from 'typeorm';
 import { InjectConnection, InjectRepository } from '@nestjs/typeorm';
-import { UserRepository } from './auth/user.repository';
+import { XMLParser } from 'node_modules/fast-xml-parser';
+import { SharedUtil } from './shared/shared.util';
+// const { XMLParser, XMLBuilder, XMLValidator} = require("../src/fxp");
 
 @Controller()
-@UseGuards(AuthGuard('jwt'))
+// @UseGuards(AuthGuard('jwt'))
 export class AppController {
   constructor(
     private readonly appService: AppService,
@@ -20,9 +22,8 @@ export class AppController {
 
   @Get('test')
   get(): any {
-    return this.connection.query(' select * from SolarData.dbo.alarms').then((result: QueryResult) => {
-      
-      return result ;
-    })
+    return this.connection.query('execute test_2').then((result: any) => {
+      return SharedUtil.parseObjectData(result[0]);
+    });
   }
 }
