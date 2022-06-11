@@ -1,5 +1,13 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { EChartsOption } from 'echarts';
+import {
+  Component,
+  Input,
+  OnInit,
+  Output,
+  EventEmitter,
+  SimpleChanges,
+} from '@angular/core';
+import { ECharts, EChartsOption } from 'echarts';
+import { DashboardDataModel } from '../../shared/models/dashboard-data.model';
 
 @Component({
   selector: 'p-plant-statistics-chart',
@@ -7,53 +15,76 @@ import { EChartsOption } from 'echarts';
   styleUrls: ['./statistics-chart.component.scss'],
 })
 export class StatisticsChartComponent implements OnInit {
-  chartOption: EChartsOption = {
-    title: {
-      left: 'center',
-      top: 'center',
-    },
-    legend: {
-      orient: 'vertical',
-      left: 0,
-      data: ['Online', 'Offline'],
-    },
-    series: [
-      {
-        type: 'pie',
-        avoidLabelOverlap: false,
-        label: {
-          show: false,
-          position: 'center',
-          // emphasis: {
-          //   show: true
-          // }
-        },
-        labelLine: {
-          show: false,
-        },
-        emphasis: {
-          label: {
-            show: true,
-            fontSize: '15',
-            fontWeight: 'bold',
-          },
-        },
-        data: [
-          {
-            value: 2,
-            name: 'Offline',
-          },
-          {
-            value: 2,
-            name: 'Online',
-          },
-        ],
-        radius: ['70%', '90%'],
-      },
-    ],
-  };
+  @Input('data') data: DashboardDataModel;
+  @Output('chartInstanceChange') chartInstanceChange =
+    new EventEmitter<ECharts>();
+  chartInstance: ECharts;
+  chartOption: EChartsOption = {};
+  colors = ['#2196F3', '#F08300'];
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log(changes);
+    if (changes.data && changes.data.currentValue) {
+      this.initChartOptions(
+        this.data.onlineInvertersCount,
+        this.data.offlineInvertersCount
+      );
+      this.chartInstance?.hideLoading();
+    }
+  }
+
+  ngOnInit(): void {
+    this.initChartOptions();
+  }
+
+  onChartInit($event: ECharts) {
+    this.chartInstance = $event;
+    this.chartInstanceChange.emit($event);
+    if (!this.data) this.chartInstance.showLoading();
+  }
+
+  initChartOptions(onlineCount: number = 0, offlineCount: number = 0) {
+    this.chartOption = {
+      tooltip: {
+        trigger: 'item',
+      },
+      legend: {
+        bottom: '0',
+        left: 'center',
+      },
+      series: [
+        {
+          name: 'Inverters Statistics',
+          type: 'pie',
+          radius: ['70%', '90%'],
+          avoidLabelOverlap: false,
+          itemStyle: {
+            borderRadius: 1,
+            borderColor: '#fff',
+            borderWidth: 2,
+          },
+          label: {
+            show: false,
+            position: 'center',
+          },
+          // emphasis: {
+          //   label: {
+          //     show: true,
+          //     fontSize: '40',
+          //     fontWeight: 'bold',
+          //   },
+          // },
+          labelLine: {
+            show: false,
+          },
+          data: [
+            { value: onlineCount, name: `Online` },
+            { value: offlineCount, name: 'Offline' },
+          ],
+        },
+      ],
+    };
+  }
 }
