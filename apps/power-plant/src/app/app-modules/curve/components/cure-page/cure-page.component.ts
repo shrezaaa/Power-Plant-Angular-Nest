@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { AlertService } from 'apps/power-plant/src/app/core/alert/alert.service';
+import { SharedService } from 'apps/power-plant/src/app/shared/services/shared.service';
 import { SelectData } from 'apps/power-plant/src/app/shared/types/select-data';
 import { debounceTime, map, take } from 'rxjs';
 import { Unit } from '../../../unit/shared/models/unit.model';
@@ -35,7 +36,7 @@ export class CurePageComponent implements OnInit {
   curveTypes: Array<any> = [];
 
   filterForm = this.fb.group({
-    DateTime: '2022-05-24',
+    DateTime: this.sharedService.currentDate,
     isNormalized: false,
     curveColumn: null,
   });
@@ -46,7 +47,8 @@ export class CurePageComponent implements OnInit {
     private fb: FormBuilder,
     private unitService: UnitService,
     private curveService: CurveService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private sharedService: SharedService
   ) {}
 
   ngOnInit(): void {
@@ -88,30 +90,33 @@ export class CurePageComponent implements OnInit {
 
   onSelectUnit(event) {
     this.selectedDeviceID = event.DeviceId;
-    this.selectedDeviceTypeID = event.DeviceTypeId;
     this.fillCurveTypes(event.DeviceTypeId);
+    this.selectedDeviceTypeID = event.DeviceTypeId;
+    this.getCurveData();
   }
 
   fillCurveTypes(deviceTypeID) {
-    switch (+deviceTypeID) {
-      case 1:
-        this.curveTypes = CurveConfig.CombinerCurveColumns;
-        break;
+    if (this.selectedDeviceTypeID != deviceTypeID) {
+      this.filterForm.get('curveColumn').setValue(null);
+      switch (+deviceTypeID) {
+        case 1:
+          this.curveTypes = CurveConfig.CombinerCurveColumns;
+          break;
 
-      case 2:
-        this.curveTypes = CurveConfig.InverterCurveColumns;
-        break;
+        case 2:
+          this.curveTypes = CurveConfig.InverterCurveColumns;
+          break;
 
-      case 3:
-        this.curveTypes = CurveConfig.WampCurveColumns;
-        break;
+        case 3:
+          this.curveTypes = CurveConfig.WampCurveColumns;
+          break;
+      }
     }
   }
 
   getCurveData() {
     if (this.selectedDeviceID) {
       let tempModel = this.filterForm.value;
-      console.log(tempModel);
       if (tempModel.curveColumn) {
         this.curveComponent.chartInstance.showLoading();
         this.curveService
@@ -131,11 +136,15 @@ export class CurePageComponent implements OnInit {
           .subscribe((value) => {
             this.curveData = value;
           });
+        return;
       } else {
-        this.alertService.showToaster('Please Select Curve Type!', 'WARNING');
+        // this.alertService.showToaster('Please Select Curve Type!', 'WARNING');
+        // return;
       }
     } else {
       this.alertService.showToaster('Please Select a Unit First!', 'WARNING');
+      // return;
     }
+    this.curveData = new CurveDynamicChart({}, []);
   }
 }

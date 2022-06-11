@@ -14,18 +14,26 @@ export class DashboardService {
       .setQueryParams(model)
       .send();
   }
- 
+
   getTemperatureChart(model) {
     return this.baseHttp
       .request('GET', 'dashboard/temperatureChart')
       .setLoading(true)
       .setQueryParams(model)
       .send();
-  } 
-  
+  }
+
   getDashboardData(model) {
     return this.baseHttp
       .request('GET', 'dashboard/search')
+      .setLoading(true)
+      .setQueryParams(model)
+      .send();
+  }
+
+  getAlarms(model) {
+    return this.baseHttp
+      .request('GET', 'dashboard/alarms')
       .setLoading(true)
       .setQueryParams(model)
       .send();

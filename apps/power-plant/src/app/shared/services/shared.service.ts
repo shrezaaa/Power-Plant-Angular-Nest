@@ -8,6 +8,8 @@ import { SelectData } from '../types/select-data';
   providedIn: 'root',
 })
 export class SharedService {
+  currentDate = '2022-05-22';
+
   selectedPlant$: BehaviorSubject<Partial<PlantModel>> = new BehaviorSubject<
     Partial<PlantModel>
   >({ PlantID: 1, PlantName: 'Origin' });
@@ -40,7 +42,6 @@ export class SharedService {
     let subject: Subject<any> = new Subject<any>();
     this.baseHttp
       .request('GET', 'plants/search')
-      .setLoading(loading)
       .setQueryParams(model)
       .send()
       .pipe(

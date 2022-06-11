@@ -1,6 +1,8 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ECharts } from 'echarts';
-import { map, Observable } from 'rxjs';
+import { map, mapTo, Observable } from 'rxjs';
+import { SharedService } from '../../../shared/services/shared.service';
+import { AlarmModel } from '../../shared/models/alarm.model';
 import { DashboardDataModel } from '../../shared/models/dashboard-data.model';
 import { TemperatureChart } from '../../shared/models/temperature-chart.model';
 import { YieldTrendChart } from '../../shared/models/yield-trend.model';
@@ -12,7 +14,7 @@ import { DashboardService } from '../../shared/services/dashboard.service';
   styleUrls: ['./main-dashboard.component.scss'],
 })
 export class MainDashboardComponent implements OnInit {
-  currentDate = new Date('2022-05-24').toLocaleDateString();
+  currentDate = new Date(this.sharedService.currentDate).toLocaleDateString();
   activeYieldTrendModeID = 1;
   yieldTrendModes = [
     { id: 1, name: 'Day' },
@@ -20,6 +22,7 @@ export class MainDashboardComponent implements OnInit {
     { id: 3, name: 'Year' },
   ];
 
+  invStatChartInstance: ECharts;
   yieldChartInstance: ECharts;
   yieldTrendChartData = null;
 
@@ -28,7 +31,12 @@ export class MainDashboardComponent implements OnInit {
 
   dashboardData: DashboardDataModel = new DashboardDataModel({});
 
-  constructor(private readonly dashboardService: DashboardService) {}
+  alarmData: Array<AlarmModel> = [];
+
+  constructor(
+    private readonly dashboardService: DashboardService,
+    private sharedService: SharedService
+  ) {}
 
   ngOnInit(): void {
     this.getData();
@@ -38,6 +46,7 @@ export class MainDashboardComponent implements OnInit {
     this.getYieldTrendData();
     this.getTemperatureChartData();
     this.getDashboardData();
+    this.getAlarms();
   }
 
   getYieldTrendData() {
@@ -71,12 +80,24 @@ export class MainDashboardComponent implements OnInit {
   }
 
   getDashboardData() {
+    this.invStatChartInstance?.showLoading();
     this.dashboardService
       .getDashboardData({ date: this.currentDate })
       .pipe(map((el) => new DashboardDataModel(el)))
-      .subscribe((value) => (this.dashboardData = value));
+      .subscribe((value) => {
+        this.dashboardData = value;
+        this.invStatChartInstance?.hideLoading();
+      });
   }
-  1;
+
+  getAlarms() {
+    this.dashboardService
+      .getAlarms({ date: this.currentDate })
+      .pipe(map((res) => res.map((el) => new AlarmModel(el))))
+      .subscribe((value) => {
+        this.alarmData = value;
+      });
+  }
 
   changeProducePowerMode(item) {
     if (this.activeYieldTrendModeID != item.id) {

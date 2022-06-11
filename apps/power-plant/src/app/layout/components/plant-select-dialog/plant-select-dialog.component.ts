@@ -19,7 +19,7 @@ export class PlantSelectDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<any>,
     private readonly fb: FormBuilder,
-    private sharedService: SharedService
+    public sharedService: SharedService
   ) {}
 
   form = this.fb.group({
@@ -27,21 +27,15 @@ export class PlantSelectDialogComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.getPlantSelectionData(true);
+    this.getPlantSelectionData();
   }
 
-  getPlantSelectionData(firstLoad?: boolean) {
-    if (firstLoad) this.selectionLoading = true;
+  getPlantSelectionData() {
+    if (!this.sharedService.plants$.value.length) this.selectionLoading = true;
     this.sharedService
-      .getPlants(!firstLoad ? this.form.value : {}, false)
-      .pipe(
-        map((res) => {
-          return res.map((el) => new PlantModel(el));
-        })
-      )
+      .getPlants(this.form.value)
       .subscribe((value) => {
         this.selectionLoading = false;
-        this.selectionPlants = [{ PlantID: null, PlantName: 'All' }, ...value];
       });
   }
 

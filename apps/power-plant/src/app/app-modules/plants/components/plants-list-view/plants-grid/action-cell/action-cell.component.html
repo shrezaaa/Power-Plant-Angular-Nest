@@ -1,5 +1,5 @@
 <div class="flex">
-  <button mat-icon-button matTooltip="Show Units" color="primary">
+  <button mat-icon-button matTooltip="Show Units" color="primary" (click)="routeToUnitPage(rowData.PlantID)">
     <mat-icon>layers</mat-icon>
   </button>
   <button
@@ -17,7 +17,12 @@
     <mat-icon>check_circle</mat-icon>
   </button>
   <div>
-
-    <button mat-flat-button color="primary" (click)="routeToPlantUnit(rowData.PlantID)">View Unit</button>
+    <button
+      mat-flat-button
+      color="primary"
+      (click)="routeToPlantUnit(rowData.PlantID)"
+    >
+      View Unit
+    </button>
   </div>
 </div>
