@@ -33,4 +33,13 @@ export class DashboardService {
       return SharedUtil.parseObjectData(result[0]);
     });
   }
+
+  async getAlarms(params) {
+    const { date, PlantID } = params;
+    let query = `execute Alarms_Search @Date = '${date}', @PlantID = ${
+      PlantID ?? 1
+    } `;
+    this.logger.debug(query);
+    return await this.connection.query(query)
+  }
 }
