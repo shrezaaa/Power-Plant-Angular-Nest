@@ -1,7 +1,8 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ECharts } from 'echarts';
-import { map, Observable } from 'rxjs';
+import { map, mapTo, Observable } from 'rxjs';
 import { SharedService } from '../../../shared/services/shared.service';
+import { AlarmModel } from '../../shared/models/alarm.model';
 import { DashboardDataModel } from '../../shared/models/dashboard-data.model';
 import { TemperatureChart } from '../../shared/models/temperature-chart.model';
 import { YieldTrendChart } from '../../shared/models/yield-trend.model';
@@ -29,6 +30,8 @@ export class MainDashboardComponent implements OnInit {
 
   dashboardData: DashboardDataModel = new DashboardDataModel({});
 
+  alarmData: Array<AlarmModel> = [];
+
   constructor(
     private readonly dashboardService: DashboardService,
     private sharedService: SharedService
@@ -42,6 +45,7 @@ export class MainDashboardComponent implements OnInit {
     this.getYieldTrendData();
     this.getTemperatureChartData();
     this.getDashboardData();
+    this.getAlarms();
   }
 
   getYieldTrendData() {
@@ -80,7 +84,15 @@ export class MainDashboardComponent implements OnInit {
       .pipe(map((el) => new DashboardDataModel(el)))
       .subscribe((value) => (this.dashboardData = value));
   }
-  1;
+
+  getAlarms() {
+    this.dashboardService
+      .getAlarms({ date: this.currentDate })
+      .pipe(map((res) => res.map((el) => new AlarmModel(el))))
+      .subscribe((value) => {
+        this.alarmData = value;
+      });
+  }
 
   changeProducePowerMode(item) {
     if (this.activeYieldTrendModeID != item.id) {
