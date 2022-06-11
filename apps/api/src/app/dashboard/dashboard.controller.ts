@@ -19,5 +19,10 @@ export class DashboardController {
   @Get('/search')
   async getDashboardSearch(@Query() params: any): Promise<void> {
     return this.dashboardService.getDashboardSearch(params);
+  }  
+  
+  @Get('/alarms')
+  async getAlarms(@Query() params: any): Promise<void> {
+    return this.dashboardService.getAlarms(params);
   }
 }
