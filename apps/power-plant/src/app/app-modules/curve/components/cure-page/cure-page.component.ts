@@ -90,30 +90,33 @@ export class CurePageComponent implements OnInit {
 
   onSelectUnit(event) {
     this.selectedDeviceID = event.DeviceId;
-    this.selectedDeviceTypeID = event.DeviceTypeId;
     this.fillCurveTypes(event.DeviceTypeId);
+    this.selectedDeviceTypeID = event.DeviceTypeId;
+    this.getCurveData();
   }
 
   fillCurveTypes(deviceTypeID) {
-    switch (+deviceTypeID) {
-      case 1:
-        this.curveTypes = CurveConfig.CombinerCurveColumns;
-        break;
+    if (this.selectedDeviceTypeID != deviceTypeID) {
+      this.filterForm.get('curveColumn').setValue(null);
+      switch (+deviceTypeID) {
+        case 1:
+          this.curveTypes = CurveConfig.CombinerCurveColumns;
+          break;
 
-      case 2:
-        this.curveTypes = CurveConfig.InverterCurveColumns;
-        break;
+        case 2:
+          this.curveTypes = CurveConfig.InverterCurveColumns;
+          break;
 
-      case 3:
-        this.curveTypes = CurveConfig.WampCurveColumns;
-        break;
+        case 3:
+          this.curveTypes = CurveConfig.WampCurveColumns;
+          break;
+      }
     }
   }
 
   getCurveData() {
     if (this.selectedDeviceID) {
       let tempModel = this.filterForm.value;
-      console.log(tempModel);
       if (tempModel.curveColumn) {
         this.curveComponent.chartInstance.showLoading();
         this.curveService
@@ -133,11 +136,15 @@ export class CurePageComponent implements OnInit {
           .subscribe((value) => {
             this.curveData = value;
           });
+        return;
       } else {
-        this.alertService.showToaster('Please Select Curve Type!', 'WARNING');
+        // this.alertService.showToaster('Please Select Curve Type!', 'WARNING');
+        // return;
       }
     } else {
       this.alertService.showToaster('Please Select a Unit First!', 'WARNING');
+      // return;
     }
+    this.curveData = new CurveDynamicChart({}, []);
   }
 }
