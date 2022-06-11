@@ -22,6 +22,7 @@ export class MainDashboardComponent implements OnInit {
     { id: 3, name: 'Year' },
   ];
 
+  invStatChartInstance: ECharts;
   yieldChartInstance: ECharts;
   yieldTrendChartData = null;
 
@@ -79,10 +80,14 @@ export class MainDashboardComponent implements OnInit {
   }
 
   getDashboardData() {
+    this.invStatChartInstance?.showLoading();
     this.dashboardService
       .getDashboardData({ date: this.currentDate })
       .pipe(map((el) => new DashboardDataModel(el)))
-      .subscribe((value) => (this.dashboardData = value));
+      .subscribe((value) => {
+        this.dashboardData = value;
+        this.invStatChartInstance?.hideLoading();
+      });
   }
 
   getAlarms() {
