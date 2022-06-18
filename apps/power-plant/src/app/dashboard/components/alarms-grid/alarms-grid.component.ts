@@ -28,6 +28,14 @@ export class AlarmsGridComponent implements OnInit, OnChanges {
       maxWidth: 87,
       minWidth: 87,
     },
+    
+    {
+      field: 'DeviceId',
+      headerName: 'DeviceId',
+      // flex: 1,
+      maxWidth: 110,
+      minWidth: 110,
+    },
     { field: 'Alarm', headerName: 'Alarm', flex: 1, minWidth: 200 },
     // {
     //   field: 'IsActive',
