@@ -25,6 +25,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { UnitPageComponent } from './components/unit-page/unit-page.component';
 import { InvDataAnalysisComponent } from './components/unit-page/inv-data-analysis/inv-data-analysis.component';
 import { MatSelectModule } from '@angular/material/select';
+import { FooterAlarmsComponent } from './components/footer-alarms/footer-alarms.component';
 // import 'ag-grid-enterprise';
 
 const matModules = [
@@ -46,6 +47,7 @@ const matModules = [
     TestGridComponent,
     UnitPageComponent,
     InvDataAnalysisComponent,
+    FooterAlarmsComponent,
   ],
   imports: [
     CommonModule,

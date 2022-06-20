@@ -1,0 +1,12 @@
+<div *ngIf="isOpened" class="absolute bottom-0 h-96">
+    <button mat-stroked-button color="primary" (click)="isOpened=!isOpened">
+        toggle
+    </button>
+    opened
+</div>
+<div *ngIf="!isOpened" class="">
+    <button mat-stroked-button color="primary" (click)="isOpened=!isOpened">
+        toggle
+    </button>
+    closed
+</div>
