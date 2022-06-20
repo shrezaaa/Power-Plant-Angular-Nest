@@ -32,5 +32,8 @@ export class Plants extends BaseEntity {
   Description: string;
 
   @Column({ default: true })
-  IsActive: boolean;
+  IsActive: boolean; 
+  
+  @Column({ nullable: true })
+  ActiveVampId: number;
 }
