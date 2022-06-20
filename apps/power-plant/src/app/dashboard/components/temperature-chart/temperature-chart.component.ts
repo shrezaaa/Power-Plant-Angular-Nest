@@ -27,8 +27,8 @@ export class TemperatureChartComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.data && changes.data.currentValue) {
-      this.initChartOptions(this.data.categories, this.data.currentTemperature);
-      this.chartInstance?.hideLoading()
+      this.initChartOptions(this.data.categories, this.data.series);
+      this.chartInstance?.hideLoading();
     }
   }
 
@@ -42,7 +42,21 @@ export class TemperatureChartComponent implements OnInit, OnChanges {
     if (!this.data) this.chartInstance.showLoading();
   }
 
-  initChartOptions(categories = [], series = []) {
+  initChartOptions(
+    categories = [],
+    series: Map<number, Array<any>> = new Map<number, Array<any>>()
+  ) {
+    let chartSeries = [];
+
+    series.forEach((value, key) => {
+      chartSeries.push({
+        name: `Device ${key}`,
+        type: 'line',
+        // yAxisIndex: 0,
+        smooth: true,
+        data: value,
+      });
+    });
     this.chartOption = {
       color: this.colors,
       tooltip: {
@@ -60,26 +74,20 @@ export class TemperatureChartComponent implements OnInit, OnChanges {
       },
       yAxis: {
         type: 'value',
-        name: 'Temperature °C',
+        name: 'Inverters Temperature °C',
         position: 'left',
         alignTicks: true,
         axisLine: {
           show: true,
           lineStyle: {
-            color: this.colors[1],
+            // color: this.colors[1],
           },
         },
         axisLabel: {
           formatter: '{value} °C',
         },
       },
-      series: {
-        name: 'Temperature',
-        type: 'line',
-        // yAxisIndex:0,
-        smooth: true,
-        data: series,
-      },
+      series: chartSeries,
     };
   }
 }

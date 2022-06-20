@@ -2,6 +2,7 @@ export class Unit {
   DeviceId;
   PhaseNo;
   DeviceTypeId;
+  DeviceTitleEn;
   DeviceTitle;
   DeviceIP;
   DevicePort;
@@ -17,6 +18,7 @@ export class Unit {
     this.DeviceId = element?.DeviceId;
     this.PhaseNo = element?.PhaseNo;
     this.DeviceTypeId = element?.DeviceTypeId;
+    this.DeviceTitleEn = element?.DeviceTitleEn;
     this.DeviceTitle = element?.DeviceTitle;
     this.DeviceIP = element?.DeviceIP;
     this.DevicePort = element?.DevicePort;

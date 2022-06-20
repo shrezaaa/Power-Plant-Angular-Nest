@@ -50,7 +50,7 @@
         class="overflow-auto"
         [data]="units"
         (selectedObjectChange)="onSelectUnit($event)"
-        [labelProp]="'DeviceTitle'"
+        [labelProp]="'DeviceTitleEn'"
         [valueProp]="'DeviceId'"
       ></p-plant-list-selection>
     </div>
@@ -65,6 +65,8 @@
         [deviceTypeID]="selectedDeviceTypeID"
         [deviceID]="selectedDeviceID"
       ></p-plant-inv-data-analysis>
+
+      <p-plant-footer-alarms></p-plant-footer-alarms>
     </div>
   </div>
 </div>

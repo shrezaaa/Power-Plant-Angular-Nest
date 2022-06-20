@@ -23,7 +23,7 @@ export class SharedService {
   deviceTypes: Array<SelectData> = [
     { name: 'CombinerBox', value: 1 },
     { name: 'Inverter', value: 2 },
-    { name: 'Wamp', value: 3 },
+    { name: 'vamp', value: 3 },
   ];
 
   public get plants(): Observable<Array<PlantModel>> {
