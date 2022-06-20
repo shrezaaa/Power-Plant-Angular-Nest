@@ -27,11 +27,7 @@ export class CurePageComponent implements OnInit {
     deviceTypeID: 'All',
   });
 
-  deviceTypes: Array<SelectData> = [
-    { name: 'CombinerBox', value: 1 },
-    { name: 'Inverter', value: 2 },
-    { name: 'Wamp', value: 3 },
-  ];
+  deviceTypes: Array<SelectData> = this.sharedService.deviceTypes;
 
   curveTypes: Array<any> = [];
 
