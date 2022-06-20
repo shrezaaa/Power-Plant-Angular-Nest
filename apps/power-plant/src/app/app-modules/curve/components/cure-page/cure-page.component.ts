@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { AlertService } from 'apps/power-plant/src/app/core/alert/alert.service';
 import { SharedService } from 'apps/power-plant/src/app/shared/services/shared.service';
 import { SelectData } from 'apps/power-plant/src/app/shared/types/select-data';
@@ -23,8 +24,9 @@ export class CurePageComponent implements OnInit {
   selectedDeviceID: number = null;
   selectedDeviceTypeID: number = null;
   unitSelectionForm = this.fb.group({
-    deviceTitle: null,
+    DeviceTitleEn: null,    
     deviceTypeID: 'All',
+    PlantID: 'All',
   });
 
   deviceTypes: Array<SelectData> = this.sharedService.deviceTypes;
@@ -44,15 +46,13 @@ export class CurePageComponent implements OnInit {
     private unitService: UnitService,
     private curveService: CurveService,
     private alertService: AlertService,
-    private sharedService: SharedService
+    public sharedService: SharedService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    // const { params } = this.route.snapshot;
-    // let deviceTypeID = params.deviceTypeID ? +params.deviceTypeID : null;
-    // if (deviceTypeID) {
-    //   this.unitSelectionForm.get('deviceTypeID').setValue(deviceTypeID);
-    // }
+    this.initDefaultValues();
+    this.sharedService.getPlants({},true)
     this.getUnitSelections();
     this.unitSelectionForm.valueChanges
       .pipe(debounceTime(400))
@@ -64,6 +64,14 @@ export class CurePageComponent implements OnInit {
     });
   }
 
+  initDefaultValues() {
+    const { PlantID } = this.route.snapshot.queryParams;
+    if (PlantID) {
+      this.sharedService.getPlants({}, true);
+      this.unitSelectionForm.get('PlantID').setValue(+PlantID);
+    }
+  }
+
   getUnitSelections() {
     this.unitService
       .getUnits({
@@ -71,7 +79,11 @@ export class CurePageComponent implements OnInit {
           this.unitSelectionForm.value.deviceTypeID != 'All'
             ? this.unitSelectionForm.value.deviceTypeID
             : null,
-        DeviceName: this.unitSelectionForm.value.deviceTitle,
+        DeviceTitleEn: this.unitSelectionForm.value.DeviceTitleEn,
+        PlantID:
+          this.unitSelectionForm.value.PlantID != 'All'
+            ? this.unitSelectionForm.value.PlantID
+            : null,
       })
       .pipe(
         take(1),
