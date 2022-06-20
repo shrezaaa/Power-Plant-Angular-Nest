@@ -11,8 +11,18 @@ export class YieldTrendChart {
     this.mode = mode;
     switch (mode) {
       case 1:
-        data.forEach((element) => {
-          this.currentPowerSeries.push(element.CurrentPower);
+        data.forEach((element, index) => {
+          if (
+            Math.abs(+element.CurrentPower - data[index - 1]?.CurrentPower) <
+              5000 &&
+            data[index - 1]?.CurrentPower != null &&
+            +element.CurrentPower < 60000
+          ) {
+            //Remove Hazards
+            this.currentPowerSeries.push(element.CurrentPower);
+          } else {
+            this.currentPowerSeries.push(null);
+          }
           this.categories.push(element.Time);
           this.todayYieldSeries.push(element.DayPower);
         });
