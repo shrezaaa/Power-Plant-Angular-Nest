@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ECharts } from 'echarts';
-import { map, mapTo, Observable } from 'rxjs';
+import { distinctUntilChanged, map, mapTo, Observable } from 'rxjs';
 import { SharedService } from '../../../shared/services/shared.service';
 import { AlarmModel } from '../../shared/models/alarm.model';
 import { DashboardDataModel } from '../../shared/models/dashboard-data.model';
@@ -40,6 +40,11 @@ export class MainDashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getData();
+    this.sharedService.selectedPlant
+      .pipe(distinctUntilChanged())
+      .subscribe(() => {
+        this.getData();
+      });
   }
 
   getData() {
@@ -55,6 +60,7 @@ export class MainDashboardComponent implements OnInit {
       .getYieldTrend({
         mode: this.activeYieldTrendModeID,
         date: this.currentDate,
+        PlantID: this.sharedService.selectedPlant$.value.PlantID,
       })
       .subscribe((value) => {
         if (value) {
@@ -71,6 +77,7 @@ export class MainDashboardComponent implements OnInit {
     this.dashboardService
       .getTemperatureChart({
         date: this.currentDate,
+        PlantID: this.sharedService.selectedPlant$.value.PlantID,
       })
       .subscribe((value) => {
         if (value) {
@@ -82,7 +89,10 @@ export class MainDashboardComponent implements OnInit {
   getDashboardData() {
     this.invStatChartInstance?.showLoading();
     this.dashboardService
-      .getDashboardData({ date: this.currentDate })
+      .getDashboardData({
+        date: this.currentDate,
+        PlantID: this.sharedService.selectedPlant$.value.PlantID,
+      })
       .pipe(map((el) => new DashboardDataModel(el)))
       .subscribe((value) => {
         this.dashboardData = value;
@@ -92,7 +102,10 @@ export class MainDashboardComponent implements OnInit {
 
   getAlarms() {
     this.dashboardService
-      .getAlarms({ date: this.currentDate })
+      .getAlarms({
+        date: this.currentDate,
+        PlantID: this.sharedService.selectedPlant$.value.PlantID,
+      })
       .pipe(map((res) => res.map((el) => new AlarmModel(el))))
       .subscribe((value) => {
         this.alarmData = value;

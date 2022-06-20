@@ -32,15 +32,12 @@ export class PlantSelectDialogComponent implements OnInit {
 
   getPlantSelectionData() {
     if (!this.sharedService.plants$.value.length) this.selectionLoading = true;
-    this.sharedService
-      .getPlants(this.form.value)
-      .subscribe((value) => {
-        this.selectionLoading = false;
-      });
+    this.sharedService.getPlants(this.form.value).subscribe((value) => {
+      this.selectionLoading = false;
+    });
   }
 
   onSelectPlant($event) {
-    console.log($event);
     this.selectedPlant = $event;
   }
 
