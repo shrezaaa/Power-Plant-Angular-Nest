@@ -8,10 +8,12 @@ export class UnitService {
   constructor(@InjectConnection() private readonly connection: Connection) {}
 
   async getUnits(params) {
-    const { DeviceTypeID, DeviceName } = params;
+    const { DeviceTypeID, DeviceName, DeviceTitleEn } = params;
     let query = `execute Unit_Search @DeviceName = ${
       DeviceName ? `'${DeviceName}'` : null
-    }, @DeviceTypeID = ${DeviceTypeID ?? null}`;
+    }, 
+    @DeviceTitleEn = ${DeviceTitleEn ? `'${DeviceTitleEn}'` : null},    
+    @DeviceTypeID = ${DeviceTypeID ?? null}`;
     this.logger.debug(query);
     return await this.connection.query(query);
   }
@@ -23,7 +25,7 @@ export class UnitService {
     return await this.connection.query(query);
   }
 
-  async getUnitCurve(params) {    
+  async getUnitCurve(params) {
     let { Date, DeviceTypeID, DeviceID, Column } = params;
     if (DeviceID == undefined) DeviceID = null;
     let TableName = this.getTableByDeviceType(DeviceTypeID);

@@ -18,7 +18,7 @@ export class UnitPageComponent implements OnInit {
   selectedDeviceID: number = null;
   selectedDeviceTypeID: number = null;
   unitSelectionForm = this.fb.group({
-    deviceTitle: null,
+    DeviceTitleEn: null,
     deviceTypeID: 'All',
     PlantID: 'All',
   });
@@ -37,6 +37,7 @@ export class UnitPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.initDefaultValues();
+    this.sharedService.getPlants({},true)
     this.unitSelectionForm.valueChanges
       .pipe(debounceTime(400))
       .subscribe(() => {
@@ -76,7 +77,7 @@ export class UnitPageComponent implements OnInit {
           this.unitSelectionForm.value.deviceTypeID != 'All'
             ? this.unitSelectionForm.value.deviceTypeID
             : null,
-        DeviceName: this.unitSelectionForm.value.deviceTitle,
+        DeviceTitleEn: this.unitSelectionForm.value.DeviceTitleEn,
         PlantID:
           this.unitSelectionForm.value.PlantID != 'All'
             ? this.unitSelectionForm.value.PlantID
