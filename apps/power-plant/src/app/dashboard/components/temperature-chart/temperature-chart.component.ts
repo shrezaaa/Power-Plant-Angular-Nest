@@ -50,7 +50,7 @@ export class TemperatureChartComponent implements OnInit, OnChanges {
 
     series.forEach((value, key) => {
       chartSeries.push({
-        name: key,
+        name: `Device ${key}`,
         type: 'line',
         // yAxisIndex: 0,
         smooth: true,
@@ -74,7 +74,7 @@ export class TemperatureChartComponent implements OnInit, OnChanges {
       },
       yAxis: {
         type: 'value',
-        name: 'Temperature °C',
+        name: 'Inverters Temperature °C',
         position: 'left',
         alignTicks: true,
         axisLine: {
