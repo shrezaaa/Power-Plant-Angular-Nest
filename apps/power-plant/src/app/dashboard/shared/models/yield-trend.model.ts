@@ -30,13 +30,13 @@ export class YieldTrendChart {
       case 2:
         data.forEach((element) => {
           this.categories.push(datePipe.transform(element.Day, 'MM/dd'));
-          this.todayYieldSeries.push(element.DayPower);
+          this.todayYieldSeries.push(element.MothPower);
         });
         break;
       case 3:
         data.forEach((element) => {
           this.categories.push(datePipe.transform(element.Month, 'yyyy/MM'));
-          this.todayYieldSeries.push(element.MonthPower);
+          this.todayYieldSeries.push(element.MonthDayPower);
         });
         break;
     }

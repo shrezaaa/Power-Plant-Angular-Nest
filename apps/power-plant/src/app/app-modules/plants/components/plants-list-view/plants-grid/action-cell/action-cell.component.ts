@@ -23,7 +23,6 @@ export class ActionCellComponent implements OnInit, ICellRendererAngularComp {
   ngOnInit(): void {}
 
   agInit(params: ICellRendererParams): void {
-    console.log(params);
     this.field = params.colDef.field;
     this.rowData = params.data;
     this.cellData = params.data[this.field];

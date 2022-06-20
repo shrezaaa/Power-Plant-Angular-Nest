@@ -25,7 +25,6 @@ export class StatisticsChartComponent implements OnInit {
   constructor() {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
     if (changes.data && changes.data.currentValue) {
       this.initChartOptions(
         this.data.onlineInvertersCount,
