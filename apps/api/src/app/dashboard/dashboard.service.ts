@@ -10,8 +10,8 @@ export class DashboardService {
   constructor(@InjectConnection() private readonly connection: Connection) {}
 
   async getYieldTrend(params) {
-    const { mode, date } = params;
-    let query = `execute YieldTrend_Search @Mode = ${mode} ,@Date = '${date}'`;
+    const { mode, date, PlantID } = params;
+    let query = `execute YieldTrend_Search @Mode = ${mode} ,@Date = '${date}', @PlantID = ${PlantID}`;
     this.logger.debug(query);
     return await this.connection.query(query);
   }

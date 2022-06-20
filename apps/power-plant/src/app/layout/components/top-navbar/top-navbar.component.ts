@@ -45,7 +45,7 @@ export class TopNavbarComponent implements OnInit {
       // height: '50vh',
       // minHeight: '50vh',
     });
-    dialogRef.afterClosed().subscribe((value: Partial<PlantModel>) => {
+    dialogRef.afterClosed().subscribe((value: Partial<PlantModel>) => {      
       if (value) {
         this.sharedService.setSelectedPlant(value);
       }

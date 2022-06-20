@@ -87,7 +87,7 @@ export class YieldTrendChartComponent implements OnInit, OnChanges {
         {
           type: 'value',
           name: 'Power (kW)',
-          position: 'right',
+          position: 'left',
           alignTicks: true,
           axisLine: {
             show: true,
@@ -102,7 +102,7 @@ export class YieldTrendChartComponent implements OnInit, OnChanges {
         {
           type: 'value',
           name: 'Today Yield (kWh)',
-          position: 'left',
+          position: 'right',
           alignTicks: true,
           // offset: 80,
           axisLine: {
@@ -120,14 +120,14 @@ export class YieldTrendChartComponent implements OnInit, OnChanges {
         {
           name: 'Today Yield',
           type: 'bar',
-          // yAxisIndex: 0,
+          yAxisIndex: 1,
           data: yieldSeries,
         },
         {
           name: 'Power',
           type: 'line',
           smooth: true,
-          yAxisIndex: 1,
+          // yAxisIndex: 1,
           data: powerSeries,
         },
       ],
