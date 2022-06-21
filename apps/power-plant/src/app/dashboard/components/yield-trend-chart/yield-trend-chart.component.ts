@@ -40,10 +40,10 @@ export class YieldTrendChartComponent implements OnInit, OnChanges {
       this.initTwoSeriesChartOptions(
         data.categories,
         data.currentPowerSeries,
-        data.todayYieldSeries
+        data.dayPowerSeries
       );
     } else if ([2, 3].includes(data.mode)) {
-      this.initOneSeriesChartOptions(data.categories, data.todayYieldSeries);
+      this.initOneSeriesChartOptions(data.categories, data.dayPowerSeries);
     }
 
     this.chartInstance?.hideLoading();

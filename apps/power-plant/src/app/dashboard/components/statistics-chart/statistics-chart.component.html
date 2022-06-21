@@ -4,3 +4,15 @@
   (chartInit)="onChartInit($event)"
   class="demo-chart"
 ></div>
+<ul class="flex flex-row items-center flex-wrap">
+  <li class="flex items-center mx-2">
+    <div class="echarts_ico danger" [ngStyle]="{ background: colors[0] }"></div>
+    <p class="m-0 ml-1">Online</p>
+    <p class="m-0 ml-3">{{ onlineCount }}</p>
+  </li>
+  <li class="flex items-center mx-2">
+    <div class="echarts_ico danger" [ngStyle]="{ background: colors[1] }"></div>
+    <p class="m-0 ml-1">Offline</p>
+    <p class="m-0 ml-3">{{ offlineCount }}</p>
+  </li>
+</ul>

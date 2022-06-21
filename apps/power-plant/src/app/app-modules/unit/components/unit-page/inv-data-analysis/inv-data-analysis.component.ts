@@ -40,9 +40,9 @@ export class InvDataAnalysisComponent implements OnInit, OnChanges {
     if (changes.deviceID && changes.deviceID.currentValue) {
       this.getData();
     }
-    this.filterForm.valueChanges.pipe(debounceTime(400)).subscribe((value) => {
-      this.getData();
-    });
+    // this.filterForm.valueChanges.pipe(debounceTime(400)).subscribe((value) => {
+    //   this.getData();
+    // });
   }
 
   ngOnInit(): void {

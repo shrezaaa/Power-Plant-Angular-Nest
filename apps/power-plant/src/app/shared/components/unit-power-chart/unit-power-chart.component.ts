@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { TemperatureChart } from 'apps/power-plant/src/app/dashboard/shared/models/temperature-chart.model';
 import { ECharts, EChartsOption } from 'echarts';
+import { YieldTrendChart } from '../../../dashboard/shared/models/yield-trend.model';
 import { PowerChart } from '../../models/power-chart';
 
 @Component({
@@ -17,7 +18,8 @@ import { PowerChart } from '../../models/power-chart';
   styleUrls: ['./unit-power-chart.component.scss'],
 })
 export class UnitPowerChartComponent implements OnInit, OnChanges {
-  @Input('data') data: PowerChart;
+  @Input('data') data: any;
+  @Input('type') type: 'single-power' | 'multi-power' = 'multi-power';
   @Output('chartInstanceChange') chartInstanceChange =
     new EventEmitter<ECharts>();
   chartInstance: ECharts;
@@ -27,12 +29,17 @@ export class UnitPowerChartComponent implements OnInit, OnChanges {
   constructor() {}
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.data && changes.data.currentValue) {
-      this.initChartOptions(
-        this.data.categories,
-        this.data.currentASeries,
-        this.data.currentBSeries,
-        this.data.currentCSeries
-      );
+      if (this.type == 'multi-power') {
+        this.initChartOptions(this.data.categories, [
+          this.data.currentASeries,
+          this.data.currentBSeries,
+          this.data.currentCSeries,
+        ]);
+      } else {
+        this.initChartOptions(this.data.categories, [
+          this.data.currentPowerSeries,
+        ]);
+      }
       this.chartInstance?.hideLoading();
     }
   }
@@ -47,11 +54,41 @@ export class UnitPowerChartComponent implements OnInit, OnChanges {
     if (!this.data) this.chartInstance.showLoading();
   }
 
-  initChartOptions(categories = [], seriesA = [], seriesB = [], seriesC = []) {
+  initChartOptions(categories = [], seriesData: Array<Array<any>> = [[]]) {
+    let series;
+    if (this.type == 'multi-power') {
+      series = [
+        {
+          name: 'A',
+          type: 'line',
+          color: this.colors[1],
+          data: seriesData[0],
+        },
+        {
+          name: 'B',
+          type: 'line',
+          color: this.colors[2],
+          data: seriesData[1],
+        },
+        {
+          name: 'C',
+          type: 'line',
+          color: this.colors[3],
+          data: seriesData[2],
+        },
+      ];
+    } else {
+      series = {
+        name: 'Power',
+        type: 'line',
+        color: this.colors[1],
+        data: seriesData[0],
+      };
+    }
     this.chartOption = {
       // color: this.colors,
       title: {
-        text: 'Current Power (kW)',
+        text: this.type == 'multi-power' ? 'Current Power (kW)' : 'Power (kW)',
       },
       tooltip: {
         trigger: 'axis',
@@ -87,33 +124,7 @@ export class UnitPowerChartComponent implements OnInit, OnChanges {
         },
       },
 
-      series: [
-        {
-          name: 'A',
-          type: 'line',
-          // step:'middle',
-
-          // smooth: true,
-          color: this.colors[1],
-          data: seriesA,
-        },
-        {
-          name: 'B',
-          type: 'line',
-          // step:'middle',
-          color: this.colors[2],
-          // smooth: true,
-          data: seriesB,
-        },
-        {
-          name: 'C',
-          type: 'line',
-          // step:'middle',
-          color: this.colors[3],
-          // smooth: true,
-          data: seriesC,
-        },
-      ],
+      series: series,
     };
   }
 }
