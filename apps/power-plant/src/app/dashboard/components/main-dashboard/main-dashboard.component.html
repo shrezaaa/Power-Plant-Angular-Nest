@@ -137,11 +137,22 @@
       <div
         class="w-full h-full bg-white bg-gradient-to-r rounded-lg flex flex-col p-2 shadow-md"
       >
-        Inverter Devices Statistics
-        <p-plant-statistics-chart
-          [data]="dashboardData"
-          (chartInstanceChange)="invStatChartInstance = $event"
-        ></p-plant-statistics-chart>
+        <section>
+          <strong>Inverter Devices Statistics</strong>
+          <p-plant-statistics-chart
+            [data]="dashboardData"
+            [type]="'inverter'"
+            (chartInstanceChange)="invStatChartInstance = $event"
+          ></p-plant-statistics-chart>
+        </section>
+        <section class="mt-3">
+          <strong>Combiner Devices Statistics</strong>
+          <p-plant-statistics-chart
+            [data]="dashboardData"
+            [type]="'combiner'"
+            (chartInstanceChange)="cmbStatChartInstance = $event"
+          ></p-plant-statistics-chart>
+        </section>
       </div>
     </div>
   </div>

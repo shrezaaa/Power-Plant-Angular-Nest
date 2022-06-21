@@ -23,6 +23,7 @@ export class MainDashboardComponent implements OnInit {
   ];
 
   invStatChartInstance: ECharts;
+  cmbStatChartInstance: ECharts;
   yieldChartInstance: ECharts;
   yieldTrendChartData = null;
 
@@ -38,8 +39,8 @@ export class MainDashboardComponent implements OnInit {
     private sharedService: SharedService
   ) {}
 
-  ngOnInit(): void {
-    this.getData();
+  ngOnInit(): void {  
+    // this.getData();
     this.sharedService.selectedPlant
       .pipe(distinctUntilChanged())
       .subscribe(() => {

@@ -3,8 +3,13 @@ import { PlantModel } from '../../../app-modules/plants/shared/models/plant.mode
 export class DashboardDataModel {
   activePlantsCount = 0;
   deActivePlantsCount = 0;
+
   onlineInvertersCount = 0;
   offlineInvertersCount = 0;
+
+  onlineCombinersCount = 0;
+  offlineCombinersCount = 0;
+
   temperatureSummary = {
     AvgTemperature: 0,
     MaxTemperature: 0,
@@ -17,6 +22,12 @@ export class DashboardDataModel {
       data.onlineInvertersCount ?? this.onlineInvertersCount;
     this.offlineInvertersCount =
       data.offlineInvertersCount ?? this.offlineInvertersCount;
+
+    this.onlineCombinersCount =
+      data.onlineCombinersCount ?? this.onlineCombinersCount;
+    this.offlineCombinersCount =
+      data.offlineCombinersCount ?? this.offlineCombinersCount;
+
     this.deActivePlantsCount =
       data.deActivePlantsCount ?? this.deActivePlantsCount;
 

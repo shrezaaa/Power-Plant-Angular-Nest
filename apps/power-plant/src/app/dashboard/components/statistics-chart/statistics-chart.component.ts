@@ -16,25 +16,35 @@ import { DashboardDataModel } from '../../shared/models/dashboard-data.model';
 })
 export class StatisticsChartComponent implements OnInit {
   @Input('data') data: DashboardDataModel;
+  @Input('type') type: 'combiner' | 'inverter' | 'vamp';
   @Output('chartInstanceChange') chartInstanceChange =
     new EventEmitter<ECharts>();
   chartInstance: ECharts;
   chartOption: EChartsOption = {};
-  colors = ['#2196F3', '#F08300'];
+  colors = ['#2dd184', '#f91e42'];
+
+  offlineCount = 0;
+  onlineCount = 0;
 
   constructor() {}
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.data && changes.data.currentValue) {
-      this.initChartOptions(
-        this.data.onlineInvertersCount,
-        this.data.offlineInvertersCount
-      );
+      if (this.type == 'inverter') {
+        this.offlineCount = this.data.offlineInvertersCount;
+        this.onlineCount = this.data.onlineInvertersCount;
+      } else if (this.type == 'combiner') {
+        this.offlineCount = this.data.offlineCombinersCount;
+        this.onlineCount = this.data.onlineCombinersCount;
+      }
+
+      this.initChartOptions(this.onlineCount, this.offlineCount);
       this.chartInstance?.hideLoading();
     }
   }
 
   ngOnInit(): void {
+    console.log(this.type);
     this.initChartOptions();
   }
 
@@ -68,19 +78,20 @@ export class StatisticsChartComponent implements OnInit {
             show: false,
             position: 'center',
           },
-          // emphasis: {
-          //   label: {
-          //     show: true,
-          //     fontSize: '40',
-          //     fontWeight: 'bold',
-          //   },
-          // },
           labelLine: {
             show: false,
           },
           data: [
-            { value: onlineCount, name: `Online` },
-            { value: offlineCount, name: 'Offline' },
+            {
+              value: onlineCount,
+              name: ``,
+              itemStyle: { color: this.colors[0] },
+            },
+            {
+              value: offlineCount,
+              name: '',
+              itemStyle: { color: this.colors[1] },
+            },
           ],
         },
       ],
