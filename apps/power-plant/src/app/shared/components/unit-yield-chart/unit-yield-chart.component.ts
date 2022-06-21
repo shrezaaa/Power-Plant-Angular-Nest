@@ -81,12 +81,10 @@ export class UnitYieldChartComponent implements OnInit, OnChanges {
           formatter: '{value} kWh',
         },
       },
-
       series: [
         {
           name: 'Today Yield',
           type: 'bar',
-          // yAxisIndex: 0,
           data: series,
         },
       ],

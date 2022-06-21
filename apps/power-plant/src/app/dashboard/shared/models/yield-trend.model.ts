@@ -3,7 +3,7 @@ import { DatePipe } from '@angular/common';
 export class YieldTrendChart {
   categories: Array<string> = [];
   currentPowerSeries: Array<any> = [];
-  todayYieldSeries: Array<any> = [];
+  dayPowerSeries: Array<any> = [];
   mode: number;
 
   constructor(data, mode) {
@@ -24,19 +24,19 @@ export class YieldTrendChart {
             this.currentPowerSeries.push(null);
           }
           this.categories.push(element.Time);
-          this.todayYieldSeries.push(+element.DayPower / 1000);
+          this.dayPowerSeries.push(+element.DayPower / 1000);
         });
         break;
       case 2:
         data.forEach((element) => {
           this.categories.push(datePipe.transform(element.Day, 'MM/dd'));
-          this.todayYieldSeries.push(+element.MothPower / 1000);
+          this.dayPowerSeries.push(+element.MothPower / 1000);
         });
         break;
       case 3:
         data.forEach((element) => {
           this.categories.push(datePipe.transform(element.Month, 'yyyy/MM'));
-          this.todayYieldSeries.push(+element.MonthDayPower / 1000);
+          this.dayPowerSeries.push(+element.MonthDayPower / 1000);
         });
         break;
     }
