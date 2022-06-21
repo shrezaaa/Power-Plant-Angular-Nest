@@ -19,12 +19,20 @@ import { ActionCellComponent } from './components/plants-list-view/plants-grid/a
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { IsactiveCellComponent } from './components/plants-list-view/plants-grid/isactive-cell/isactive-cell.component';
 import { PlantUnitComponent } from './components/plant-unit/plant-unit.component';
+import { NgxMatDatetimePickerModule, NgxMatNativeDateModule, NgxMatTimepickerModule } from '@angular-material-components/datetime-picker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 const matModules = [
   MatFormFieldModule,
   MatInputModule,
   MatSelectModule,
   MatTooltipModule,
+  MatDatepickerModule,
+  NgxMatDatetimePickerModule,
+  NgxMatNativeDateModule,
+  NgxMatTimepickerModule,
+  MatCheckboxModule
 ];
 @NgModule({
   declarations: [

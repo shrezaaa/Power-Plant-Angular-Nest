@@ -40,7 +40,33 @@
       <!--filters-->
       <section class="w-full p-1">
         <div class="flex-container w-full justify-between">
-          <form class="flex items-center grow flex-wrap"></form>
+          <form
+            [formGroup]="filterForm"
+            class="flex items-center grow flex-wrap"
+          >
+            <mat-form-field
+              class="w-full sm:w-[205px] px-1"
+              appearance="outline"
+            >
+              <mat-label>Date</mat-label>
+              <input
+                matInput
+                [ngxMatDatetimePicker]="picker"
+                placeholder="Choose a date"
+                formControlName="DateTime"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="$any(picker)"
+              ></mat-datepicker-toggle>
+              <ngx-mat-datetime-picker #picker> </ngx-mat-datetime-picker>
+            </mat-form-field>
+            <section class="w-full md:w-[215px] px-1">
+              <mat-checkbox class="" formControlName="isNormalized"
+                >Display Normalized Data</mat-checkbox
+              >
+            </section>
+          </form>
 
           <div
             class="flex items-center min-w-full md:min-w-0 md:grow justify-end"
@@ -57,13 +83,14 @@
         <div class="basis-1/2 w-full flex flex-col md:flex-row">
           <div class="basis-1/2">
             <p-plant-unit-yield-chart
-              [data]="PowerChartData"
+              [data]="yieldTrendChartData"
               (chartInstanceChange)="unitYieldChartInstance = $event"
             ></p-plant-unit-yield-chart>
           </div>
           <div class="basis-1/2">
             <p-plant-unit-power-chart
-              [data]="PowerChartData"
+              [data]="yieldTrendChartData"
+              [type]="'single-power'"
               (chartInstanceChange)="unitPowerChartInstance = $event"
             ></p-plant-unit-power-chart>
           </div>
@@ -72,9 +99,13 @@
 
       <div class="min-h-[400px] md:min-h-0 basis-1/2 w-full">
         <div>
-          <button mat-flat-button color="primary" (click)="routeToInverterUnitsPage()">
+          <button
+            mat-flat-button
+            color="primary"
+            (click)="routeToInverterUnitsPage()"
+          >
             View Inverters
-            </button>
+          </button>
         </div>
       </div>
     </div>
