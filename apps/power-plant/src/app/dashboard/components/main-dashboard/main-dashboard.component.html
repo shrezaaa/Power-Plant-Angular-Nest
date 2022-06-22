@@ -153,6 +153,39 @@
             (chartInstanceChange)="cmbStatChartInstance = $event"
           ></p-plant-statistics-chart>
         </section>
+        <section class="mt-4">
+          <div class="my-1">
+            <strong> Plant Name: </strong>
+            <span>{{
+              dashboardData.currentPlant.PlantName | replaceUnderline
+            }}</span>
+          </div>
+          <div class="my-1">
+            <strong>Phone: </strong>
+            <a [href]="'tel:' + dashboardData.currentPlant.Phone">{{
+              dashboardData.currentPlant.Phone | replaceUnderline
+            }}</a>
+          </div>
+          <div class="my-1 flex">
+            <strong>Status:&nbsp;</strong>
+            <ng-container
+              *ngIf="dashboardData.currentPlant.IsActive; else deActive"
+            >
+              <span>Active&nbsp;</span>
+              <mat-icon class="text-green-700">check_circle</mat-icon>
+            </ng-container>
+            <ng-template #deActive>
+              <span>DeActive&nbsp;</span>
+              <mat-icon class="text-red-700">block</mat-icon>
+            </ng-template>
+          </div>
+          <div class="my-1">
+            <strong> Plant Description: </strong>
+            <span>{{
+              dashboardData.currentPlant.Description | replaceUnderline
+            }}</span>
+          </div>
+        </section>
       </div>
     </div>
   </div>
