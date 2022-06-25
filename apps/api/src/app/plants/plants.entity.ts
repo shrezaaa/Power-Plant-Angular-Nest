@@ -36,4 +36,10 @@ export class Plants extends BaseEntity {
   
   @Column({ nullable: true })
   ActiveVampId: number;
+  
+  @Column({ nullable: true, type: 'numeric' })
+  BaseAmount: number;
+  
+  @Column({ nullable: true, type: 'numeric' })
+  AdjustmentFactor: number;
 }
