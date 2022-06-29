@@ -41,5 +41,5 @@ export class Plants extends BaseEntity {
   BaseAmount: number;
   
   @Column({ nullable: true, type: 'numeric' })
-  AdjustmentFactor: number;
+  AdjustmenFactor: number;
 }
