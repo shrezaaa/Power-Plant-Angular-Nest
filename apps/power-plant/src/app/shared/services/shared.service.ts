@@ -8,7 +8,7 @@ import { SelectData } from '../types/select-data';
   providedIn: 'root',
 })
 export class SharedService {
-  currentDate = '2022-05-22';
+  currentDate = '2022-06-27';
 
   selectedPlant$: BehaviorSubject<Partial<PlantModel>> = new BehaviorSubject<
     Partial<PlantModel>

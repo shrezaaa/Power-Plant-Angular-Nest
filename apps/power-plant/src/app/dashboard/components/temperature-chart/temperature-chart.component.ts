@@ -74,7 +74,7 @@ export class TemperatureChartComponent implements OnInit, OnChanges {
       },
       yAxis: {
         type: 'value',
-        name: 'Inverters Temperature °C',
+        name: 'Temperature °C',
         position: 'left',
         alignTicks: true,
         axisLine: {

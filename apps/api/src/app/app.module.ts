@@ -10,7 +10,13 @@ import { UnitModule } from './unit/unit.module';
 import { PlantsModule } from './plants/plants.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(typeOrmConfig), AuthModule, DashboardModule, UnitModule, PlantsModule],
+  imports: [
+    TypeOrmModule.forRoot(typeOrmConfig),
+    AuthModule,
+    DashboardModule,
+    UnitModule,
+    PlantsModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
