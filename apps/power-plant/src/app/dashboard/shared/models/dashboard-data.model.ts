@@ -15,6 +15,11 @@ export class DashboardDataModel {
     MaxTemperature: 0,
   };
 
+  powerSummary = {
+    avgCurrentPower: 0,
+    maxCurrentPower: 0,
+  };
+
   currentPlant: PlantModel = new PlantModel({});
   constructor(data) {
     this.activePlantsCount = data.activePlantsCount ?? this.activePlantsCount;
@@ -33,6 +38,8 @@ export class DashboardDataModel {
 
     this.temperatureSummary =
       data.temperatureSummary ?? this.temperatureSummary;
+
+    this.powerSummary = data.powerSummary ?? this.powerSummary;
 
     this.currentPlant = new PlantModel(data?.currentPlant);
   }
