@@ -1,20 +1,27 @@
-<div *ngIf="isOpened" class="absolute bottom-0 h-80 w-full bg-white">
-    <div class="footer-head">
-        <hr class="mb-2">
-        <button mat-icon-button color="primary" (click)="isOpened=!isOpened">
-            <mat-icon >expand_more</mat-icon>
-        </button>
-        Alarms Section
-        <!-- <hr class=""> -->
-    </div>
-    <div class="footer-body">
-        
-    </div>
+<div
+  *ngIf="isOpened"
+  class="absolute bottom-0 h-80 w-full bg-white flex flex-col"
+>
+  <hr class="mb-2" />
+  <div class="footer-head flex items-center">
+    <button mat-icon-button color="primary" (click)="isOpened = !isOpened">
+      <mat-icon>expand_more</mat-icon>
+    </button>
+    <mat-icon class="mr-2">notification_important</mat-icon>
+    Alarms Section
+    <!-- <hr class=""> -->
+  </div>
+  <div class="footer-body grow">
+    <p-plant-alarms-grid [data]="data"></p-plant-alarms-grid>
+  </div>
 </div>
 <div *ngIf="!isOpened" class="bg-white">
-    <hr class="mb-2">
-    <button mat-icon-button color="primary" (click)="isOpened=!isOpened">
-        <mat-icon >expand_less</mat-icon>
+  <hr class="mb-2" />
+  <div class="footer-head flex items-center">
+    <button mat-icon-button color="primary" (click)="isOpened = !isOpened">
+      <mat-icon>expand_less</mat-icon>
     </button>
+    <mat-icon class="mr-2">notification_important</mat-icon>
     Alarms Section
+  </div>
 </div>
