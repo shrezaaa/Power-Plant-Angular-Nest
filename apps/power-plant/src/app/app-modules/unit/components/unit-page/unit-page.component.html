@@ -27,18 +27,27 @@
           <mat-label>Plant</mat-label>
           <mat-select formControlName="PlantID">
             <mat-option value="All"> All </mat-option>
-            <mat-option *ngFor="let item of (sharedService.plants|async)" [value]="item.PlantID">
+            <mat-option
+              *ngFor="let item of sharedService.plants | async"
+              [value]="item.PlantID"
+            >
               {{ item.PlantName }}
             </mat-option>
           </mat-select>
         </mat-form-field>
 
-
         <mat-form-field class="w-full" appearance="outline" floatLabel="never">
           <mat-label>Device Type</mat-label>
-          <mat-select [disabled]='true' (selectionChange)="updateRoute($event.value)" formControlName="deviceTypeID">
+          <mat-select
+            [disabled]="true"
+            (selectionChange)="updateRoute($event.value)"
+            formControlName="deviceTypeID"
+          >
             <mat-option value="All"> All </mat-option>
-            <mat-option *ngFor="let item of sharedService.deviceTypes" [value]="item.value">
+            <mat-option
+              *ngFor="let item of sharedService.deviceTypes"
+              [value]="item.value"
+            >
               {{ item.name }}
             </mat-option>
           </mat-select>
@@ -66,10 +75,6 @@
         [deviceID]="selectedDeviceID"
       ></p-plant-inv-data-analysis>
 
-      <div class="relative">
-
-        <p-plant-footer-alarms></p-plant-footer-alarms>
-      </div>
     </div>
   </div>
 </div>
