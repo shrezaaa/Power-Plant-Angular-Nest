@@ -24,6 +24,13 @@ export class UnitService {
     let query = `execute InvAnalysis_Search @DateTime = '${DateTime}', @DeviceID = ${DeviceID}`;
     this.logger.debug(query);
     return await this.connection.query(query);
+  }  
+  
+  async getInvSummaryData(params) {
+    const { DateTime, DeviceID } = params;
+    let query = `execute InvAnalysis_Search @DateTime = '${DateTime}', @DeviceID = ${DeviceID}`;
+    this.logger.debug(query);
+    return await this.connection.query(query);
   }
 
   async getUnitCurve(params) {

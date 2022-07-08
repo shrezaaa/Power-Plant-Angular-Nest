@@ -15,6 +15,11 @@ export class UnitController {
   @Get('/invAnalysis')
   async getInvAnalysisData(@Query() params: any): Promise<void> {
     return this.unitService.getInvAnalysisData(params);
+  } 
+  
+  @Get('/invSummary')
+  async getInvSummaryData(@Query() params: any): Promise<void> {
+    return this.unitService.getInvSummaryData(params);
   }
 
   @Get('/curve')
