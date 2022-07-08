@@ -10,6 +10,7 @@ import { SharedService } from 'apps/power-plant/src/app/shared/services/shared.s
 import { ECharts } from 'echarts';
 import { debounce, debounceTime } from 'rxjs';
 import { PowerChart } from '../../../../../shared/models/power-chart';
+import { InvSummary } from '../../../shared/models/inv-summary.model';
 import { UnitService } from '../../../shared/services/unit.service';
 
 @Component({
@@ -28,8 +29,8 @@ export class InvDataAnalysisComponent implements OnInit, OnChanges {
 
   unitPowerChartInstance: ECharts;
   unitYieldChartInstance: ECharts;
-  PowerChartData = null;
-
+  PowerChartData: PowerChart = null;
+  invSummaryData: InvSummary = null;
   constructor(
     private readonly fb: FormBuilder,
     private unitService: UnitService,
@@ -54,20 +55,26 @@ export class InvDataAnalysisComponent implements OnInit, OnChanges {
       this.unitPowerChartInstance?.showLoading();
       this.unitYieldChartInstance?.showLoading();
       this.loading = true;
-      this.unitService
-        .getInvAnalysisData({
-          DateTime: new Date(DateTime).toLocaleDateString(),
-          DeviceID: this.deviceID,
-        })
-        .subscribe({
-          next: (res) => {
-            this.loading = false;
-            this.PowerChartData = new PowerChart(res);
-          },
-          error: (err) => {
-            this.loading = false;
-          },
-        });
+      let model = {
+        DateTime: new Date(DateTime).toLocaleDateString(),
+        DeviceID: this.deviceID,
+      };
+      this.unitService.getInvAnalysisData(model).subscribe({
+        next: (res) => {
+          this.loading = false;
+          this.PowerChartData = new PowerChart(res);
+        },
+        error: (err) => {
+          this.loading = false;
+        },
+      });
+
+      this.unitService.getInvSummaryData(model).subscribe({
+        next: (res) => {
+          console.log(res);
+          this.invSummaryData = new InvSummary(res[0]);
+        },
+      });
     }
   }
 }
