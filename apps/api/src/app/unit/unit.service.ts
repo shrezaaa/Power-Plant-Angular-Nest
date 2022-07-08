@@ -28,7 +28,7 @@ export class UnitService {
   
   async getInvSummaryData(params) {
     const { DateTime, DeviceID } = params;
-    let query = `execute InvAnalysis_Search @DateTime = '${DateTime}', @DeviceID = ${DeviceID}`;
+    let query = `execute InvSummary_Search @DateTime = '${DateTime}', @DeviceID = ${DeviceID}`;
     this.logger.debug(query);
     return await this.connection.query(query);
   }

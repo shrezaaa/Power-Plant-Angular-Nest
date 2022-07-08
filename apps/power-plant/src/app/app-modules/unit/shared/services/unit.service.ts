@@ -24,4 +24,12 @@ export class UnitService {
       .setLoading(true)
       .send();
   }
+  
+  getInvSummaryData(model) {
+    return this.baseHttp
+      .request('GET', 'unit/invSummary')
+      .setQueryParams(model)
+      .setLoading(true)
+      .send();
+  }
 }
