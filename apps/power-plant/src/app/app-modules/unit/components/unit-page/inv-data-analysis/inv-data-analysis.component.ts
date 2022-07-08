@@ -6,9 +6,10 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { AlarmModel } from 'apps/power-plant/src/app/dashboard/shared/models/alarm.model';
 import { SharedService } from 'apps/power-plant/src/app/shared/services/shared.service';
 import { ECharts } from 'echarts';
-import { debounce, debounceTime } from 'rxjs';
+import { debounce, debounceTime, map } from 'rxjs';
 import { PowerChart } from '../../../../../shared/models/power-chart';
 import { InvSummary } from '../../../shared/models/inv-summary.model';
 import { UnitService } from '../../../shared/services/unit.service';
@@ -31,6 +32,8 @@ export class InvDataAnalysisComponent implements OnInit, OnChanges {
   unitYieldChartInstance: ECharts;
   PowerChartData: PowerChart = null;
   invSummaryData: InvSummary = null;
+  alarmData: Array<AlarmModel> = [];
+
   constructor(
     private readonly fb: FormBuilder,
     private unitService: UnitService,
@@ -75,6 +78,13 @@ export class InvDataAnalysisComponent implements OnInit, OnChanges {
           this.invSummaryData = new InvSummary(res[0]);
         },
       });
+
+      this.sharedService
+        .getAlarms({ ...model, date: model.DateTime })
+        .pipe(map((res) => res.map((el) => new AlarmModel(el))))
+        .subscribe((value) => {
+          this.alarmData = value;
+        });
     }
   }
 }
