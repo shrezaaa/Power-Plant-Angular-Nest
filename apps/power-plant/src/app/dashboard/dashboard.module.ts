@@ -8,7 +8,6 @@ import { YieldTrendChartComponent } from './components/yield-trend-chart/yield-t
 import { StatisticsChartComponent } from './components/statistics-chart/statistics-chart.component';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { TemperatureChartComponent } from './components/temperature-chart/temperature-chart.component';
-import { AlarmsGridComponent } from './components/alarms-grid/alarms-grid.component';
 import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
@@ -18,7 +17,6 @@ import { AgGridModule } from 'ag-grid-angular';
     YieldTrendChartComponent,
     StatisticsChartComponent,
     TemperatureChartComponent,
-    AlarmsGridComponent,
   ],
   imports: [
     CommonModule,

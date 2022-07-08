@@ -30,12 +30,4 @@ export class DashboardService {
       .setQueryParams(model)
       .send();
   }
-
-  getAlarms(model) {
-    return this.baseHttp
-      .request('GET', 'dashboard/alarms')
-      .setLoading(true)
-      .setQueryParams(model)
-      .send();
-  }
 }

@@ -11,6 +11,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { UnitYieldChartComponent } from './components/unit-yield-chart/unit-yield-chart.component';
 import { UnitPowerChartComponent } from './components/unit-power-chart/unit-power-chart.component';
 import { NgxEchartsModule } from 'ngx-echarts';
+import { AlarmsGridComponent } from './components/alarms-grid/alarms-grid.component';
+import { AgGridModule } from 'ag-grid-angular';
 
 const MAT_MODULES = [MatIconModule, MatButtonModule, MatDividerModule];
 
@@ -19,6 +21,7 @@ const COMPONENTS = [
   DetailSectionComponent,
   UnitPowerChartComponent,
   UnitYieldChartComponent,
+  AlarmsGridComponent,
 ];
 
 const MODULES = [PipesModule];
@@ -30,6 +33,7 @@ const DIRECTIVES = [ClickStopPropagationDirective];
     ...MAT_MODULES,
     ...MODULES,
     CommonModule,
+    AgGridModule.withComponents([]),
     NgxEchartsModule.forRoot({
       /**
        * This will import all modules from echarts.

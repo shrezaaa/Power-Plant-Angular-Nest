@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { AgGridAngular } from 'ag-grid-angular';
 import { ColDef, GridOptions, GridReadyEvent } from 'ag-grid-community';
-import { AlarmModel } from '../../shared/models/alarm.model';
+import { AlarmModel } from '../../../dashboard/shared/models/alarm.model';
 
 @Component({
   selector: 'p-plant-alarms-grid',

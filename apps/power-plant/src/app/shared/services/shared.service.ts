@@ -55,4 +55,12 @@ export class SharedService {
       });
     return subject;
   }
+
+  getAlarms(model) {
+    return this.baseHttp
+      .request('GET', 'dashboard/alarms')
+      .setLoading(true)
+      .setQueryParams(model)
+      .send();
+  }
 }

@@ -102,7 +102,7 @@ export class MainDashboardComponent implements OnInit {
   }
 
   getAlarms() {
-    this.dashboardService
+    this.sharedService
       .getAlarms({
         date: this.currentDate,
         PlantID: this.sharedService.selectedPlant$.value.PlantID,
