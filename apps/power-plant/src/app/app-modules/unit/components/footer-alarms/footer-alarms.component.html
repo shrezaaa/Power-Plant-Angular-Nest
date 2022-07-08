@@ -1,12 +1,20 @@
-<div *ngIf="isOpened" class="absolute bottom-0 h-96">
-    <button mat-stroked-button color="primary" (click)="isOpened=!isOpened">
-        toggle
-    </button>
-    opened
+<div *ngIf="isOpened" class="absolute bottom-0 h-80 w-full bg-white">
+    <div class="footer-head">
+        <hr class="mb-2">
+        <button mat-icon-button color="primary" (click)="isOpened=!isOpened">
+            <mat-icon >expand_more</mat-icon>
+        </button>
+        Alarms Section
+        <!-- <hr class=""> -->
+    </div>
+    <div class="footer-body">
+        
+    </div>
 </div>
-<div *ngIf="!isOpened" class="">
-    <button mat-stroked-button color="primary" (click)="isOpened=!isOpened">
-        toggle
+<div *ngIf="!isOpened" class="bg-white">
+    <hr class="mb-2">
+    <button mat-icon-button color="primary" (click)="isOpened=!isOpened">
+        <mat-icon >expand_less</mat-icon>
     </button>
-    closed
+    Alarms Section
 </div>
