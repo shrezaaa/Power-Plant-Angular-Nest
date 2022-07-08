@@ -60,7 +60,7 @@ export class UnitService {
     return await this.connection.query(query);
   }
 
-  getTableByDeviceType(DeviceTypeID): string {
+  private getTableByDeviceType(DeviceTypeID): string {
     switch (+DeviceTypeID) {
       case 1:
         return 'CBDataInput';

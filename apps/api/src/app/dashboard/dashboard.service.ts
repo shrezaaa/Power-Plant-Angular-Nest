@@ -35,11 +35,12 @@ export class DashboardService {
   }
 
   async getAlarms(params) {
-    const { date, PlantID } = params;
+    const { date, PlantID, DeviceID } = params;
     let query = `execute Alarms_Search @Date = '${date}', @PlantID = ${
       PlantID ?? 1
-    } `;
+    },
+    @DeviceID = ${DeviceID ?? null} `;
     this.logger.debug(query);
-    return await this.connection.query(query)
+    return await this.connection.query(query);
   }
 }
