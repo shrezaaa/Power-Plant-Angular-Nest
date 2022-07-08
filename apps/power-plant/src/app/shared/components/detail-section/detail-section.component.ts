@@ -9,7 +9,7 @@ import { UnaryFunction } from "rxjs";
 })
 export class DetailSectionComponent implements OnInit {
   @Input("data") data: Array<NameValueDetailSection> = [];
-  @Input("headerTitle") headerTitle = [];
+  @Input("headerTitle") headerTitle = "";
   constructor() {}
 
   ngOnInit(): void {}

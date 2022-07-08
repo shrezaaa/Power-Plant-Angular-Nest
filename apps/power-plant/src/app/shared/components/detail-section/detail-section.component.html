@@ -8,10 +8,10 @@
 <div class="pl-4">
   <ng-content class="" select="[upper-data]"></ng-content>
 </div>
-<ul class="mt-2 grid gap-x-4 grid-cols-12 item-list-divided">
+<ul class="mt-2 grid gap-x-4 grid-cols-12 item-list-divided pl-3">
   <ng-container *ngFor="let item of data">
     <li
-      class="col-span-6 m-0"
+      class="col-span-12 md:col-span-6 m-0"
       [ngClass]="item.class ? item.class : ''"
       *ngIf="item.name || item.value"
     >
