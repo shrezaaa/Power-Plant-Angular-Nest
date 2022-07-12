@@ -17,8 +17,10 @@ export class DashboardService {
   }
 
   async getTemperatureChart(params) {
-    const { date } = params;
-    let query = `execute TemperatureChart_Search @Date = '${date}'`;
+    const { date, PlantID } = params;
+    let query = `execute TemperatureChart_Search @Date = '${date}', @PlantID = ${
+      PlantID ?? 1
+    } `;
     this.logger.debug(query);
     return await this.connection.query(query);
   }
