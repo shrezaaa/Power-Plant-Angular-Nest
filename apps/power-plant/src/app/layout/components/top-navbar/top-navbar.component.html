@@ -25,7 +25,7 @@
         <mat-icon> menu </mat-icon>
       </button>
     </li>
-    <li class="">
+    <li class="mr-auto">
         <span class="flex items-center">
           <strong>Plant:&nbsp;</strong>
           <p>{{ (sharedService.selectedPlant | async).PlantName }}</p>
@@ -38,13 +38,13 @@
           </button>
         </span>
     </li>
-    <li
+    <!-- <li
       class="py-2 pr-2 ml-auto my-2 text-black rounded-full hover:text-yellow-600 cursor-pointer"
     >
       <button mat-icon-button (click)="openAlarms()">
         <mat-icon>notifications</mat-icon>
       </button>
-    </li>
+    </li> -->
     <li
       class="py-2 mx-2 rounded-sm text-black cursor-pointer flex flex-col items-end"
       *ngIf="!pending"

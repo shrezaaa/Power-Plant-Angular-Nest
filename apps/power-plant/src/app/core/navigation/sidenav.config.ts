@@ -42,12 +42,12 @@ export const SIDENAV_CONFIG: SidenavNode[] = [
     url: '/curve/page',
     ACCESS: 'admin',
   },
-  {
-    name: 'Reports',
-    icon: 'summarize',
-    url: '/report',
-    ACCESS: 'admin',
-  },
+  // {
+  //   name: 'Reports',
+  //   icon: 'summarize',
+  //   url: '/report',
+  //   ACCESS: 'admin',
+  // },
 ];
 
 // export const BREADCRUMP_BASE = [
